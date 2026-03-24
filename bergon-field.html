@@ -767,6 +767,7 @@ if(allBounds.length) map.fitBounds(L.latLngBounds(allBounds),{padding:[20,20]});
 
 // ── SIDEBAR ──
 function buildSidebar() {
+  if(!CLIENTS) return;
   const list = document.getElementById('client-list');
   let entries = Object.entries(CLIENTS);
 
@@ -810,10 +811,17 @@ function searchClients(v){searchQ=v.toLowerCase();buildSidebar();}
 
 // ── PANEL ──
 function openPanel(key, parcelCoords) {
+  if(!CLIENTS) return;
   activeClient=key;
   buildSidebar();
   const c=CLIENTS[key];
+  if(!c) return;
   if(!parcelCoords) { activeParcId=null; solCurrentIdx=0; }
+  // Auto-refresh ZNT si l'onglet est actif
+  setTimeout(()=>{
+    const activeTab = document.querySelector('.mp-tab.active');
+    if(activeTab && activeTab.textContent.includes('ZNT')) triggerZnt();
+  }, 100);
   // Zoom: on parcel if clicked, on full domain if from sidebar
   if(parcelCoords && parcelCoords.length) {
     const pBounds = parcelCoords.map(cc=>[cc[1],cc[0]]);
@@ -861,6 +869,7 @@ function setLayer(btn,type){
 
 // ── CLIENTS GRID ──
 function buildClientsGrid(){
+  if(!CLIENTS) return;
   const grid=document.getElementById('clients-grid');
   grid.innerHTML=Object.entries(CLIENTS).map(([key,c],i)=>{
     const sc=STATUT_C[c.statut]||'#6b6e58';
@@ -1037,7 +1046,11 @@ function setZntDistance(btn, dist) {
 }
 
 async function triggerZnt() {
-  if(!activeClient) return;
+  if(!activeClient || !DDTM83_BCAE) {
+    document.getElementById('znt-content').innerHTML =
+      '<div class="znt-loading">⏳ Données en cours de chargement…</div>';
+    return;
+  }
   const client = CLIENTS[activeClient];
   const content = document.getElementById('znt-content');
   content.innerHTML = `<div class="znt-loading"><span class="znt-spinner"></span>Calcul ZNT en cours…</div>`;
@@ -1053,6 +1066,7 @@ async function triggerZnt() {
   const maxLat = Math.max(...lats) + 0.01;
 
   // Filter DDTM83 BCAE to client bbox
+  if(!DDTM83_BCAE || !DDTM83_BCAE.features) { content.innerHTML='<div class="znt-loading">⚠️ Données ZNT non chargées</div>'; return; }
   const rivers = DDTM83_BCAE.features.filter(feat => {
     const coords = feat.geometry.type === 'LineString'
       ? feat.geometry.coordinates
