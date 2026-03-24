@@ -680,7 +680,7 @@ let searchQ = '';
 // ══════════════════════════════════════════════════════
 
 // ⚙️  Changer BASE_URL vers votre repo GitHub après upload
-const BASE_URL = 'https://raw.githubusercontent.com/stephanezunino-bot/BERGON-FIELD/main';
+const BASE_URL = 'https://cdn.jsdelivr.net/gh/stephanezunino-bot/BERGON-FIELD@main';
 
 let CLIENTS      = null;
 let DDTM83_BCAE  = null;
@@ -716,7 +716,7 @@ function showLoader(on) {
 
 function initMap() {
 // ── MAP INIT ──
-map = L.map('field-map',{zoomControl:false,attributionControl:false}).setView([43.28,6.08],10);
+map = L.map('field-map',{zoomControl:false,attributionControl:false}).setView([43.28,6.08],11);
 osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20});
 satLayer = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=${MAPBOX}`,{maxZoom:20,tileSize:512,zoomOffset:-1});
 ignLayer = L.tileLayer('https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',{maxZoom:18});
@@ -745,18 +745,25 @@ Object.entries(CLIENTS).forEach(([key,client]) => {
         radius:4, color:'#fff', weight:1.5,
         fillColor:'#5A8F3C', fillOpacity:1
       }).addTo(map);
-      dot.on('click',()=>{ activeParcId=p.id; solCurrentIdx=0; openPanel(key);
-        setTimeout(()=>{ const t=document.querySelectorAll('.mp-tab')[2]; if(t) switchTab(t,'sol'); },100);
+      dot.on('click',()=>{ activeParcId=p.id; solCurrentIdx=0; openPanel(key, p.coords);
+        setTimeout(()=>{ const t=document.querySelectorAll('.mp-tab')[2]; if(t) switchTab(t,'sol'); else autoRefreshSol(); },100);
       });
     }
     poly.on('mouseover',()=>poly.setStyle({weight:3,fillOpacity:0.9}));
     poly.on('mouseout',()=>poly.setStyle(style));
-    poly.on('click',()=>openPanel(key));
+    poly.on('click',()=>{
+      activeParcId=p.id; solCurrentIdx=0;
+      openPanel(key, p.coords);
+      setTimeout(autoRefreshSol, 50);
+    });
     ll.forEach(pt=>allBounds.push(pt));
     polygons[key].push({poly,parcelle:p,style});
   });
 });
 if(allBounds.length) map.fitBounds(L.latLngBounds(allBounds),{padding:[20,20]});
+  buildSidebar();
+  buildClientsGrid();
+}
 
 // ── SIDEBAR ──
 function buildSidebar() {
@@ -802,15 +809,20 @@ function setFilter(btn,f) {
 function searchClients(v){searchQ=v.toLowerCase();buildSidebar();}
 
 // ── PANEL ──
-function openPanel(key) {
+function openPanel(key, parcelCoords) {
   activeClient=key;
   buildSidebar();
   const c=CLIENTS[key];
-  activeParcId = null;
-  solCurrentIdx = 0;
-  const bounds=[];
-  c.parcelles.forEach(p=>p.coords.forEach(cc=>bounds.push([cc[1],cc[0]])));
-  if(bounds.length) map.flyToBounds(L.latLngBounds(bounds).pad(0.3),{duration:0.8});
+  if(!parcelCoords) { activeParcId=null; solCurrentIdx=0; }
+  // Zoom: on parcel if clicked, on full domain if from sidebar
+  if(parcelCoords && parcelCoords.length) {
+    const pBounds = parcelCoords.map(cc=>[cc[1],cc[0]]);
+    map.flyToBounds(L.latLngBounds(pBounds).pad(0.5),{duration:0.6,maxZoom:17});
+  } else {
+    const bounds=[];
+    c.parcelles.forEach(p=>p.coords.forEach(cc=>bounds.push([cc[1],cc[0]])));
+    if(bounds.length) map.flyToBounds(L.latLngBounds(bounds).pad(0.3),{duration:0.8});
+  }
 
   document.getElementById('mp-name').textContent=c.nom;
   document.getElementById('mp-loc').textContent=c.commune;
@@ -905,7 +917,11 @@ function switchTab(btn, tab) {
   document.querySelectorAll('.mp-tab-content').forEach(c=>c.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   if(tab==='znt' && activeClient) triggerZnt();
-  if(tab==='sol' && activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
+  if(tab==='sol') {
+    if(activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
+    else document.getElementById('sol-content').innerHTML =
+      '<div class="sol-no-data"><span class="ico">👆</span>Cliquez sur un polygone de parcelle sur la carte.</div>';
+  }
 }
 
 // Track active parcelle for sol tab
@@ -1183,9 +1199,15 @@ function clearZntLayers() {
   if(zntLayers.buffers) { map.removeLayer(zntLayers.buffers); zntLayers.buffers=null; }
 }
 
-  buildSidebar();
-  buildClientsGrid();
+
+function autoRefreshSol() {
+  // If Sol tab is already active, refresh it without clicking
+  const activeSolTab = document.querySelector('.mp-tab.active');
+  if(activeSolTab && activeSolTab.textContent.includes('Sol')) {
+    if(activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
+  }
 }
+
 
 // ── START ──
 loadAllData();
