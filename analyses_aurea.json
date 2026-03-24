@@ -1,0 +1,1035 @@
+{
+  "ROSE_DES_VENTS:I22P1": [
+    {
+      "ref": "SYRAH GROS ESCALIER",
+      "lat": 43.33277,
+      "lng": 6.00359,
+      "date": "10/02/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.9",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "2.9",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "432",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "299",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "18.9",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.21",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "17.5",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "10.0",
+        "k2o": "35.0",
+        "mgo": "5.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    },
+    {
+      "ref": "CINSAUT VENELLE",
+      "lat": 43.33205,
+      "lng": 6.004653,
+      "date": "21/10/2024",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.47",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.3",
+          "unit": "%",
+          "status": "low"
+        },
+        "Calc. actif": {
+          "val": "2.0",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": "50.0",
+          "unit": "",
+          "status": "high"
+        },
+        "K₂O": {
+          "val": "318",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "219",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "10.284",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.1",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "14.8",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "60.0",
+        "k2o": "90.0",
+        "mgo": "30.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I11P1": [
+    {
+      "ref": "CHEMIN DE TOULON",
+      "lat": 43.321906,
+      "lng": 5.986386,
+      "date": "10/02/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.6",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.9",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "4.3",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "385",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "283",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "14.1",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.2",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "9.3",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "10.0",
+        "k2o": "40.0",
+        "mgo": "15.0",
+        "zn": "3.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I23P1": [
+    {
+      "ref": "GRENACHE SACCO",
+      "lat": 43.3323,
+      "lng": 5.998879,
+      "date": "10/02/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.7",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "4.1",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "352",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "300",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "15.7",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.17",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "7.3",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "10.0",
+        "k2o": "45.0",
+        "mgo": "15.0",
+        "zn": "3.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I15P1": [
+    {
+      "ref": "LES ANES",
+      "lat": 43.31236,
+      "lng": 5.98541,
+      "date": "07/10/2019",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "7.7",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.2",
+          "unit": "%",
+          "status": "low"
+        },
+        "Calc. actif": {
+          "val": null,
+          "unit": "%",
+          "status": "nd"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "193",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "MgO": {
+          "val": "263",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "13.8",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.16",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "11.2",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "25.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "2",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I53P1": [
+    {
+      "ref": "BELLEVUE",
+      "lat": 43.33179,
+      "lng": 5.975372,
+      "date": "07/10/2019",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.4",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.4",
+          "unit": "%",
+          "status": "low"
+        },
+        "Calc. actif": {
+          "val": "1.6",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "187",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "MgO": {
+          "val": "533",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "27.6",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.17",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "8.9",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "10.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I22P2": [
+    {
+      "ref": "CINSAUT VENELLE",
+      "lat": 43.3341,
+      "lng": 6.003673,
+      "date": "02/10/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.1",
+          "unit": "%",
+          "status": "low"
+        },
+        "Calc. actif": {
+          "val": "7.0",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "227",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "374",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "12.7",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.16",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "16.2",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "k2o": "15.0",
+        "mgo": "5.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I39P1": [
+    {
+      "ref": "VENTE AU DETAIL",
+      "lat": 43.33051,
+      "lng": 5.981011,
+      "date": "02/10/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.6",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "11.2",
+          "unit": "%",
+          "status": "high"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "253",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "366",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "27.1",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.18",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "9.9",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I16P1": [
+    {
+      "ref": "CHEMIN DE TOULON CALES",
+      "lat": 43.3202,
+      "lng": 5.98684,
+      "date": "02/10/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.6",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "2.6",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "243",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "294",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "14.7",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.08",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "11.3",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I9P1": [
+    {
+      "ref": "CHEMIN DE TOULON",
+      "lat": 43.32378,
+      "lng": 5.985085,
+      "date": "02/10/2020",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.6",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.1",
+          "unit": "%",
+          "status": "low"
+        },
+        "Calc. actif": {
+          "val": "7.8",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "230",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "318",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "17.4",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.1",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "7.0",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I10P1": [
+    {
+      "ref": "SAMBUC",
+      "lat": 43.32364,
+      "lng": 5.982493,
+      "date": "03/11/2021",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.6",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.8",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "3.7",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "293",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "289",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "21.6",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.08",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "6.5",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I54P1": [
+    {
+      "ref": "LES GRAVETTES",
+      "lat": 43.31743,
+      "lng": 5.990172,
+      "date": "03/11/2021",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.4",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.8",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "2.9",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "367",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "250",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "17.5",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.07",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "11.0",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "25.0",
+        "mgo": "30.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I3P1": [
+    {
+      "ref": "MOUNETTE",
+      "lat": 43.33285,
+      "lng": 5.980189,
+      "date": "03/11/2021",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.5",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "2.0",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "6.5",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "202",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "328",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "13.8",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.11",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "9.2",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    },
+    {
+      "ref": "LA MOUNETTE",
+      "lat": 43.33269,
+      "lng": 5.980212,
+      "date": "10/10/2023",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.42",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "2.08",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "6.9",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "241",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "319",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "24.305",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.1",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "10.5",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I8P1": [
+    {
+      "ref": "CALES",
+      "lat": 43.3269,
+      "lng": 5.983648,
+      "date": "10/10/2023",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.54",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.58",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "11.7",
+          "unit": "%",
+          "status": "high"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "155",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "MgO": {
+          "val": "265",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "13.729",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "Bore": {
+          "val": "0.07",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "7.6",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "80.0",
+        "k2o": "35.0",
+        "mgo": "20.0",
+        "zn": "2.0",
+        "mn": "1",
+        "fe": "1",
+        "bore": "1"
+      }
+    }
+  ],
+  "ROSE_DES_VENTS:I42P1": [
+    {
+      "ref": "LE LAC",
+      "lat": 43.3297,
+      "lng": 6.01622,
+      "date": "10/10/2023",
+      "client": "BAUDEAR",
+      "params": {
+        "pH eau": {
+          "val": "8.46",
+          "unit": "",
+          "status": "high"
+        },
+        "MO": {
+          "val": "1.96",
+          "unit": "%",
+          "status": "ok"
+        },
+        "Calc. actif": {
+          "val": "4.0",
+          "unit": "%",
+          "status": "ok"
+        },
+        "IPC": {
+          "val": null,
+          "unit": "",
+          "status": "nd"
+        },
+        "K₂O": {
+          "val": "345",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "MgO": {
+          "val": "205",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "P₂O₅": {
+          "val": "37.271",
+          "unit": "mg/kg",
+          "status": "ok"
+        },
+        "Bore": {
+          "val": "0.1",
+          "unit": "mg/kg",
+          "status": "low"
+        },
+        "CEC": {
+          "val": "16.7",
+          "unit": "méq",
+          "status": "ok"
+        }
+      },
+      "conseils_an1": {
+        "p2o5": "10.0",
+        "k2o": "10.0",
+        "mgo": "5.0",
+        "zn": "3.0",
+        "mn": "1",
+        "fe": "3",
+        "bore": "1"
+      }
+    }
+  ]
+}
