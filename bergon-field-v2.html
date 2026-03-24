@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergon Field — Prototype</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --vert:        #2A4A1A;
+  --vert-mid:    #3D6B28;
+  --vert-clair:  #5A8F3C;
+  --vert-pale:   #C8DFB4;
+  --terre:       #7A4F2D;
+  --or:          #C9A84C;
+  --or-pale:     #F0DFA0;
+  --blanc:       #F4F1E8;
+  --gris-doux:   #E2DDD2;
+  --texte:       #1C1C18;
+  --rouge:       #C0392B;
+  --bleu:        #2471A3;
+  --orange:      #D35400;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #111510;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 60px;
+}
+
+/* ── HEADER ── */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--blanc);
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--vert-clair); }
+.tagline {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ── NAV TABS ── */
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  background: #1E221A;
+  border-radius: 14px;
+  padding: 6px;
+}
+.tab-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #888;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .25s;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  background: var(--vert-mid);
+  color: #fff;
+  font-weight: 600;
+}
+.tab-btn:hover:not(.active) { color: var(--blanc); }
+
+/* ── PHONE FRAME ── */
+.phone-wrap {
+  position: relative;
+  width: 375px;
+  max-width: 100%;
+}
+.phone-frame {
+  background: #0E120C;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 40px 100px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone-notch {
+  width: 120px;
+  height: 28px;
+  background: #0E120C;
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto 10px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.notch-cam { width:10px;height:10px;border-radius:50%;background:#222; }
+.notch-speaker { width:50px;height:5px;border-radius:3px;background:#222; }
+
+.phone-screen {
+  background: var(--blanc);
+  border-radius: 32px;
+  overflow: hidden;
+  height: 720px;
+  position: relative;
+}
+
+/* ── SCREEN ── */
+.screen { display:none; width:100%; height:100%; flex-direction:column; }
+.screen.active { display:flex; }
+
+/* STATUS BAR */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texte);
+  background: var(--blanc);
+  flex-shrink: 0;
+}
+.status-icons { display:flex; gap:6px; align-items:center; }
+.signal { font-size:10px; }
+
+/* APP HEADER */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 18px 10px;
+  flex-shrink: 0;
+}
+.app-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--texte);
+}
+.app-title span { color: var(--vert-clair); }
+.avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--vert-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff;
+}
+
+/* ════════════════════════════
+   ÉCRAN 2 — FICHE CLIENT
+════════════════════════════ */
+#screen-fiche {
+  background: var(--blanc);
+  overflow-y: auto;
+}
+.fiche-header {
+  background: linear-gradient(135deg, var(--vert) 0%, var(--vert-mid) 100%);
+  padding: 16px 18px 20px;
+  flex-shrink: 0;
+}
+.fiche-back {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.fiche-back::before { content: '← '; }
+.fiche-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+}
+.fiche-loc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+}
+.fiche-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.fiche-tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+.fiche-body {
+  padding: 0 16px 20px;
+  overflow-y: auto;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--vert);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 18px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--vert-pale);
+}
+
+/* Météo */
+.meteo-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.meteo-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+.meteo-icon { font-size: 20px; }
+.meteo-day { font-size: 9px; color: #888; margin-top: 2px; }
+.meteo-temp { font-size: 13px; font-weight: 700; color: var(--texte); }
+.meteo-hum { font-size: 9px; color: var(--bleu); }
+
+/* Alerte */
+.alerte-card {
+  background: #FFF3CD;
+  border: 1.5px solid #F0C060;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.alerte-icon { font-size: 20px; flex-shrink: 0; }
+.alerte-title { font-size: 12px; font-weight: 700; color: #7A4F00; }
+.alerte-desc { font-size: 11px; color: #6B5A30; margin-top: 2px; }
+.alerte-action {
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: var(--or);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Analyse sol */
+.sol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.sol-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.sol-label { font-size: 10px; color: #888; font-weight: 500; }
+.sol-value { font-family:'Syne',sans-serif; font-size: 20px; font-weight: 700; color: var(--texte); margin-top: 2px; }
+.sol-unit { font-size: 10px; color: #aaa; }
+.sol-bar {
+  height: 4px;
+  background: var(--gris-doux);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.sol-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--vert-clair);
+}
+.sol-fill.warn { background: var(--orange); }
+.sol-fill.ok   { background: var(--vert-clair); }
+
+/* Achats */
+.achat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gris-doux);
+}
+.achat-row:last-child { border-bottom: none; }
+.achat-produit { font-size: 13px; font-weight: 600; color: var(--texte); }
+.achat-date { font-size: 10px; color: #aaa; margin-top: 2px; }
+.achat-montant { font-family:'Syne',sans-serif; font-size: 15px; font-weight: 700; color: var(--vert); }
+
+/* CTA appel */
+.fiche-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #fff;
+  border-top: 1px solid var(--gris-doux);
+  flex-shrink: 0;
+}
+.cta-btn {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all .2s;
+}
+.cta-btn.primary { background: var(--vert-mid); color: #fff; }
+.cta-btn.secondary { background: var(--gris-doux); color: var(--texte); }
+.cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ════════════════════════════
+   ÉCRAN 3 — CATALOGUE
+════════════════════════════ */
+#screen-catalogue {
+  background: var(--blanc);
+}
+.catalogue-header {
+  padding: 0 18px 12px;
+  flex-shrink: 0;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid var(--gris-doux);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.search-bar input {
+  border: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--texte);
+  flex: 1;
+  outline: none;
+}
+.search-icon { font-size: 16px; color: #aaa; }
+
+.filter-chips {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.filter-chips::-webkit-scrollbar { display:none; }
+.filter-chip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  background: #fff;
+  border: 1.5px solid var(--gris-doux);
+  color: #666;
+}
+.filter-chip.active {
+  background: var(--vert-mid);
+  border-color: var(--vert-mid);
+  color: #fff;
+}
+
+/* Recommandation */
+.recommandation-banner {
+  background: linear-gradient(135deg, #2A4A1A 0%, #4A7C23 100%);
+  margin: 0 16px 14px;
+  border-radius: 14px;
+  padding: 14px 16px;
+  flex-shrink: 0;
+}
+.reco-label {
+  font-size: 9px;
+  color: var(--vert-pale);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.reco-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  margin-top: 3px;
+}
+.reco-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.reco-produit {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reco-produit-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--or);
+}
+.reco-btn {
+  padding: 6px 14px;
+  background: var(--or);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Produits liste */
+.produits-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+}
+.produit-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: all .2s;
+  border: 1.5px solid transparent;
+}
+.produit-card:hover { border-color: var(--vert-pale); transform: translateY(-1px); }
+.produit-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--vert-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.produit-name { font-size: 14px; font-weight: 700; color: var(--texte); }
+.produit-desc { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.3; }
+.produit-tags { display:flex; gap:5px; margin-top:6px; flex-wrap:wrap; }
+.produit-tag {
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--gris-doux);
+  color: #666;
+}
+.produit-tag.highlight { background: var(--vert-pale); color: var(--vert); }
+.produit-price {
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+}
+.produit-price-num { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--vert); }
+.produit-price-unit { font-size:9px; color:#aaa; }
+
+/* ════════════════════════════
+   ÉCRAN 4 — DASHBOARD
+════════════════════════════ */
+#screen-dashboard {
+  background: var(--blanc);
+  overflow-y: auto;
+}
+.dash-header {
+  background: linear-gradient(135deg, var(--vert) 0%, var(--vert-mid) 100%);
+  padding: 14px 18px 22px;
+  flex-shrink: 0;
+}
+.dash-greeting {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+.dash-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  margin-top: 2px;
+}
+.dash-date { font-size:11px; color:rgba(255,255,255,0.6); margin-top:2px; }
+
+/* KPIs */
+.kpi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 16px 16px 0;
+  flex-shrink: 0;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+.kpi-label { font-size: 10px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+.kpi-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--texte);
+  margin-top: 4px;
+  line-height: 1;
+}
+.kpi-value.green { color: var(--vert-clair); }
+.kpi-value.orange { color: var(--orange); }
+.kpi-sub { font-size: 10px; color: #aaa; margin-top: 4px; }
+.kpi-trend { font-size:10px; margin-top:4px; }
+.kpi-trend.up { color: var(--vert-clair); }
+.kpi-trend.down { color: var(--rouge); }
+
+/* Activité récente */
+.dash-body { padding: 0 16px 80px; }
+
+.activite-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gris-doux);
+}
+.activite-item:last-child { border-bottom:none; }
+.activite-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.activite-dot.visite { background: var(--vert-pale); }
+.activite-dot.alerte { background: #FFF3CD; }
+.activite-dot.vente  { background: #D5E8D4; }
+.activite-title { font-size: 13px; font-weight: 600; color: var(--texte); }
+.activite-desc  { font-size: 11px; color: #888; margin-top: 2px; }
+.activite-time  { font-size: 10px; color: #bbb; margin-left: auto; flex-shrink:0; }
+
+/* Objectif barre */
+.objectif-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+.obj-header { display:flex; justify-content:space-between; align-items:center; }
+.obj-title { font-size:12px; font-weight:700; color:var(--texte); }
+.obj-pct { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:var(--vert-clair); }
+.obj-bar {
+  height: 8px;
+  background: var(--gris-doux);
+  border-radius: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.obj-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--vert-clair), var(--or));
+  transition: width 1s ease;
+}
+.obj-amounts { display:flex; justify-content:space-between; margin-top:5px; }
+.obj-amount { font-size:10px; color:#aaa; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0 14px;
+  background: #fff;
+  border-top: 1px solid var(--gris-doux);
+  flex-shrink: 0;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  border-radius: 0 0 32px 32px;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 4px 14px;
+  border-radius: 10px;
+  transition: all .2s;
+}
+.nav-item:hover { background: var(--vert-pale); }
+.nav-item.active .nav-icon { color: var(--vert-mid); }
+.nav-item.active .nav-label { color: var(--vert-mid); font-weight:700; }
+.nav-icon { font-size:20px; color:#bbb; }
+.nav-label { font-size:9px; color:#bbb; font-weight:500; letter-spacing:0.3px; }
+
+/* ── ANNOTATIONS DEMO ── */
+.demo-note {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #555;
+  font-style: italic;
+}
+.demo-arrow {
+  text-align: center;
+  font-size: 11px;
+  color: #444;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.screen.active { animation: fadeIn .3s ease; }
+
+/* ════════════════════════════
+   ÉCRAN 1 — CARTE MOBILE
+════════════════════════════ */
+#screen-carte { flex-direction:column; }
+#mobile-map { width:100%; height:380px; flex-shrink:0; }
+.leaflet-container { background:#1a1e13 !important; }
+.leaflet-tile { filter:brightness(0.85) saturate(0.8); }
+.leaflet-control-zoom a { background:rgba(255,255,255,0.9)!important; }
+.leaflet-control-attribution { display:none!important; }
+.mobile-map-bottom {
+  background:#fff;
+  border-radius:16px 16px 0 0;
+  padding:10px 14px 6px;
+  box-shadow:0 -4px 16px rgba(0,0,0,0.1);
+  flex-shrink:0;
+  max-height:120px;
+  overflow-y:auto;
+  margin-bottom:56px;
+}
+.mob-bottom-handle {
+  width:32px;height:4px;background:#ddd;
+  border-radius:2px;margin:0 auto 8px;
+}
+.mob-chips { display:flex;gap:7px;overflow-x:auto;padding-bottom:4px; }
+.mob-chips::-webkit-scrollbar { display:none; }
+.mob-chip {
+  flex-shrink:0;background:var(--gris-doux);border-radius:8px;
+  padding:7px 11px;cursor:pointer;border:1.5px solid transparent;
+  transition:all .2s;
+}
+.mob-chip:hover { border-color:var(--vert-clair);background:var(--vert-pale); }
+.mob-chip-name { font-size:11px;font-weight:600;color:var(--texte); }
+.mob-chip-info { font-size:9px;color:#888;margin-top:1px; }
+.mob-chip-badge {
+  display:inline-block;padding:1px 6px;border-radius:4px;
+  font-size:8px;font-weight:700;margin-top:3px;
+}
+.mob-badge-ok  { background:var(--vert-pale);color:var(--vert); }
+.mob-badge-att { background:var(--or-pale);color:#7A5C00; }
+.mob-badge-red { background:#fde8e8;color:#C0392B; }
+.mob-loader {
+  display:flex;align-items:center;justify-content:center;
+  flex:1;font-size:11px;color:#888;flex-direction:column;gap:8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Bergon<span>Field</span></div>
+  <div class="tagline">Prototype — Démo PDG · Mars 2026</div>
+</div>
+
+<div class="app-wrapper" style="flex-direction:column;align-items:center;">
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showScreen('carte',this)">🗺 Carte</button>
+    <button class="tab-btn" onclick="showScreen('fiche',this)">👤 Fiche</button>
+    <button class="tab-btn" onclick="showScreen('catalogue',this)">📦 Catalogue</button>
+    <button class="tab-btn" onclick="showScreen('dashboard',this)">📊 Dashboard</button>
+  </div>
+
+  <!-- PHONE -->
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-notch">
+        <div class="notch-speaker"></div>
+        <div class="notch-cam"></div>
+      </div>
+      <div class="phone-screen">
+
+        <!-- ══ ÉCRAN 1 : CARTE ══ -->
+        <div class="screen active" id="screen-carte">
+          <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons"><span class="signal">▲▲▲</span><span>🔋</span></div>
+          </div>
+          <div class="app-header" style="padding-bottom:6px;">
+            <div class="app-title">Bergon<span>Field</span></div>
+            <div class="avatar">SZ</div>
+          </div>
+
+          <div id="mobile-map" style="flex:1;min-height:0;"></div>
+
+          <div class="mobile-map-bottom">
+            <div class="mob-bottom-handle"></div>
+            <div class="mob-chips" id="mob-chips">
+              <div style="font-size:10px;color:#aaa;padding:6px;">Chargement…</div>
+            </div>
+          </div>
+
+          <div class="bottom-nav">
+            <div class="nav-item active"><div class="nav-icon">🗺</div><div class="nav-label">Carte</div></div>
+            <div class="nav-item" onclick="showScreen('fiche',null)"><div class="nav-icon">👤</div><div class="nav-label">Clients</div></div>
+            <div class="nav-item" onclick="showScreen('catalogue',null)"><div class="nav-icon">📦</div><div class="nav-label">Catalogue</div></div>
+            <div class="nav-item" onclick="showScreen('dashboard',null)"><div class="nav-icon">📊</div><div class="nav-label">Dashboard</div></div>
+          </div>
+        </div>
+
+        <!-- ══ ÉCRAN 2 : FICHE CLIENT ══ -->
+        <div class="screen" id="screen-fiche" style="overflow:hidden;">
+          <div class="status-bar">
+            <span>9:43</span>
+            <div class="status-icons"><span class="signal">▲▲▲</span><span>🔋</span></div>
+          </div>
+
+          <div class="fiche-header">
+            <div class="fiche-back" onclick="showScreen('carte',null)">Retour carte</div>
+            <div class="fiche-name">Domaine Maurel</div>
+            <div class="fiche-loc">📍 Brignoles · Var (83)</div>
+            <div class="fiche-tags">
+              <span class="fiche-tag">🍇 Grenache · Syrah</span>
+              <span class="fiche-tag">4.2 ha</span>
+              <span class="fiche-tag">✅ Client actif</span>
+            </div>
+          </div>
+
+          <div class="fiche-body" style="flex:1;overflow-y:auto;padding-bottom:80px;">
+
+            <div class="section-title">☀️ Météo Weenat — Parcelle</div>
+            <div class="meteo-row">
+              <div class="meteo-card"><div class="meteo-icon">☀️</div><div class="meteo-day">Auj.</div><div class="meteo-temp">24°</div><div class="meteo-hum">💧48%</div></div>
+              <div class="meteo-card"><div class="meteo-icon">🌤</div><div class="meteo-day">Dem.</div><div class="meteo-temp">21°</div><div class="meteo-hum">💧62%</div></div>
+              <div class="meteo-card"><div class="meteo-icon">🌧</div><div class="meteo-day">Mer.</div><div class="meteo-temp">17°</div><div class="meteo-hum">💧85%</div></div>
+              <div class="meteo-card"><div class="meteo-icon">⛅</div><div class="meteo-day">Jeu.</div><div class="meteo-temp">19°</div><div class="meteo-hum">💧71%</div></div>
+            </div>
+
+            <div class="section-title">⚠️ Alertes actives</div>
+            <div class="alerte-card">
+              <div class="alerte-icon">🍄</div>
+              <div>
+                <div class="alerte-title">Risque mildiou élevé</div>
+                <div class="alerte-desc">Humidité > 80% mercredi. Conditions favorables au développement fongique.</div>
+                <div class="alerte-action" onclick="showScreen('catalogue',null)">→ Voir solution catalogue</div>
+              </div>
+            </div>
+
+            <div class="section-title">🧪 Analyse de sol — Aurea (Mars 2025)</div>
+            <div class="sol-grid">
+              <div class="sol-card">
+                <div class="sol-label">pH sol</div>
+                <div class="sol-value">7.2 <span class="sol-unit"></span></div>
+                <div class="sol-bar"><div class="sol-fill ok" style="width:72%"></div></div>
+              </div>
+              <div class="sol-card">
+                <div class="sol-label">Azote (N)</div>
+                <div class="sol-value">68 <span class="sol-unit">mg/kg</span></div>
+                <div class="sol-bar"><div class="sol-fill warn" style="width:38%"></div></div>
+              </div>
+              <div class="sol-card">
+                <div class="sol-label">Potassium (K)</div>
+                <div class="sol-value">142 <span class="sol-unit">mg/kg</span></div>
+                <div class="sol-bar"><div class="sol-fill ok" style="width:65%"></div></div>
+              </div>
+              <div class="sol-card">
+                <div class="sol-label">Matière org.</div>
+                <div class="sol-value">2.4 <span class="sol-unit">%</span></div>
+                <div class="sol-bar"><div class="sol-fill ok" style="width:58%"></div></div>
+              </div>
+            </div>
+
+            <div class="section-title">🛒 Derniers achats</div>
+            <div class="achat-row">
+              <div><div class="achat-produit">Sulfate de cuivre 50%</div><div class="achat-date">Fév. 2025 · 120 kg</div></div>
+              <div class="achat-montant">384 €</div>
+            </div>
+            <div class="achat-row">
+              <div><div class="achat-produit">Engrais Ferti-Vigne N30</div><div class="achat-date">Jan. 2025 · 500 kg</div></div>
+              <div class="achat-montant">1 250 €</div>
+            </div>
+            <div class="achat-row">
+              <div><div class="achat-produit">Traitement Oïdium Pro</div><div class="achat-date">Juil. 2024 · 40 L</div></div>
+              <div class="achat-montant">218 €</div>
+            </div>
+          </div>
+
+          <div class="fiche-cta">
+            <button class="cta-btn secondary">📞 Appeler</button>
+            <button class="cta-btn primary" onclick="showScreen('catalogue',null)">📦 Proposer produit</button>
+          </div>
+
+          <div class="bottom-nav">
+            
+            <div class="nav-item active"><div class="nav-icon">👤</div><div class="nav-label">Clients</div></div>
+            <div class="nav-item" onclick="showScreen('catalogue',null)"><div class="nav-icon">📦</div><div class="nav-label">Catalogue</div></div>
+            <div class="nav-item" onclick="showScreen('dashboard',null)"><div class="nav-icon">📊</div><div class="nav-label">Dashboard</div></div>
+          </div>
+        </div>
+
+        <!-- ══ ÉCRAN 3 : CATALOGUE ══ -->
+        <div class="screen" id="screen-catalogue">
+          <div class="status-bar">
+            <span>9:46</span>
+            <div class="status-icons"><span class="signal">▲▲▲</span><span>🔋</span></div>
+          </div>
+          <div class="app-header">
+            <div class="app-title">Catalogue</div>
+            <div class="avatar">JM</div>
+          </div>
+
+          <div class="catalogue-header">
+            <div class="search-bar">
+              <span class="search-icon">🔍</span>
+              <input type="text" placeholder="Chercher un produit, une maladie…" />
+            </div>
+            <div class="filter-chips">
+              <div class="filter-chip active">Tous</div>
+              <div class="filter-chip">Fongicides</div>
+              <div class="filter-chip">Fertilisants</div>
+              <div class="filter-chip">Insecticides</div>
+              <div class="filter-chip">Oligo-éléments</div>
+            </div>
+          </div>
+
+          <div class="recommandation-banner">
+            <div class="reco-label">🎯 Recommandé pour Domaine Maurel</div>
+            <div class="reco-title">Risque mildiou détecté</div>
+            <div class="reco-desc">Humidité élevée mercredi. Traitement préventif recommandé dès maintenant.</div>
+            <div class="reco-produit">
+              <div class="reco-produit-name">Mildex Pro 80 WG</div>
+              <button class="reco-btn">Proposer →</button>
+            </div>
+          </div>
+
+          <div class="produits-list" style="padding-bottom:80px;">
+            <div class="produit-card">
+              <div class="produit-icon">🟦</div>
+              <div style="flex:1;">
+                <div class="produit-name">Mildex Pro 80 WG</div>
+                <div class="produit-desc">Fongicide cuivrique · Préventif mildiou vigne · Homologué AB</div>
+                <div class="produit-tags">
+                  <span class="produit-tag highlight">🎯 Recommandé</span>
+                  <span class="produit-tag">Mildiou</span>
+                  <span class="produit-tag">Bio</span>
+                </div>
+              </div>
+              <div class="produit-price"><div class="produit-price-num">3.20€</div><div class="produit-price-unit">/kg</div></div>
+            </div>
+
+            <div class="produit-card">
+              <div class="produit-icon">🟩</div>
+              <div style="flex:1;">
+                <div class="produit-name">Ferti-Vigne Azote N30</div>
+                <div class="produit-desc">Engrais azoté · Correction carence · Libération progressive</div>
+                <div class="produit-tags">
+                  <span class="produit-tag highlight">⚠️ Carence N détectée</span>
+                  <span class="produit-tag">Fertilisation</span>
+                </div>
+              </div>
+              <div class="produit-price"><div class="produit-price-num">0.85€</div><div class="produit-price-unit">/kg</div></div>
+            </div>
+
+            <div class="produit-card">
+              <div class="produit-icon">🟨</div>
+              <div style="flex:1;">
+                <div class="produit-name">OïdiumStop 25 EC</div>
+                <div class="produit-desc">Fongicide soufré · Oïdium vigne · Systémique</div>
+                <div class="produit-tags">
+                  <span class="produit-tag">Oïdium</span>
+                  <span class="produit-tag">Systémique</span>
+                </div>
+              </div>
+              <div class="produit-price"><div class="produit-price-num">12.40€</div><div class="produit-price-unit">/L</div></div>
+            </div>
+
+            <div class="produit-card">
+              <div class="produit-icon">🟫</div>
+              <div style="flex:1;">
+                <div class="produit-name">Boron Vigne 150</div>
+                <div class="produit-desc">Oligo-élément bore · Amélioration nouaison · Folaire</div>
+                <div class="produit-tags">
+                  <span class="produit-tag">Oligo</span>
+                  <span class="produit-tag">Folaire</span>
+                </div>
+              </div>
+              <div class="produit-price"><div class="produit-price-num">8.60€</div><div class="produit-price-unit">/L</div></div>
+            </div>
+          </div>
+
+          <div class="bottom-nav">
+            
+            <div class="nav-item" onclick="showScreen('fiche',null)"><div class="nav-icon">👤</div><div class="nav-label">Clients</div></div>
+            <div class="nav-item active"><div class="nav-icon">📦</div><div class="nav-label">Catalogue</div></div>
+            <div class="nav-item" onclick="showScreen('dashboard',null)"><div class="nav-icon">📊</div><div class="nav-label">Dashboard</div></div>
+          </div>
+        </div>
+
+        <!-- ══ ÉCRAN 4 : DASHBOARD ══ -->
+        <div class="screen" id="screen-dashboard">
+          <div class="status-bar">
+            <span>9:50</span>
+            <div class="status-icons"><span class="signal">▲▲▲</span><span>🔋</span></div>
+          </div>
+
+          <div class="dash-header">
+            <div class="dash-greeting">Bonjour,</div>
+            <div class="dash-name">Jean-Marc 👋</div>
+            <div class="dash-date">Lundi 23 mars 2026 · Secteur Var Est</div>
+          </div>
+
+          <div style="flex:1;overflow-y:auto;padding-bottom:80px;">
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">CA ce mois</div>
+                <div class="kpi-value green">38k€</div>
+                <div class="kpi-trend up">↑ +12% vs mars 25</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Alertes actives</div>
+                <div class="kpi-value orange">5</div>
+                <div class="kpi-sub">3 mildiou · 2 carence</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Visites ce mois</div>
+                <div class="kpi-value">14</div>
+                <div class="kpi-trend up">↑ +3 vs mois dernier</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Clients actifs</div>
+                <div class="kpi-value">47</div>
+                <div class="kpi-sub">sur 60 · secteur</div>
+              </div>
+            </div>
+
+            <div class="dash-body">
+              <div class="objectif-card">
+                <div class="obj-header">
+                  <div class="obj-title">🎯 Objectif mensuel</div>
+                  <div class="obj-pct">76%</div>
+                </div>
+                <div class="obj-bar"><div class="obj-fill" style="width:76%;"></div></div>
+                <div class="obj-amounts">
+                  <span class="obj-amount">38 000 € réalisés</span>
+                  <span class="obj-amount">Objectif : 50 000 €</span>
+                </div>
+              </div>
+
+              <div class="section-title" style="margin-top:18px;">📋 Activité récente</div>
+
+              <div class="activite-item">
+                <div class="activite-dot alerte">⚠️</div>
+                <div style="flex:1;">
+                  <div class="activite-title">Alerte mildiou — Domaine Maurel</div>
+                  <div class="activite-desc">Risque élevé mercredi · Mildex Pro recommandé</div>
+                </div>
+                <div class="activite-time">Il y a 2h</div>
+              </div>
+
+              <div class="activite-item">
+                <div class="activite-dot vente">💰</div>
+                <div style="flex:1;">
+                  <div class="activite-title">Commande — Earl Fabre</div>
+                  <div class="activite-desc">Ferti-Vigne N30 · 500 kg · 1 250 €</div>
+                </div>
+                <div class="activite-time">Hier</div>
+              </div>
+
+              <div class="activite-item">
+                <div class="activite-dot visite">📍</div>
+                <div style="flex:1;">
+                  <div class="activite-title">Visite terrain — GAEC Roux</div>
+                  <div class="activite-desc">Analyse sol remise · Devis fertilisation en cours</div>
+                </div>
+                <div class="activite-time">Vendredi</div>
+              </div>
+
+              <div class="activite-item">
+                <div class="activite-dot alerte">🧪</div>
+                <div style="flex:1;">
+                  <div class="activite-title">Nouvelle analyse Aurea — Pons</div>
+                  <div class="activite-desc">Carence azote détectée · Recommandation générée</div>
+                </div>
+                <div class="activite-time">Jeudi</div>
+              </div>
+
+              <div class="activite-item">
+                <div class="activite-dot vente">💰</div>
+                <div style="flex:1;">
+                  <div class="activite-title">Commande — Domaine Maurel</div>
+                  <div class="activite-desc">Sulfate cuivre 50% · 120 kg · 384 €</div>
+                </div>
+                <div class="activite-time">Mer.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-nav">
+            
+            <div class="nav-item" onclick="showScreen('fiche',null)"><div class="nav-icon">👤</div><div class="nav-label">Clients</div></div>
+            <div class="nav-item" onclick="showScreen('catalogue',null)"><div class="nav-icon">📦</div><div class="nav-label">Catalogue</div></div>
+            <div class="nav-item active"><div class="nav-icon">📊</div><div class="nav-label">Dashboard</div></div>
+          </div>
+        </div>
+
+      </div><!-- /phone-screen -->
+    </div><!-- /phone-frame -->
+  </div><!-- /phone-wrap -->
+
+  <div class="demo-note">Prototype interactif — données fictives · Cliquez sur les éléments</div>
+  <div class="demo-arrow">⬆ Naviguez entre les 4 écrans avec les onglets</div>
+
+</div>
+
+<script>
+function filterMap(type, btn) {
+  // Update button states
+  document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show/hide parcelles
+  document.querySelectorAll('.parcelle').forEach(p => {
+    const pType = p.dataset.type;
+    const hasAlerte = p.dataset.alerte;
+    if (type === 'tous') {
+      p.style.display = 'flex';
+    } else if (type === 'alertes') {
+      p.style.display = hasAlerte ? 'flex' : 'none';
+    } else if (type === 'prospects') {
+      p.style.display = pType === 'prospect' ? 'flex' : 'none';
+    }
+  });
+}
+
+// ============================================================
+//  BERGON FIELD — VRAIE CARTE LEAFLET
+// ============================================================
+const fieldClients = [
+  { id:0, name:"Domaine de l'Allamande", court:"Allamande", commune:"Cuers", lat:43.265, lng:6.048, surface:26, cepages:"Cab. · Grenache · Vermentino", statut:"attention", score:61, alerte:"🟡 Bore insuffisant · IPC élevé" },
+  { id:1, name:"Château de Berne", court:"Berne", commune:"Lorgues", lat:43.494, lng:6.360, surface:180, cepages:"Grenache · Cinsaut · Rolle", statut:"green", score:74, alerte:null },
+  { id:2, name:"Domaine Richeaume", court:"Richeaume", commune:"Puyloubier", lat:43.530, lng:5.640, surface:30, cepages:"Cabernet · Grenache", statut:"red", score:49, alerte:"🔴 Aucune analyse depuis 5 ans" },
+  { id:3, name:"Ch. Sainte-Roseline", court:"Ste-Roseline", commune:"Les Arcs", lat:43.466, lng:6.490, surface:65, cepages:"Grenache · Rolle · Tibouren", statut:"green", score:71, alerte:null },
+  { id:4, name:"Domaine de la Croix", court:"La Croix", commune:"La Croix-Valmer", lat:43.200, lng:6.570, surface:55, cepages:"Grenache · Cinsaut", statut:"attention", score:58, alerte:"🟡 Analyse > 1 an · CaCO₃ élevé" },
+  { id:5, name:"Maison Minuty", court:"Minuty", commune:"Gassin", lat:43.261, lng:6.583, surface:210, cepages:"Grenache · Cinsaut · Tibouren", statut:"green", score:76, alerte:null },
+  { id:6, name:"Domaine de Triennes", court:"Triennes", commune:"Nans-les-Pins", lat:43.380, lng:5.785, surface:42, cepages:"Syrah · Grenache · Viognier", statut:"red", score:44, alerte:"🔴 Analyse manquante · Vigueur irrégulière" },
+  { id:7, name:"Vignobles Gassier", court:"Gassier", commune:"Puyloubier", lat:43.510, lng:5.670, surface:30, cepages:"Grenache · Syrah", statut:"gray", score:null, alerte:null }
+];
+
+const fieldStatusColors = { red:'#C0392B', attention:'#D35400', green:'#27AE60', gray:'#95A5A6' };
+const fieldStatusBadge  = { red:'badge-client', attention:'badge-client', green:'badge-client', gray:'badge-prospect' };
+const fieldStatusLabel  = { red:'🔴 Urgence', attention:'🟡 Attention', green:'🟢 OK', gray:'Prospect' };
+
+
+
+// ══════════════════════════════════════════════════════
+//  CARTE MOBILE — chargement depuis GitHub
+// ══════════════════════════════════════════════════════
+const MAPBOX_MOB = 'pk.eyJ1Ijoic3p1bmlubyIsImEiOiJjbW40ZHZrMnowYmZxMnJyMXRwMmk5c2l2In0.bmxknhaFSLbd1cuy0HXA_Q';
+const DATA_URL   = 'https://cdn.jsdelivr.net/gh/stephanezunino-bot/BERGON-FIELD@main';
+
+const CS_MOB = {
+  VRC:{c:'#5A8F3C',f:'rgba(61,107,40,0.55)'},
+  VRG:{c:'#5A8F3C',f:'rgba(61,107,40,0.3)'},
+  OLI:{c:'#8B5E3C',f:'rgba(120,80,40,0.5)'},
+  JAC:{c:'#C9A84C',f:'rgba(180,150,60,0.4)'},
+  def:{c:'#888',f:'rgba(100,100,80,0.3)'}
+};
+const STATUT_C_MOB = {green:'#27AE60',attention:'#D35400',red:'#C0392B',gray:'#95A5A6'};
+
+let mobMap = null;
+let mobClients = null;
+let mobActiveClient = null;
+
+async function initMobileMap() {
+  if(mobMap) { mobMap.invalidateSize(); return; }
+
+  // Charger les données clients
+  try {
+    const r = await fetch(`${DATA_URL}/clients_parcelles.json`);
+    mobClients = await r.json();
+  } catch(e) {
+    document.getElementById('mob-chips').innerHTML =
+      '<div style="font-size:10px;color:#C0392B;padding:6px;">⚠️ Erreur chargement</div>';
+    return;
+  }
+
+  // Init carte
+  mobMap = L.map('mobile-map', {zoomControl:false, attributionControl:false})
+    .setView([43.28, 6.08], 11);
+
+  L.tileLayer(
+    `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=${MAPBOX_MOB}`,
+    {maxZoom:20, tileSize:512, zoomOffset:-1}
+  ).addTo(mobMap);
+
+  L.control.zoom({position:'bottomright'}).addTo(mobMap);
+
+  // Dessiner polygones
+  const allBounds = [];
+  Object.entries(mobClients).forEach(([key, client]) => {
+    client.parcelles.forEach(p => {
+      const ll = p.coords.map(c => [c[1], c[0]]);
+      const cs = CS_MOB[p.culture] || CS_MOB.def;
+      const style = {color:cs.c, fillColor:cs.f, weight:1.5, opacity:1, fillOpacity:0.65};
+      const poly = L.polygon(ll, style).addTo(mobMap);
+      poly.on('mouseover', () => poly.setStyle({weight:3, fillOpacity:0.85}));
+      poly.on('mouseout',  () => poly.setStyle(style));
+      poly.on('click', () => zoomToClient(key));
+      ll.forEach(pt => allBounds.push(pt));
+    });
+  });
+
+  if(allBounds.length) mobMap.fitBounds(L.latLngBounds(allBounds), {padding:[10,10]});
+
+  // Construire chips
+  buildMobChips();
+}
+
+function buildMobChips() {
+  if(!mobClients) return;
+  const container = document.getElementById('mob-chips');
+  container.innerHTML = Object.entries(mobClients).map(([key, c]) => {
+    const sc = STATUT_C_MOB[c.statut] || '#95A5A6';
+    const badgeClass = c.statut === 'green' ? 'mob-badge-ok' :
+                       c.statut === 'red'   ? 'mob-badge-red' : 'mob-badge-att';
+    const badgeLabel = c.statut === 'green' ? '🟢 OK' :
+                       c.statut === 'red'   ? '🔴 Urgence' : '🟡 Attention';
+    return `<div class="mob-chip" onclick="zoomToClient('${key}')">
+      <div class="mob-chip-name">${c.nom}</div>
+      <div class="mob-chip-info">${c.commune} · ${c.totalHa} ha</div>
+      <span class="mob-chip-badge ${badgeClass}">${badgeLabel}</span>
+    </div>`;
+  }).join('');
+}
+
+function zoomToClient(key) {
+  if(!mobMap || !mobClients) return;
+  const client = mobClients[key];
+  const bounds = [];
+  client.parcelles.forEach(p => p.coords.forEach(c => bounds.push([c[1],c[0]])));
+  if(bounds.length) mobMap.flyToBounds(L.latLngBounds(bounds).pad(0.3), {duration:0.7});
+}
+
+function showScreen(name, btn) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  if (btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    const map = {carte:0,fiche:1,catalogue:2,dashboard:3};
+    document.querySelectorAll('.tab-btn').forEach((b,i) => {
+      b.classList.toggle('active', i === map[name]);
+    });
+  }
+  if(name === 'carte') setTimeout(initMobileMap, 80);
+}
+
+// Init carte au chargement
+window.addEventListener('load', () => setTimeout(initMobileMap, 200));
+
+</script>
+</body>
+</html>
