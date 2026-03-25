@@ -708,6 +708,52 @@ body {
   flex:1;font-size:11px;color:#888;flex-direction:column;gap:8px;
 }
 
+
+/* ── PANEL MOBILE ── */
+.mob-panel {
+  position:absolute;
+  bottom:56px; left:0; right:0;
+  background:#fff;
+  border-radius:20px 20px 0 0;
+  box-shadow:0 -8px 32px rgba(0,0,0,0.2);
+  z-index:600;
+  transform:translateY(100%);
+  transition:transform .3s ease;
+  max-height:55%;
+  overflow-y:auto;
+}
+.mob-panel.open { transform:translateY(0); }
+.mob-panel-header {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px 10px;
+  border-bottom:1px solid #eee;
+}
+.mob-panel-name { font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--texte); }
+.mob-panel-loc  { font-size:10px;color:#888;margin-top:2px; }
+.mob-panel-close {
+  width:28px;height:28px;border-radius:50%;
+  background:#f0f0f0;border:none;font-size:14px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.mob-stats-row {
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid #eee;
+}
+.mob-stat { padding:10px 6px;text-align:center; }
+.mob-stat-v { font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--texte); }
+.mob-stat-l { font-size:8px;color:#aaa;text-transform:uppercase;margin-top:2px; }
+.mob-panel-sol { padding:12px 14px; }
+.mob-sol-title { font-size:10px;font-weight:600;color:var(--vert);margin-bottom:8px; }
+.mob-sol-grid { display:grid;grid-template-columns:1fr 1fr;gap:6px; }
+.mob-sol-item { background:#f8f8f5;border-radius:8px;padding:8px 10px; }
+.mob-sol-label { font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.5px; }
+.mob-sol-val   { font-size:12px;font-weight:600;color:var(--texte);margin-top:2px; }
+.mob-sol-empty { font-size:11px;color:#aaa;text-align:center;padding:12px 0; }
+
+/* Chips améliorées */
+.mob-chip { min-width:130px; }
+.mob-chip-name { font-size:11px;font-weight:700; }
+
 </style>
 </head>
 <body>
@@ -749,10 +795,27 @@ body {
 
           <div id="mobile-map" style="flex:1;min-height:0;"></div>
 
+          <!-- Chips clients -->
           <div class="mobile-map-bottom">
             <div class="mob-bottom-handle"></div>
+            <div style="font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">Clients — appuyer pour ouvrir</div>
             <div class="mob-chips" id="mob-chips">
               <div style="font-size:10px;color:#aaa;padding:6px;">Chargement…</div>
+            </div>
+          </div>
+
+          <!-- Panel client (bottom sheet) -->
+          <div class="mob-panel" id="mob-panel">
+            <div class="mob-panel-header">
+              <div>
+                <div class="mob-panel-name" id="mob-panel-name">—</div>
+                <div class="mob-panel-loc" id="mob-panel-loc">—</div>
+              </div>
+              <button class="mob-panel-close" onclick="closeMobPanel()">✕</button>
+            </div>
+            <div class="mob-stats-row" id="mob-panel-stats"></div>
+            <div class="mob-panel-sol" id="mob-panel-sol">
+              <div class="mob-sol-empty">Cliquez sur une parcelle</div>
             </div>
           </div>
 
@@ -1111,6 +1174,8 @@ const fieldStatusLabel  = { red:'🔴 Urgence', attention:'🟡 Attention', gree
 // ══════════════════════════════════════════════════════
 //  CARTE MOBILE — chargement depuis GitHub
 // ══════════════════════════════════════════════════════
+const ANALYSE_MOB = {"ROSE_DES_VENTS:I22P1":[{"ref":"SYRAH GROS ESCALIER","lat":43.33277,"lng":6.00359,"date":"10/02/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"1.9","unit":"%","status":"ok"},"Calc. actif":{"val":"2.9","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"432","unit":"mg/kg","status":"ok"},"MgO":{"val":"299","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"18.9","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.21","unit":"mg/kg","status":"low"},"CEC":{"val":"17.5","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"10.0","k2o":"35.0","mgo":"5.0","zn":"2.0","mn":"1","fe":"3","bore":"1"}},{"ref":"CINSAUT VENELLE","lat":43.33205,"lng":6.004653,"date":"21/10/2024","client":"BAUDEAR","params":{"pH eau":{"val":"8.47","unit":"","status":"high"},"MO":{"val":"1.3","unit":"%","status":"low"},"Calc. actif":{"val":"2.0","unit":"%","status":"ok"},"IPC":{"val":"50.0","unit":"","status":"high"},"K₂O":{"val":"318","unit":"mg/kg","status":"ok"},"MgO":{"val":"219","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"10.284","unit":"mg/kg","status":"low"},"Bore":{"val":"0.1","unit":"mg/kg","status":"low"},"CEC":{"val":"14.8","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"60.0","k2o":"90.0","mgo":"30.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I11P1":[{"ref":"CHEMIN DE TOULON","lat":43.321906,"lng":5.986386,"date":"10/02/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.6","unit":"","status":"high"},"MO":{"val":"1.9","unit":"%","status":"ok"},"Calc. actif":{"val":"4.3","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"385","unit":"mg/kg","status":"ok"},"MgO":{"val":"283","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"14.1","unit":"mg/kg","status":"low"},"Bore":{"val":"0.2","unit":"mg/kg","status":"low"},"CEC":{"val":"9.3","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"10.0","k2o":"40.0","mgo":"15.0","zn":"3.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I23P1":[{"ref":"GRENACHE SACCO","lat":43.3323,"lng":5.998879,"date":"10/02/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"1.7","unit":"%","status":"ok"},"Calc. actif":{"val":"4.1","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"352","unit":"mg/kg","status":"ok"},"MgO":{"val":"300","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"15.7","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.17","unit":"mg/kg","status":"low"},"CEC":{"val":"7.3","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"10.0","k2o":"45.0","mgo":"15.0","zn":"3.0","mn":"1","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I15P1":[{"ref":"LES ANES","lat":43.31236,"lng":5.98541,"date":"07/10/2019","client":"BAUDEAR","params":{"pH eau":{"val":"7.7","unit":"","status":"high"},"MO":{"val":"1.2","unit":"%","status":"low"},"Calc. actif":{"val":null,"unit":"%","status":"nd"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"193","unit":"mg/kg","status":"low"},"MgO":{"val":"263","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"13.8","unit":"mg/kg","status":"low"},"Bore":{"val":"0.16","unit":"mg/kg","status":"low"},"CEC":{"val":"11.2","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"25.0","mgo":"20.0","zn":"2.0","mn":"2","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I53P1":[{"ref":"BELLEVUE","lat":43.33179,"lng":5.975372,"date":"07/10/2019","client":"BAUDEAR","params":{"pH eau":{"val":"8.4","unit":"","status":"high"},"MO":{"val":"1.4","unit":"%","status":"low"},"Calc. actif":{"val":"1.6","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"187","unit":"mg/kg","status":"low"},"MgO":{"val":"533","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"27.6","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.17","unit":"mg/kg","status":"low"},"CEC":{"val":"8.9","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"10.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I22P2":[{"ref":"CINSAUT VENELLE","lat":43.3341,"lng":6.003673,"date":"02/10/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"1.1","unit":"%","status":"low"},"Calc. actif":{"val":"7.0","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"227","unit":"mg/kg","status":"ok"},"MgO":{"val":"374","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"12.7","unit":"mg/kg","status":"low"},"Bore":{"val":"0.16","unit":"mg/kg","status":"low"},"CEC":{"val":"16.2","unit":"méq","status":"ok"}},"conseils_an1":{"k2o":"15.0","mgo":"5.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I39P1":[{"ref":"VENTE AU DETAIL","lat":43.33051,"lng":5.981011,"date":"02/10/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"1.6","unit":"%","status":"ok"},"Calc. actif":{"val":"11.2","unit":"%","status":"high"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"253","unit":"mg/kg","status":"ok"},"MgO":{"val":"366","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"27.1","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.18","unit":"mg/kg","status":"low"},"CEC":{"val":"9.9","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","mn":"1","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I16P1":[{"ref":"CHEMIN DE TOULON CALES","lat":43.3202,"lng":5.98684,"date":"02/10/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"1.6","unit":"%","status":"ok"},"Calc. actif":{"val":"2.6","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"243","unit":"mg/kg","status":"ok"},"MgO":{"val":"294","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"14.7","unit":"mg/kg","status":"low"},"Bore":{"val":"0.08","unit":"mg/kg","status":"low"},"CEC":{"val":"11.3","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I9P1":[{"ref":"CHEMIN DE TOULON","lat":43.32378,"lng":5.985085,"date":"02/10/2020","client":"BAUDEAR","params":{"pH eau":{"val":"8.6","unit":"","status":"high"},"MO":{"val":"1.1","unit":"%","status":"low"},"Calc. actif":{"val":"7.8","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"230","unit":"mg/kg","status":"ok"},"MgO":{"val":"318","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"17.4","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.1","unit":"mg/kg","status":"low"},"CEC":{"val":"7.0","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I10P1":[{"ref":"SAMBUC","lat":43.32364,"lng":5.982493,"date":"03/11/2021","client":"BAUDEAR","params":{"pH eau":{"val":"8.6","unit":"","status":"high"},"MO":{"val":"1.8","unit":"%","status":"ok"},"Calc. actif":{"val":"3.7","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"293","unit":"mg/kg","status":"ok"},"MgO":{"val":"289","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"21.6","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.08","unit":"mg/kg","status":"low"},"CEC":{"val":"6.5","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I54P1":[{"ref":"LES GRAVETTES","lat":43.31743,"lng":5.990172,"date":"03/11/2021","client":"BAUDEAR","params":{"pH eau":{"val":"8.4","unit":"","status":"high"},"MO":{"val":"1.8","unit":"%","status":"ok"},"Calc. actif":{"val":"2.9","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"367","unit":"mg/kg","status":"ok"},"MgO":{"val":"250","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"17.5","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.07","unit":"mg/kg","status":"low"},"CEC":{"val":"11.0","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"25.0","mgo":"30.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I3P1":[{"ref":"MOUNETTE","lat":43.33285,"lng":5.980189,"date":"03/11/2021","client":"BAUDEAR","params":{"pH eau":{"val":"8.5","unit":"","status":"high"},"MO":{"val":"2.0","unit":"%","status":"ok"},"Calc. actif":{"val":"6.5","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"202","unit":"mg/kg","status":"ok"},"MgO":{"val":"328","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"13.8","unit":"mg/kg","status":"low"},"Bore":{"val":"0.11","unit":"mg/kg","status":"low"},"CEC":{"val":"9.2","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}},{"ref":"LA MOUNETTE","lat":43.33269,"lng":5.980212,"date":"10/10/2023","client":"BAUDEAR","params":{"pH eau":{"val":"8.42","unit":"","status":"high"},"MO":{"val":"2.08","unit":"%","status":"ok"},"Calc. actif":{"val":"6.9","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"241","unit":"mg/kg","status":"ok"},"MgO":{"val":"319","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"24.305","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.1","unit":"mg/kg","status":"low"},"CEC":{"val":"10.5","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"3","bore":"1"}}],"ROSE_DES_VENTS:I8P1":[{"ref":"CALES","lat":43.3269,"lng":5.983648,"date":"10/10/2023","client":"BAUDEAR","params":{"pH eau":{"val":"8.54","unit":"","status":"high"},"MO":{"val":"1.58","unit":"%","status":"ok"},"Calc. actif":{"val":"11.7","unit":"%","status":"high"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"155","unit":"mg/kg","status":"low"},"MgO":{"val":"265","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"13.729","unit":"mg/kg","status":"low"},"Bore":{"val":"0.07","unit":"mg/kg","status":"low"},"CEC":{"val":"7.6","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"80.0","k2o":"35.0","mgo":"20.0","zn":"2.0","mn":"1","fe":"1","bore":"1"}}],"ROSE_DES_VENTS:I42P1":[{"ref":"LE LAC","lat":43.3297,"lng":6.01622,"date":"10/10/2023","client":"BAUDEAR","params":{"pH eau":{"val":"8.46","unit":"","status":"high"},"MO":{"val":"1.96","unit":"%","status":"ok"},"Calc. actif":{"val":"4.0","unit":"%","status":"ok"},"IPC":{"val":null,"unit":"","status":"nd"},"K₂O":{"val":"345","unit":"mg/kg","status":"ok"},"MgO":{"val":"205","unit":"mg/kg","status":"ok"},"P₂O₅":{"val":"37.271","unit":"mg/kg","status":"ok"},"Bore":{"val":"0.1","unit":"mg/kg","status":"low"},"CEC":{"val":"16.7","unit":"méq","status":"ok"}},"conseils_an1":{"p2o5":"10.0","k2o":"10.0","mgo":"5.0","zn":"3.0","mn":"1","fe":"3","bore":"1"}}]};
+
 const MAPBOX_MOB = 'pk.eyJ1Ijoic3p1bmlubyIsImEiOiJjbW40ZHZrMnowYmZxMnJyMXRwMmk5c2l2In0.bmxknhaFSLbd1cuy0HXA_Q';
 const DATA_URL   = 'https://cdn.jsdelivr.net/gh/stephanezunino-bot/BERGON-FIELD@main';
 
@@ -1170,7 +1235,8 @@ async function initMobileMap() {
       const poly = L.polygon(ll, style).addTo(mobMap);
       poly.on('mouseover', () => poly.setStyle({weight:3, fillOpacity:0.85}));
       poly.on('mouseout',  () => poly.setStyle(style));
-      poly.on('click', () => zoomToClient(key));
+      const pCoords = p.coords;
+      poly.on('click', () => openMobClient(key, pCoords));
       ll.forEach(pt => allBounds.push(pt));
     });
   });
@@ -1198,13 +1264,92 @@ function buildMobChips() {
   }).join('');
 }
 
-function zoomToClient(key) {
+function openMobClient(key, parcelCoords) {
   if(!mobMap || !mobClients) return;
   const client = mobClients[key];
-  const bounds = [];
-  client.parcelles.forEach(p => p.coords.forEach(c => bounds.push([c[1],c[0]])));
-  if(bounds.length) mobMap.flyToBounds(L.latLngBounds(bounds).pad(0.3), {duration:0.7});
+  mobActiveClient = key;
+
+  // Zoom : sur la parcelle si cliquée, sur tout le domaine si chip
+  if(parcelCoords && parcelCoords.length) {
+    const pb = parcelCoords.map(c=>[c[1],c[0]]);
+    mobMap.flyToBounds(L.latLngBounds(pb).pad(0.4), {duration:0.6, maxZoom:17});
+  } else {
+    const bounds = [];
+    client.parcelles.forEach(p => p.coords.forEach(c => bounds.push([c[1],c[0]])));
+    if(bounds.length) mobMap.flyToBounds(L.latLngBounds(bounds).pad(0.15), {duration:0.7, maxZoom:15});
+  }
+
+  // Ouvrir le panel bottom sheet
+  showMobPanel(key, parcelCoords);
 }
+
+function showMobPanel(key, parcelCoords) {
+  const client = mobClients[key];
+  const panel = document.getElementById('mob-panel');
+  const statut = { green:'🟢 OK', attention:'🟡 Attention', red:'🔴 Urgence', gray:'Prospect' };
+
+  // Header
+  document.getElementById('mob-panel-name').textContent = client.nom;
+  document.getElementById('mob-panel-loc').textContent = client.commune + ' · ' + client.totalHa + ' ha';
+
+  // Stats
+  document.getElementById('mob-panel-stats').innerHTML = `
+    <div class="mob-stat"><div class="mob-stat-v">${client.totalHa}</div><div class="mob-stat-l">Ha</div></div>
+    <div class="mob-stat"><div class="mob-stat-v">${client.vrcHa}</div><div class="mob-stat-l">Vignes</div></div>
+    <div class="mob-stat"><div class="mob-stat-v" style="color:${client.bio?'#27AE60':'#95A5A6'}">${client.nBio}</div><div class="mob-stat-l">Bio</div></div>
+    <div class="mob-stat"><div class="mob-stat-v">${statut[client.statut]||''}</div><div class="mob-stat-l">Statut</div></div>
+  `;
+
+  // Analyse sol si parcelle cliquée
+  const solDiv = document.getElementById('mob-panel-sol');
+  if(parcelCoords) {
+    // Trouver la parcelle cliquée
+    let parcId = null;
+    for(const p of client.parcelles) {
+      const centLng = p.coords.reduce((s,c)=>s+c[0],0)/p.coords.length;
+      const centLat = p.coords.reduce((s,c)=>s+c[1],0)/p.coords.length;
+      const clickLng = parcelCoords.reduce((s,c)=>s+c[0],0)/parcelCoords.length;
+      const clickLat = parcelCoords.reduce((s,c)=>s+c[1],0)/parcelCoords.length;
+      if(Math.abs(centLng-clickLng)<0.001 && Math.abs(centLat-clickLat)<0.001) {
+        parcId = p.id; break;
+      }
+    }
+    if(parcId) {
+      const aKey = `${key}:${parcId}`;
+      const analyses = ANALYSE_MOB[aKey];
+      if(analyses && analyses.length) {
+        const a = analyses[0];
+        const STATUS = { ok:'🟢', low:'🔴', high:'🟡', nd:'⬜' };
+        const paramsHtml = Object.entries(a.params)
+          .filter(([,p])=>p.val)
+          .map(([label,p])=>`<div class="mob-sol-item">
+            <div class="mob-sol-label">${label}</div>
+            <div class="mob-sol-val">${STATUS[p.status]} ${p.val}${p.unit?' '+p.unit:''}</div>
+          </div>`).join('');
+        solDiv.innerHTML = `
+          <div class="mob-sol-title">🧪 ${a.ref} · ${a.date||''}</div>
+          <div class="mob-sol-grid">${paramsHtml}</div>
+        `;
+      } else {
+        solDiv.innerHTML = '<div class="mob-sol-empty">Aucune analyse pour cette parcelle</div>';
+      }
+    } else {
+      solDiv.innerHTML = '<div class="mob-sol-empty">Cliquez sur une parcelle</div>';
+    }
+  } else {
+    solDiv.innerHTML = '<div class="mob-sol-empty">Cliquez sur une parcelle</div>';
+  }
+
+  panel.classList.add('open');
+}
+
+function closeMobPanel() {
+  document.getElementById('mob-panel').classList.remove('open');
+  mobActiveClient = null;
+}
+
+// Keep zoomToClient as alias for chips
+function zoomToClient(key) { openMobClient(key, null); }
 
 function showScreen(name, btn) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
