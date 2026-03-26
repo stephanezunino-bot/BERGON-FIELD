@@ -1325,10 +1325,10 @@ async function renderMeteoTab(clientKey) {
 
 function renderMeteoData(plot, data) {
   const content = document.getElementById('meteo-content');
-  const results = data.results || data || [];
+  const results = Array.isArray(data) ? data : (data.results || []);
 
   // Dernière mesure
-  const last = results[results.length-1] || {};
+  const last = results.filter(d=>d.T!=null).slice(-1)[0] || results[results.length-1] || {};
   const T   = last.T != null ? last.T.toFixed(1) : '—';
   const U   = last.U != null ? Math.round(last.U) : '—';
   const RR  = last.RR != null ? last.RR.toFixed(1) : '—';
@@ -1340,7 +1340,7 @@ function renderMeteoData(plot, data) {
   // Jours
   const DAYS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
   const daysHtml = results.slice(-4).map(d => {
-    const dt = new Date(d.timestamp || d.date || '');
+    const dt = new Date(d.datetime || d.timestamp || d.date || '');
     const label = isNaN(dt) ? '—' : `${DAYS_FR[dt.getDay()]} ${dt.getDate()}/${dt.getMonth()+1}`;
     const t = d.T != null ? `${d.T.toFixed(1)}°` : '—';
     const rr = d.RR != null ? `${d.RR.toFixed(1)}mm` : '—';
