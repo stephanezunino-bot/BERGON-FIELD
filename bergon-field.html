@@ -388,6 +388,37 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 
 
 @keyframes dot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+/* ══ MÉTÉO WEENAT ══ */
+.meteo-station { padding:10px 14px; border-bottom:1px solid var(--border); }
+.meteo-station-name { font-size:11px;font-weight:600;color:var(--text); }
+.meteo-station-loc { font-size:9px;color:var(--text3);margin-top:1px; }
+.meteo-station-dist { font-size:9px;color:var(--or);margin-top:1px; }
+.meteo-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px 14px; }
+.meteo-card { background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;text-align:center; }
+.meteo-card-label { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px; }
+.meteo-card-val { font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.1;margin-top:2px; }
+.meteo-card-unit { font-size:9px;color:var(--text3); }
+.meteo-days { padding:8px 14px; }
+.meteo-days-title { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px; }
+.meteo-day-row { display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border2);font-size:11px;color:var(--text2); }
+.meteo-day-row:last-child { border-bottom:none; }
+.meteo-day-date { width:60px;color:var(--text3);font-size:9px; }
+.meteo-day-t { color:var(--rouge);font-weight:600; }
+.meteo-day-rr { color:var(--bleu,#3498db);font-weight:600; }
+.meteo-day-u { color:var(--text2); }
+.meteo-tensio { padding:8px 14px;border-top:1px solid var(--border); }
+.meteo-tensio-title { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px; }
+.meteo-tensio-row { display:flex;align-items:center;gap:8px;padding:4px 0;font-size:11px; }
+.meteo-tensio-depth { width:50px;color:var(--text3);font-size:9px; }
+.meteo-tensio-val { font-family:'Syne',sans-serif;font-size:14px;font-weight:700; }
+.meteo-tensio-bar { flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden; }
+.meteo-tensio-fill { height:100%;border-radius:3px;transition:width .3s; }
+.tensio-ok   { background:#27AE60; }
+.tensio-warn { background:#E67E22; }
+.tensio-crit { background:#C0392B; }
+.meteo-no-data { padding:20px 14px;text-align:center;font-size:11px;color:var(--text3); }
+
 </style>
 </head>
 <body>
@@ -489,6 +520,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
         <button class="mp-tab active" onclick="switchTab(this,'parcelles')">🍇 Parcelles</button>
         <button class="mp-tab" onclick="switchTab(this,'znt')">💧 ZNT Eau</button>
         <button class="mp-tab" onclick="switchTab(this,'sol')">🧪 Sol</button>
+        <button class="mp-tab" onclick="switchTab(this,'meteo')">🌤 Météo</button>
       </div>
 
       <!-- Tab: Parcelles -->
@@ -497,7 +529,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
           <div class="mp-sec-title">Parcelles déclarées</div>
           <div id="mp-parcelles"></div>
         </div>
-        <button class="mp-btn" onclick="alert('→ Préparer la visite dans Claude')">📋 Préparer la visite</button>
+        <!-- Tab: Météo -->
+      <div class="mp-tab-content" id="tab-meteo">
+        <div id="meteo-content">
+          <div class="znt-loading">Sélectionnez un client pour voir la météo.</div>
+        </div>
+      </div>
+
+            <button class="mp-btn" onclick="alert('→ Préparer la visite dans Claude')">📋 Préparer la visite</button>
       </div>
 
       <!-- Tab: Sol -->
@@ -669,6 +708,8 @@ const CS = { VRC:{c:'#5A8F3C',f:'rgba(61,107,40,0.5)'}, VRG:{c:'#5A8F3C',f:'rgba
 const STATUT_C = { green:'#5A8F3C', attention:'#D35400', red:'#C0392B', gray:'#6b6e58' };
 
 let map, osmLayer, satLayer, ignLayer;
+let WEENAT_PLOTS = [];
+const WEENAT_PROXY = 'https://fragrant-shape-073cweenat-proxy.stephane-zunino.workers.dev/weenat';
 let polygons = {};
 let activeClient = null;
 let activeFilter = 'tous';
@@ -689,10 +730,11 @@ let ANALYSE_DATA = null;
 async function loadAllData() {
   showLoader(true);
   try {
-    const [r1, r2, r3] = await Promise.all([
+    const [r1, r2, r3, r4] = await Promise.all([
       fetch(`${BASE_URL}/clients_parcelles.json`),
       fetch(`${BASE_URL}/ddtm83_bcae.json`),
       fetch(`${BASE_URL}/analyses_aurea.json`),
+      fetch(`${BASE_URL}/weenat_plots.json`),
     ]);
     if (!r1.ok) throw new Error(`clients: ${r1.status}`);
     if (!r2.ok) throw new Error(`ddtm83: ${r2.status}`);
@@ -700,6 +742,7 @@ async function loadAllData() {
     CLIENTS      = await r1.json();
     DDTM83_BCAE  = await r2.json();
     ANALYSE_DATA = await r3.json();
+    WEENAT_PLOTS = r4.ok ? await r4.json() : [];
     showLoader(false);
     initMap();
   } catch(e) {
@@ -817,10 +860,12 @@ function openPanel(key, parcelCoords) {
   const c=CLIENTS[key];
   if(!c) return;
   if(!parcelCoords) { activeParcId=null; solCurrentIdx=0; }
-  // Auto-refresh ZNT si l'onglet est actif
+  // Auto-refresh onglets actifs
   setTimeout(()=>{
     const activeTab = document.querySelector('.mp-tab.active');
     if(activeTab && activeTab.textContent.includes('ZNT')) triggerZnt();
+    if(activeTab && activeTab.textContent.includes('Sol')) autoRefreshSol();
+    if(activeTab && activeTab.textContent.includes('Météo')) renderMeteoTab(activeClient);
   }, 100);
   // Zoom: on parcel if clicked, on full domain if from sidebar
   if(parcelCoords && parcelCoords.length) {
@@ -926,6 +971,7 @@ function switchTab(btn, tab) {
   document.querySelectorAll('.mp-tab-content').forEach(c=>c.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   if(tab==='znt' && activeClient) triggerZnt();
+  if(tab==='meteo' && activeClient) renderMeteoTab(activeClient);
   if(tab==='sol') {
     if(activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
     else document.getElementById('sol-content').innerHTML =
@@ -1220,6 +1266,143 @@ function autoRefreshSol() {
   if(activeSolTab && activeSolTab.textContent.includes('Sol')) {
     if(activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
   }
+}
+
+// ══════════════════════════════════════════════════════
+//  MODULE MÉTÉO — Weenat via Cloudflare Worker
+// ══════════════════════════════════════════════════════
+
+function distKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dlat = (lat2-lat1)*Math.PI/180;
+  const dlng = (lng2-lng1)*Math.PI/180;
+  const a = Math.sin(dlat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dlng/2)**2;
+  return R * 2 * Math.asin(Math.sqrt(a));
+}
+
+function findNearestPlot(clientKey) {
+  if(!WEENAT_PLOTS || !WEENAT_PLOTS.length || !CLIENTS) return null;
+  const client = CLIENTS[clientKey];
+  if(!client) return null;
+  const lngs = client.parcelles.flatMap(p=>p.coords.map(c=>c[0]));
+  const lats  = client.parcelles.flatMap(p=>p.coords.map(c=>c[1]));
+  const clat  = lats.reduce((a,b)=>a+b,0)/lats.length;
+  const clng  = lngs.reduce((a,b)=>a+b,0)/lngs.length;
+  let best=null, bestD=999;
+  for(const plot of WEENAT_PLOTS) {
+    if(!plot.metrics.includes('T')) continue;
+    const d = distKm(clat, clng, plot.lat, plot.lng);
+    if(d < bestD) { bestD=d; best={...plot, dist_km: d.toFixed(1)}; }
+  }
+  return best;
+}
+
+async function renderMeteoTab(clientKey) {
+  const content = document.getElementById('meteo-content');
+  content.innerHTML = '<div class="znt-loading">⏳ Chargement météo…</div>';
+
+  const plot = findNearestPlot(clientKey);
+  if(!plot) {
+    content.innerHTML = '<div class="meteo-no-data">Aucune station disponible.</div>';
+    return;
+  }
+
+  // Dates: 4 derniers jours
+  const now = new Date();
+  const end = now.toISOString().slice(0,10);
+  const start = new Date(now - 4*24*3600*1000).toISOString().slice(0,10);
+
+  try {
+    const url = `${WEENAT_PROXY}/v3/data/plots/${plot.id}?timespan=day&start=${start}T00:00:00Z&end=${end}T23:59:59Z`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    renderMeteoData(plot, data);
+  } catch(e) {
+    content.innerHTML = `<div class="meteo-no-data">⚠️ Erreur: ${e.message}</div>`;
+  }
+}
+
+function renderMeteoData(plot, data) {
+  const content = document.getElementById('meteo-content');
+  const results = data.results || data || [];
+
+  // Dernière mesure
+  const last = results[results.length-1] || {};
+  const T   = last.T != null ? last.T.toFixed(1) : '—';
+  const U   = last.U != null ? Math.round(last.U) : '—';
+  const RR  = last.RR != null ? last.RR.toFixed(1) : '—';
+  const ETP = last.ETP != null ? last.ETP.toFixed(1) : '—';
+
+  // Cumul pluie 4 jours
+  const rrCumul = results.reduce((s,d)=>s+(d.RR||0),0).toFixed(1);
+
+  // Jours
+  const DAYS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  const daysHtml = results.slice(-4).map(d => {
+    const dt = new Date(d.timestamp || d.date || '');
+    const label = isNaN(dt) ? '—' : `${DAYS_FR[dt.getDay()]} ${dt.getDate()}/${dt.getMonth()+1}`;
+    const t = d.T != null ? `${d.T.toFixed(1)}°` : '—';
+    const rr = d.RR != null ? `${d.RR.toFixed(1)}mm` : '—';
+    const u  = d.U  != null ? `${Math.round(d.U)}%` : '—';
+    return `<div class="meteo-day-row">
+      <span class="meteo-day-date">${label}</span>
+      <span class="meteo-day-t">🌡 ${t}</span>
+      <span class="meteo-day-rr">🌧 ${rr}</span>
+      <span class="meteo-day-u">💧 ${u}</span>
+    </div>`;
+  }).join('');
+
+  // Tensiomètre
+  let tensioHtml = '';
+  if(plot.has_tensio) {
+    const depths = ['20','30','60'];
+    const tensioRows = depths.map(d => {
+      const key = `HPOT-${d}`;
+      const val = last[key];
+      if(val == null) return '';
+      // kPa: 0-20=ok (vert), 20-60=attention (orange), >60=critique (rouge)
+      const pct = Math.min(100, Math.abs(val)/80*100);
+      const cls = Math.abs(val)<20 ? 'tensio-ok' : Math.abs(val)<60 ? 'tensio-warn' : 'tensio-crit';
+      return `<div class="meteo-tensio-row">
+        <span class="meteo-tensio-depth">-${d}cm</span>
+        <span class="meteo-tensio-val" style="color:${cls==='tensio-ok'?'#27AE60':cls==='tensio-warn'?'#E67E22':'#C0392B'}">${val.toFixed(0)} kPa</span>
+        <div class="meteo-tensio-bar"><div class="meteo-tensio-fill ${cls}" style="width:${pct}%"></div></div>
+      </div>`;
+    }).filter(Boolean).join('');
+    if(tensioRows) tensioHtml = `
+      <div class="meteo-tensio">
+        <div class="meteo-tensio-title">Tensiométrie (dernier relevé)</div>
+        ${tensioRows}
+      </div>`;
+  }
+
+  content.innerHTML = `
+    <div class="meteo-station">
+      <div class="meteo-station-name">📡 ${plot.name}</div>
+      <div class="meteo-station-loc">${plot.org} · ${plot.location_text}</div>
+      <div class="meteo-station-dist">à ${plot.dist_km} km du domaine</div>
+    </div>
+    <div class="meteo-grid">
+      <div class="meteo-card">
+        <div class="meteo-card-label">Température</div>
+        <div class="meteo-card-val">${T}<span class="meteo-card-unit">°C</span></div>
+      </div>
+      <div class="meteo-card">
+        <div class="meteo-card-label">Humidité</div>
+        <div class="meteo-card-val">${U}<span class="meteo-card-unit">%</span></div>
+      </div>
+      <div class="meteo-card">
+        <div class="meteo-card-label">Pluie cumul</div>
+        <div class="meteo-card-val">${rrCumul}<span class="meteo-card-unit">mm</span></div>
+      </div>
+    </div>
+    <div class="meteo-days">
+      <div class="meteo-days-title">4 derniers jours</div>
+      ${daysHtml || '<div style="font-size:10px;color:var(--text3)">Pas de données</div>'}
+    </div>
+    ${tensioHtml}
+  `;
 }
 
 
