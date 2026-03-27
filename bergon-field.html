@@ -1106,10 +1106,10 @@ async function triggerZnt() {
   const allCoords = [];
   client.parcelles.forEach(p => p.coords.forEach(c => allCoords.push(c)));
   const lngs = allCoords.map(c=>c[0]), lats = allCoords.map(c=>c[1]);
-  const minLng = Math.min(...lngs) - 0.01;
-  const maxLng = Math.max(...lngs) + 0.01;
-  const minLat = Math.min(...lats) - 0.01;
-  const maxLat = Math.max(...lats) + 0.01;
+  const minLng = Math.min(...lngs) - 0.05;
+  const maxLng = Math.max(...lngs) + 0.05;
+  const minLat = Math.min(...lats) - 0.05;
+  const maxLat = Math.max(...lats) + 0.05;
 
   // Filter DDTM83 BCAE to client bbox
   if(!DDTM83_BCAE || !DDTM83_BCAE.features) { content.innerHTML='<div class="znt-loading">⚠️ Données ZNT non chargées</div>'; return; }
