@@ -1188,7 +1188,7 @@ async function triggerZnt() {
   var allRivers = Object.keys(allRiversSet);
   var html = '';
   if(allRivers.length > 0) {
-    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau BCAE (' + zntDistance + 'm)</div>';
+    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d\'eau BCAE (' + zntDistance + 'm)</div>';
     html += '<div class="znt-river-list">';
     allRivers.forEach(function(n){ if(n) html += '<div class="znt-river-item"><div class="znt-river-dot"></div>' + n + '</div>'; });
     html += '</div>';
@@ -1225,7 +1225,7 @@ async function triggerZnt() {
     });
     html += '</div>';
   } else {
-    html = '<div class="znt-no-river"><span class="ico">OK</span>Aucun cours d'eau BCAE detecte a moins de ' + zntDistance + 'm.</div>';
+    html = '<div class="znt-no-river"><span class="ico">OK</span>Aucun cours d\'eau BCAE detecte a moins de ' + zntDistance + 'm.</div>';
   }
   content.innerHTML = html;
 }
