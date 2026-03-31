@@ -1210,15 +1210,14 @@ async function triggerZnt() {
         + '</div>';
       var impacted = data.parcelles.filter(function(r){return r.zntAreaM2>0.5;});
       if(impacted.length>0) {
-        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactees</div><div class="znt-parcelle-table">';
-        data.parcelles.forEach(function(r) {
+        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactees (' + impacted.length + ')</div><div class="znt-parcelle-table">';
+        impacted.forEach(function(r) {
           var zH=(r.zntAreaM2/10000).toFixed(3);
           var nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
           var pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
-          var hit=r.zntAreaM2>0.5;
           html += '<div class="zpt-row"><div class="zpt-id">' + r.id + '</div>'
             + '<div class="zpt-surf">net <strong>' + nH + ' ha</strong></div>'
-            + '<div class="zpt-znt ' + (hit?'hit':'clear') + '">' + (hit?'-'+zH+' ha ('+pc+'%)':'libre') + '</div></div>';
+            + '<div class="zpt-znt hit">-' + zH + ' ha (' + pc + '%)</div></div>';
         });
         html += '</div>';
       }
