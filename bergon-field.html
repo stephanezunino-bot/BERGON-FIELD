@@ -341,7 +341,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
   border-radius:6px;font-size:9px;color:#a89060;line-height:1.5;
 }
 .znt-warning strong{color:var(--or);display:block;margin-bottom:2px;}
-.ce-tip{background:#1a3a5c;color:#fff;border:none;font-size:11px;padding:3px 8px;border-radius:4px;}
 
 
 /* ══ ANALYSE SOL ══ */
@@ -1132,141 +1131,96 @@ async function triggerZnt() {
   const riverGeoJSON = { type:'FeatureCollection', features: rivers };
   zntLayers.rivers = L.geoJSON(riverGeoJSON, {
     style: function(feature) {
-      var cat = (feature.properties && feature.properties.categorie) ? feature.properties.categorie : '';
-      if(cat === 'permanent') {
-        return { color:'#1a75ff', weight:3, opacity:0.95 };
-      } else if(cat === 'intermittent_nomme') {
-        return { color:'#3498DB', weight:2, opacity:0.85, dashArray:'6,3' };
-      } else {
-        return { color:'#7ab3d4', weight:1.5, opacity:0.6, dashArray:'3,5' };
-      }
+      var cat = feature.properties && feature.properties.categorie ? feature.properties.categorie : '';
+      if(cat === 'permanent') return { color:'#1a75ff', weight:3, opacity:0.95 };
+      if(cat === 'intermittent_nomme') return { color:'#3498DB', weight:2, opacity:0.85, dashArray:'6,3' };
+      return { color:'#7ab3d4', weight:1.5, opacity:0.6, dashArray:'3,5' };
     },
     onEachFeature: function(feature, layer) {
       var nom = feature.properties && feature.properties.nom ? feature.properties.nom : '';
-      var cat = (feature.properties && feature.properties.categorie) ? feature.properties.categorie : '';
-      var label = cat === 'a_expertiser' ? '⚠️ A expertiser' :
-                  cat === 'permanent'    ? '💧 Permanent' : '💧 Intermittent';
-      var tooltip = (nom ? nom + ' - ' : '') + label;
-      layer.bindTooltip(tooltip, { sticky:true });
+      var cat = feature.properties && feature.properties.categorie ? feature.properties.categorie : '';
+      var label = cat==='permanent' ? 'Permanent' : cat==='intermittent_nomme' ? 'Intermittent' : 'A expertiser';
+      layer.bindTooltip((nom ? nom+' - ' : '')+label, {sticky:true});
     }
   }).addTo(map);
 
-  // For each parcelle × each river: compute buffer intersection
+  // Cultures non traitables exclues du calcul ZNT
+  const CULTURES_EXCLUES = ['JAC','AGR','PTR','HBL','SNE'];
+  const parcellesTraitables = client.parcelles.filter(p => !CULTURES_EXCLUES.includes(p.culture));
+
+  // For each parcelle x each river
   const results = [];
-  let totalZntM2   = 0;
-  let totalParcM2  = 0;
+  const byCulture = {};
 
-  for(const p of client.parcelles) {
-    // Use full polygon with holes if available, else outer ring only
+  for(const p of parcellesTraitables) {
     const parcPoly = turf.polygon([p.coords.map(c=>[c[0],c[1]])]);
-    // Use geometric area for ZNT ratio calc; display PAC admissible surface
     const parcAreaM2 = turf.area(parcPoly);
-    const parcAreaDisplay = p.surface_ca / 100; // ha PAC admissible
-    totalParcM2 += parcAreaM2;
-
-    let zntAreaM2 = 0;
-    let hitRivers = [];
-
+    if(!byCulture[p.culture]) byCulture[p.culture] = { totalM2:0, zntM2:0, parcelles:[] };
+    byCulture[p.culture].totalM2 += parcAreaM2;
+    let zntAreaM2 = 0, hitRivers = [];
     for(const river of rivers) {
       try {
-        // Buffer the river by ZNT distance (in meters)
         const buf = turf.buffer(river, zntDistance/1000, { units:'kilometers' });
         if(!buf) continue;
-
-        // Intersect buffer with parcelle polygon
         const inter = turf.intersect(buf, parcPoly);
         if(inter) {
           const interArea = turf.area(inter);
-          if(interArea > 0.5) { // ignore < 0.5 m²
+          if(interArea > 0.5) {
             zntAreaM2 += interArea;
-            const name = river.properties?.NOM_C_EAU || river.properties?.nom || river.properties?.NOM || 'Cours d\'eau';
+            const name = river.properties?.nom || "Cours d'eau";
             if(!hitRivers.includes(name)) hitRivers.push(name);
-
-            // Draw intersection zone in red on map
-            if(!zntLayers.buffers) {
-              zntLayers.buffers = L.layerGroup().addTo(map);
-            }
-            L.geoJSON(inter, {
-              style:{ color:'#C0392B', fillColor:'rgba(192,57,43,0.35)', weight:1.5, opacity:1, fillOpacity:0.45 }
-            }).addTo(zntLayers.buffers);
+            if(!zntLayers.buffers) zntLayers.buffers = L.layerGroup().addTo(map);
+            L.geoJSON(inter, { style:{ color:'#C0392B', fillColor:'rgba(192,57,43,0.35)', weight:1.5, opacity:1, fillOpacity:0.45 } }).addTo(zntLayers.buffers);
           }
         }
-      } catch(e) { /* skip malformed geometry */ }
+      } catch(e) {}
     }
-
-    totalZntM2 += zntAreaM2;
-    results.push({ id: p.id, parcAreaM2, zntAreaM2, hitRivers, culture: p.culture, bio: p.bio });
+    byCulture[p.culture].zntM2 += zntAreaM2;
+    byCulture[p.culture].parcelles.push({ id:p.id, parcAreaM2, zntAreaM2, hitRivers, culture:p.culture, bio:p.bio });
+    results.push({ id:p.id, parcAreaM2, zntAreaM2, hitRivers, culture:p.culture, bio:p.bio });
   }
 
-  // Build river name list (unique)
   const allRivers = [...new Set(results.flatMap(r=>r.hitRivers))];
-  const totalSurfHa   = (totalParcM2/10000).toFixed(2);
-  const totalZntHa    = (totalZntM2/10000).toFixed(3);
-  const totalNetHa    = ((totalParcM2-totalZntM2)/10000).toFixed(2);
-  const pctImpact     = totalParcM2>0 ? ((totalZntM2/totalParcM2)*100).toFixed(1) : '0';
-  const hasImpact     = totalZntM2 > 1;
-
-  // Render results
   let html = '';
 
   if(allRivers.length > 0) {
-    html += `<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau détectés (${zntDistance}m)</div>`;
-    html += `<div class="znt-river-list">`;
-    allRivers.forEach(n => {
-      html += `<div class="znt-river-item"><div class="znt-river-dot"></div>${n}</div>`;
+    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau détectés (' + zntDistance + 'm)</div>';
+    html += '<div class="znt-river-list">';
+    allRivers.forEach(n => { if(n) html += '<div class="znt-river-item"><div class="znt-river-dot"></div>' + n + '</div>'; });
+    html += '</div>';
+
+    Object.entries(byCulture).forEach(([cult, data]) => {
+      const surfHa = (data.totalM2/10000).toFixed(2);
+      const zntHa  = (data.zntM2/10000).toFixed(3);
+      const netHa  = ((data.totalM2-data.zntM2)/10000).toFixed(2);
+      const pct    = data.totalM2>0 ? ((data.zntM2/data.totalM2)*100).toFixed(1) : '0';
+      const cultLabel = cult==='VRC'?'Vigne':cult==='VRG'?'Vigne (vert)':cult==='OLI'?'Olive':cult;
+      const warn = data.zntM2>0.5;
+      html += '<div class="mp-sec-title" style="margin:8px 0 5px;">' + cultLabel + ' — Impact ZNT ' + zntDistance + 'm</div>';
+      html += '<div class="znt-impact-grid">'
+        + '<div class="znt-impact-card"><div class="znt-impact-val" style="color:var(--vert-c)">' + surfHa + ' ha</div><div class="znt-impact-lbl">Surface traitable</div></div>'
+        + '<div class="znt-impact-card ' + (warn?'warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?'var(--rouge)':'var(--vert-c)') + '">' + zntHa + ' ha</div><div class="znt-impact-lbl">Zone non traitable</div></div>'
+        + '<div class="znt-impact-card"><div class="znt-impact-val">' + netHa + ' ha</div><div class="znt-impact-lbl">Surface nette</div></div>'
+        + '<div class="znt-impact-card ' + (warn?'warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?'var(--rouge)':'var(--vert-c)') + '">' + pct + '%</div><div class="znt-impact-lbl">% impacté</div></div>'
+        + '</div>';
+      const impacted = data.parcelles.filter(r=>r.zntAreaM2>0.5);
+      if(impacted.length>0) {
+        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactées</div><div class="znt-parcelle-table">';
+        data.parcelles.forEach(r => {
+          const zH=(r.zntAreaM2/10000).toFixed(3);
+          const nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
+          const pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
+          const hit=r.zntAreaM2>0.5;
+          html += '<div class="zpt-row"><div class="zpt-id">' + r.id + '</div>'
+            + '<div class="zpt-surf">' + (r.bio?'?? ':' ') + 'net <strong>' + nH + ' ha</strong></div>'
+            + '<div class="zpt-znt ' + (hit?'hit':'clear') + '">' + (hit?'-'+zH+' ha ('+pc+'%)':'✓ libre') + '</div></div>';
+        });
+        html += '</div>';
+      }
     });
-    html += `</div>`;
-
-    html += `<div class="mp-sec-title" style="margin:8px 0 6px;">Impact ZNT ${zntDistance}m — ensemble du domaine</div>`;
-    html += `<div class="znt-impact-grid">
-      <div class="znt-impact-card">
-        <div class="znt-impact-val" style="color:var(--vert-c)">${totalSurfHa} ha</div>
-        <div class="znt-impact-lbl">Surface totale</div>
-      </div>
-      <div class="znt-impact-card ${hasImpact?'warn':''}">
-        <div class="znt-impact-val" style="color:${hasImpact?'var(--rouge)':'var(--vert-c)'}">${totalZntHa} ha</div>
-        <div class="znt-impact-lbl">Zone non traitable</div>
-      </div>
-      <div class="znt-impact-card">
-        <div class="znt-impact-val">${totalNetHa} ha</div>
-        <div class="znt-impact-lbl">Surface nette traitable</div>
-      </div>
-      <div class="znt-impact-card ${hasImpact?'warn':''}">
-        <div class="znt-impact-val" style="color:${hasImpact?'var(--rouge)':'var(--vert-c)'}">${pctImpact}%</div>
-        <div class="znt-impact-lbl">% impacté</div>
-      </div>
-    </div>`;
-
-    // Per-parcelle detail
-    const impacted = results.filter(r=>r.zntAreaM2>0.5);
-    if(impacted.length > 0) {
-      html += `<div class="mp-sec-title" style="margin:10px 0 6px;">Détail par parcelle impactée</div>`;
-      html += `<div class="znt-parcelle-table">`;
-      impacted.forEach(r => {
-        const zntHa  = (r.zntAreaM2/10000).toFixed(3);
-        const netHa  = ((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
-        const pct    = ((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
-        html += `<div class="zpt-row">
-          <div class="zpt-id">${r.id}</div>
-          <div class="zpt-surf">${r.culture}${r.bio?' 🌿':''} · net <strong>${netHa} ha</strong></div>
-          <div class="zpt-znt hit">−${zntHa} ha (${pct}%)</div>
-        </div>`;
-      });
-      // Parcelles clear
-      const clear = results.filter(r=>r.zntAreaM2<=0.5);
-      clear.forEach(r => {
-        const totHa = (r.parcAreaM2/10000).toFixed(3);
-        html += `<div class="zpt-row">
-          <div class="zpt-id">${r.id}</div>
-          <div class="zpt-surf">${r.culture}${r.bio?' 🌿':''} · ${totHa} ha</div>
-          <div class="zpt-znt clear">✓ libre</div>
-        </div>`;
-      });
-      html += `</div>`;
-    }
-    html += `</div>`;
+    html += '</div>';
   } else {
-    html = `<div class="znt-no-river"><span class="ico">✅</span>Aucune intersection ZNT détectée.<br><span style="font-size:9px;color:var(--text3)">Aucun cours d'eau à moins de ${zntDistance}m des parcelles.</span></div>`;
+    html = '<div class="znt-no-river"><span class="ico">✅</span>Aucune intersection ZNT détectée.<br><span style="font-size:9px;color:var(--text3)">Aucun cours d'eau à moins de ' + zntDistance + 'm des surfaces traitables.</span></div>';
   }
 
   content.innerHTML = html;
