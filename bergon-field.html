@@ -556,7 +556,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
             <button class="znt-btn" onclick="setZntDistance(this,50)">50 m</button>
           </div>
         </div>
-        <div id="znt-content">
+        <div id="znt-ready-indicator" style="padding:6px 14px;font-size:10px;color:var(--or);">Donnees ZNT en chargement...</div>
+          <div id="znt-content">
           <div class="znt-loading">Cliquez sur une parcelle pour calculer la ZNT</div>
         </div>
         <div class="znt-warning">
@@ -730,25 +731,31 @@ let ANALYSE_DATA = null;
 async function loadAllData() {
   showLoader(true);
   try {
-    const [r1, r2, r3, r4] = await Promise.all([
+    const [r1, r3, r4] = await Promise.all([
       fetch(`${BASE_URL}/clients_parcelles.json`),
-      fetch(`${BASE_URL}/ddtm83_bcae.json`),
       fetch(`${BASE_URL}/analyses_aurea.json`),
       fetch(`${BASE_URL}/weenat_plots.json`),
     ]);
     if (!r1.ok) throw new Error(`clients: ${r1.status}`);
-    if (!r2.ok) throw new Error(`ddtm83: ${r2.status}`);
     if (!r3.ok) throw new Error(`analyses: ${r3.status}`);
     CLIENTS      = await r1.json();
-    DDTM83_BCAE  = await r2.json();
     ANALYSE_DATA = await r3.json();
     WEENAT_PLOTS = r4.ok ? await r4.json() : [];
     showLoader(false);
     initMap();
+    fetch(`${BASE_URL}/ddtm83_bcae.json`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if(data) {
+          DDTM83_BCAE = data;
+          var ind = document.getElementById('znt-ready-indicator');
+          if(ind) ind.style.display = 'none';
+        }
+      })
+      .catch(function(){});
   } catch(e) {
     document.getElementById('loader').innerHTML =
-      `<div style="color:#C0392B;font-size:13px;">⚠️ Erreur chargement données<br><small>${e.message}</small><br><br>
-       <button onclick="loadAllData()" style="padding:8px 16px;background:var(--vert-pale);border:1px solid var(--vert-c);border-radius:6px;color:var(--vert-c);cursor:pointer;font-family:inherit;">Réessayer</button></div>`;
+      '<div style="color:#C0392B;font-size:13px;">Erreur chargement<br><small>' + e.message + '</small></div>';
   }
 }
 
@@ -1144,85 +1151,82 @@ async function triggerZnt() {
     }
   }).addTo(map);
 
-  // Cultures non traitables exclues du calcul ZNT
-  const CULTURES_EXCLUES = ['JAC','AGR','PTR','HBL','SNE'];
-  const parcellesTraitables = client.parcelles.filter(p => !CULTURES_EXCLUES.includes(p.culture));
-
-  // For each parcelle x each river
-  const results = [];
-  const byCulture = {};
-
-  for(const p of parcellesTraitables) {
-    const parcPoly = turf.polygon([p.coords.map(c=>[c[0],c[1]])]);
-    const parcAreaM2 = turf.area(parcPoly);
+  // Cultures non traitables exclues
+  var CULT_EX = {'JAC':1,'AGR':1,'PTR':1,'HBL':1,'SNE':1};
+  var parcsTraitables = client.parcelles.filter(function(p){ return !CULT_EX[p.culture]; });
+  var results = [], byCulture = {};
+  for(var pi=0; pi<parcsTraitables.length; pi++) {
+    var p = parcsTraitables[pi];
+    var parcPoly = turf.polygon([p.coords.map(function(c){return [c[0],c[1]];})]);
+    var parcAreaM2 = turf.area(parcPoly);
     if(!byCulture[p.culture]) byCulture[p.culture] = { totalM2:0, zntM2:0, parcelles:[] };
     byCulture[p.culture].totalM2 += parcAreaM2;
-    let zntAreaM2 = 0, hitRivers = [];
-    for(const river of rivers) {
+    var zntAreaM2 = 0, hitRivers = [];
+    for(var ri=0; ri<rivers.length; ri++) {
       try {
-        const buf = turf.buffer(river, zntDistance/1000, { units:'kilometers' });
+        var buf = turf.buffer(rivers[ri], zntDistance/1000, { units:'kilometers' });
         if(!buf) continue;
-        const inter = turf.intersect(buf, parcPoly);
+        var inter = turf.intersect(buf, parcPoly);
         if(inter) {
-          const interArea = turf.area(inter);
+          var interArea = turf.area(inter);
           if(interArea > 0.5) {
             zntAreaM2 += interArea;
-            const name = river.properties?.nom || "Cours d'eau";
-            if(!hitRivers.includes(name)) hitRivers.push(name);
+            var rname = (rivers[ri].properties && rivers[ri].properties.nom) ? rivers[ri].properties.nom : "Cours d'eau";
+            if(hitRivers.indexOf(rname)<0) hitRivers.push(rname);
             if(!zntLayers.buffers) zntLayers.buffers = L.layerGroup().addTo(map);
             L.geoJSON(inter, { style:{ color:'#C0392B', fillColor:'rgba(192,57,43,0.35)', weight:1.5, opacity:1, fillOpacity:0.45 } }).addTo(zntLayers.buffers);
           }
         }
-      } catch(e) {}
+      } catch(ex) {}
     }
     byCulture[p.culture].zntM2 += zntAreaM2;
-    byCulture[p.culture].parcelles.push({ id:p.id, parcAreaM2, zntAreaM2, hitRivers, culture:p.culture, bio:p.bio });
-    results.push({ id:p.id, parcAreaM2, zntAreaM2, hitRivers, culture:p.culture, bio:p.bio });
+    byCulture[p.culture].parcelles.push({ id:p.id, parcAreaM2:parcAreaM2, zntAreaM2:zntAreaM2, hitRivers:hitRivers, culture:p.culture, bio:p.bio });
+    results.push({ id:p.id, parcAreaM2:parcAreaM2, zntAreaM2:zntAreaM2, hitRivers:hitRivers, culture:p.culture, bio:p.bio });
   }
-
-  const allRivers = [...new Set(results.flatMap(r=>r.hitRivers))];
-  let html = '';
-
+  var allRiversSet = {};
+  results.forEach(function(r){ r.hitRivers.forEach(function(n){ allRiversSet[n]=1; }); });
+  var allRivers = Object.keys(allRiversSet);
+  var html = '';
   if(allRivers.length > 0) {
-    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau détectés (' + zntDistance + 'm)</div>';
+    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau BCAE (' + zntDistance + 'm)</div>';
     html += '<div class="znt-river-list">';
-    allRivers.forEach(n => { if(n) html += '<div class="znt-river-item"><div class="znt-river-dot"></div>' + n + '</div>'; });
+    allRivers.forEach(function(n){ if(n) html += '<div class="znt-river-item"><div class="znt-river-dot"></div>' + n + '</div>'; });
     html += '</div>';
-
-    Object.entries(byCulture).forEach(([cult, data]) => {
-      const surfHa = (data.totalM2/10000).toFixed(2);
-      const zntHa  = (data.zntM2/10000).toFixed(3);
-      const netHa  = ((data.totalM2-data.zntM2)/10000).toFixed(2);
-      const pct    = data.totalM2>0 ? ((data.zntM2/data.totalM2)*100).toFixed(1) : '0';
-      const cultLabel = cult==='VRC'?'Vigne':cult==='VRG'?'Vigne (vert)':cult==='OLI'?'Olive':cult;
-      const warn = data.zntM2>0.5;
-      html += '<div class="mp-sec-title" style="margin:8px 0 5px;">' + cultLabel + ' — Impact ZNT ' + zntDistance + 'm</div>';
+    Object.keys(byCulture).forEach(function(cult) {
+      var data = byCulture[cult];
+      var surfHa = (data.totalM2/10000).toFixed(2);
+      var zntHa  = (data.zntM2/10000).toFixed(3);
+      var netHa  = ((data.totalM2-data.zntM2)/10000).toFixed(2);
+      var pct    = data.totalM2>0 ? ((data.zntM2/data.totalM2)*100).toFixed(1) : '0';
+      var cultLabel = cult==='VRC'?'Vigne':cult==='VRG'?'Vigne (vert)':cult==='OLI'?'Olive':cult;
+      var warn = data.zntM2>0.5;
+      var rouge = 'var(--rouge)', vert = 'var(--vert-c)';
+      html += '<div class="mp-sec-title" style="margin:8px 0 5px;">' + cultLabel + ' — ZNT ' + zntDistance + 'm</div>';
       html += '<div class="znt-impact-grid">'
-        + '<div class="znt-impact-card"><div class="znt-impact-val" style="color:var(--vert-c)">' + surfHa + ' ha</div><div class="znt-impact-lbl">Surface traitable</div></div>'
-        + '<div class="znt-impact-card ' + (warn?'warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?'var(--rouge)':'var(--vert-c)') + '">' + zntHa + ' ha</div><div class="znt-impact-lbl">Zone non traitable</div></div>'
+        + '<div class="znt-impact-card"><div class="znt-impact-val" style="color:' + vert + '">' + surfHa + ' ha</div><div class="znt-impact-lbl">Surface traitable</div></div>'
+        + '<div class="znt-impact-card' + (warn?' warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?rouge:vert) + '">' + zntHa + ' ha</div><div class="znt-impact-lbl">Non traitable</div></div>'
         + '<div class="znt-impact-card"><div class="znt-impact-val">' + netHa + ' ha</div><div class="znt-impact-lbl">Surface nette</div></div>'
-        + '<div class="znt-impact-card ' + (warn?'warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?'var(--rouge)':'var(--vert-c)') + '">' + pct + '%</div><div class="znt-impact-lbl">% impacté</div></div>'
+        + '<div class="znt-impact-card' + (warn?' warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?rouge:vert) + '">' + pct + '%</div><div class="znt-impact-lbl">% impacte</div></div>'
         + '</div>';
-      const impacted = data.parcelles.filter(r=>r.zntAreaM2>0.5);
+      var impacted = data.parcelles.filter(function(r){return r.zntAreaM2>0.5;});
       if(impacted.length>0) {
-        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactées</div><div class="znt-parcelle-table">';
-        data.parcelles.forEach(r => {
-          const zH=(r.zntAreaM2/10000).toFixed(3);
-          const nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
-          const pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
-          const hit=r.zntAreaM2>0.5;
+        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactees</div><div class="znt-parcelle-table">';
+        data.parcelles.forEach(function(r) {
+          var zH=(r.zntAreaM2/10000).toFixed(3);
+          var nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
+          var pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
+          var hit=r.zntAreaM2>0.5;
           html += '<div class="zpt-row"><div class="zpt-id">' + r.id + '</div>'
-            + '<div class="zpt-surf">' + (r.bio?'?? ':' ') + 'net <strong>' + nH + ' ha</strong></div>'
-            + '<div class="zpt-znt ' + (hit?'hit':'clear') + '">' + (hit?'-'+zH+' ha ('+pc+'%)':'✓ libre') + '</div></div>';
+            + '<div class="zpt-surf">net <strong>' + nH + ' ha</strong></div>'
+            + '<div class="zpt-znt ' + (hit?'hit':'clear') + '">' + (hit?'-'+zH+' ha ('+pc+'%)':'libre') + '</div></div>';
         });
         html += '</div>';
       }
     });
     html += '</div>';
   } else {
-    html = '<div class="znt-no-river"><span class="ico">✅</span>Aucune intersection ZNT détectée.<br><span style="font-size:9px;color:var(--text3)">Aucun cours d'eau à moins de ' + zntDistance + 'm des surfaces traitables.</span></div>';
+    html = '<div class="znt-no-river"><span class="ico">OK</span>Aucun cours d'eau BCAE detecte a moins de ' + zntDistance + 'm.</div>';
   }
-
   content.innerHTML = html;
 }
 
