@@ -341,6 +341,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
   border-radius:6px;font-size:9px;color:#a89060;line-height:1.5;
 }
 .znt-warning strong{color:var(--or);display:block;margin-bottom:2px;}
+.ce-tooltip{background:#1a3a5c;color:#fff;border:none;font-size:11px;padding:3px 8px;border-radius:4px;}
 
 
 /* ══ ANALYSE SOL ══ */
@@ -561,7 +562,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
         </div>
         <div class="znt-warning">
           <strong>⚠️ Avertissement réglementaire</strong>
-          Calcul basé sur le fichier DDTM83 (cours d'eau BCAE reconnus, extraction Mars 2026). La ZNT réglementaire applicable dépend de l'AMM du produit utilisé. Toujours vérifier l'étiquette du produit avant toute application.
+          Calcul basé sur le fichier DDTM83 (mise à jour novembre 2025). Cours d'eau : permanent (bleu foncé), intermittent nommé (bleu pointillé), à expertiser (bleu clair pointillé — statut non tranché). La ZNT réglementaire applicable dépend de l'AMM du produit utilisé. Toujours vérifier l'étiquette du produit avant toute application.
         </div>
       </div>
     </div>
@@ -1130,7 +1131,25 @@ async function triggerZnt() {
   // Draw rivers on map (blue lines)
   const riverGeoJSON = { type:'FeatureCollection', features: rivers };
   zntLayers.rivers = L.geoJSON(riverGeoJSON, {
-    style: { color:'#3498DB', weight:2.5, opacity:0.85 }
+    style: function(feature) {
+      const cat = feature.properties?.categorie || '';
+      if(cat === 'permanent') {
+        return { color:'#1a75ff', weight:3, opacity:0.95, dashArray: null };
+      } else if(cat === 'intermittent_nomme') {
+        return { color:'#3498DB', weight:2, opacity:0.85, dashArray: '6,3' };
+      } else {
+        // à expertiser — pointillé léger
+        return { color:'#7ab3d4', weight:1.5, opacity:0.6, dashArray: '3,5' };
+      }
+    },
+    onEachFeature: function(feature, layer) {
+      const nom = feature.properties?.nom;
+      const cat = feature.properties?.categorie || '';
+      const label = cat === 'a_expertiser' ? '⚠️ À expertiser' :
+                    cat === 'permanent'     ? '💧 Permanent' : '💧 Intermittent';
+      const tooltip = (nom ? nom + ' — ' : '') + label;
+      layer.bindTooltip(tooltip, { sticky:true, className:'ce-tooltip' });
+    }
   }).addTo(map);
 
   // For each parcelle × each river: compute buffer intersection
