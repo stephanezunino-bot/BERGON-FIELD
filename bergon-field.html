@@ -288,13 +288,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 .acti-title{font-size:12px;font-weight:500;color:var(--text);}
 .acti-desc{font-size:10px;color:var(--text3);margin-top:1px;}
 .acti-time{font-size:9px;color:var(--text3);flex-shrink:0;margin-top:2px;}
+
 /* ══════════════════════════
    MODULE ZNT
 ══════════════════════════ */
 .mp-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
-.mp-tab{flex:1;padding:8px;text-align:center;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.mp-tab{flex:1;padding:8px;text-align:center;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;background:none;border:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;}
 .mp-tab.active{color:var(--vert-c);border-bottom-color:var(--vert-c);}
-.mp-tab-content{display:none;}.mp-tab-content.active{display:block;}
+.mp-tab-content{display:none;}
+.mp-tab-content.active{display:block;}
 
 .znt-selector{padding:10px 14px;border-bottom:1px solid var(--border);}
 .znt-sel-label{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
@@ -342,7 +344,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 }
 .znt-warning strong{color:var(--or);display:block;margin-bottom:2px;}
 
-
 /* ══ ANALYSE SOL ══ */
 .sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px 14px;}
 .sol-card{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;}
@@ -383,64 +384,53 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 .sol-no-data{padding:20px 14px;text-align:center;font-size:11px;color:var(--text3);}
 .sol-no-data .ico{font-size:24px;display:block;margin-bottom:8px;}
 
-/* Parcelle avec analyse — style différent */
-.poly-analysed{stroke-width:2.5!important;}
-
+/* ══ MÉTÉO WEENAT ══ */
+.meteo-station{padding:10px 14px;border-bottom:1px solid var(--border);}
+.meteo-station-name{font-size:11px;font-weight:600;color:var(--text);}
+.meteo-station-loc{font-size:9px;color:var(--text3);margin-top:1px;}
+.meteo-station-dist{font-size:9px;color:var(--or);margin-top:1px;}
+.meteo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px 14px;}
+.meteo-card{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;text-align:center;}
+.meteo-card-label{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;}
+.meteo-card-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.1;margin-top:2px;}
+.meteo-card-unit{font-size:9px;color:var(--text3);}
+.meteo-days{padding:8px 14px;}
+.meteo-days-title{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.meteo-day-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border2);font-size:11px;color:var(--text2);}
+.meteo-day-row:last-child{border-bottom:none;}
+.meteo-day-date{width:60px;color:var(--text3);font-size:9px;}
+.meteo-day-t{color:var(--rouge);font-weight:600;}
+.meteo-day-rr{color:#3498db;font-weight:600;}
+.meteo-day-u{color:var(--text2);}
+.meteo-tensio{padding:8px 14px;border-top:1px solid var(--border);}
+.meteo-tensio-title{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.meteo-tensio-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:11px;}
+.meteo-tensio-depth{width:50px;color:var(--text3);font-size:9px;}
+.meteo-tensio-val{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
+.meteo-tensio-bar{flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
+.meteo-tensio-fill{height:100%;border-radius:3px;transition:width .3s;}
+.tensio-ok  {background:#27AE60;}
+.tensio-warn{background:#E67E22;}
+.tensio-crit{background:#C0392B;}
+.meteo-no-data{padding:20px 14px;text-align:center;font-size:11px;color:var(--text3);}
 
 @keyframes dot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
-
-/* ══ MÉTÉO WEENAT ══ */
-.meteo-station { padding:10px 14px; border-bottom:1px solid var(--border); }
-.meteo-station-name { font-size:11px;font-weight:600;color:var(--text); }
-.meteo-station-loc { font-size:9px;color:var(--text3);margin-top:1px; }
-.meteo-station-dist { font-size:9px;color:var(--or);margin-top:1px; }
-.meteo-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px 14px; }
-.meteo-card { background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;text-align:center; }
-.meteo-card-label { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px; }
-.meteo-card-val { font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.1;margin-top:2px; }
-.meteo-card-unit { font-size:9px;color:var(--text3); }
-.meteo-days { padding:8px 14px; }
-.meteo-days-title { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px; }
-.meteo-day-row { display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border2);font-size:11px;color:var(--text2); }
-.meteo-day-row:last-child { border-bottom:none; }
-.meteo-day-date { width:60px;color:var(--text3);font-size:9px; }
-.meteo-day-t { color:var(--rouge);font-weight:600; }
-.meteo-day-rr { color:var(--bleu,#3498db);font-weight:600; }
-.meteo-day-u { color:var(--text2); }
-.meteo-tensio { padding:8px 14px;border-top:1px solid var(--border); }
-.meteo-tensio-title { font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px; }
-.meteo-tensio-row { display:flex;align-items:center;gap:8px;padding:4px 0;font-size:11px; }
-.meteo-tensio-depth { width:50px;color:var(--text3);font-size:9px; }
-.meteo-tensio-val { font-family:'Syne',sans-serif;font-size:14px;font-weight:700; }
-.meteo-tensio-bar { flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden; }
-.meteo-tensio-fill { height:100%;border-radius:3px;transition:width .3s; }
-.tensio-ok   { background:#27AE60; }
-.tensio-warn { background:#E67E22; }
-.tensio-crit { background:#C0392B; }
-.meteo-no-data { padding:20px 14px;text-align:center;font-size:11px;color:var(--text3); }
-
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-
-  <!-- LOADER -->
-  <div id="loader" style="
-    display:flex; align-items:center; justify-content:center;
-    position:fixed; inset:0; background:var(--bg); z-index:9999;
-    flex-direction:column; gap:14px;
-  ">
-    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);">
-      Bergon<span style="color:var(--vert-c)">Field</span>
-    </div>
-    <div style="display:flex;gap:6px;align-items:center;">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .0s infinite both"></div>
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .2s infinite both"></div>
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .4s infinite both"></div>
-    </div>
-    <div style="font-size:11px;color:var(--text3);">Chargement des données…</div>
+<!-- LOADER -->
+<div id="loader" style="display:flex;align-items:center;justify-content:center;position:fixed;inset:0;background:var(--bg);z-index:9999;flex-direction:column;gap:14px;">
+  <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);">Bergon<span style="color:var(--vert-c)">Field</span></div>
+  <div style="display:flex;gap:6px;align-items:center;">
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .0s infinite both"></div>
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .2s infinite both"></div>
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--vert-c);animation:dot 1.2s .4s infinite both"></div>
   </div>
+  <div style="font-size:11px;color:var(--text3);">Chargement des données…</div>
+</div>
+
+<!-- TOPBAR -->
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:16px;">
     <div class="logo">Bergon<em>Field</em></div>
@@ -462,8 +452,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 
 <!-- VUE CARTE -->
 <div class="view active" id="view-carte">
-
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="sb-head">
       <div class="sb-search">
@@ -477,17 +465,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
         <button class="sf" onclick="setFilter(this,'alerte')">⚠️ Alertes</button>
       </div>
     </div>
-
     <div class="sb-stats">
       <div class="sb-stat"><div class="sb-stat-v" id="s-clients">4</div><div class="sb-stat-l">Clients</div></div>
       <div class="sb-stat"><div class="sb-stat-v" id="s-ha">106</div><div class="sb-stat-l">Hectares</div></div>
       <div class="sb-stat"><div class="sb-stat-v" id="s-parcs">104</div><div class="sb-stat-l">Parcelles</div></div>
     </div>
-
     <div class="client-list" id="client-list"></div>
   </div>
 
-  <!-- Carte -->
   <div class="map-area">
     <div id="field-map"></div>
 
@@ -506,7 +491,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
       <div class="leg-row"><div class="leg-swatch" style="background:rgba(120,80,40,0.6);border:1px solid #8B5E3C;"></div>Olivier / Autres</div>
     </div>
 
-    <!-- Panel -->
+    <!-- Panel client -->
     <div class="map-panel" id="map-panel">
       <div class="mp-header">
         <button class="mp-close" onclick="closePanel()">✕</button>
@@ -518,35 +503,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
       <!-- Tabs -->
       <div class="mp-tabs">
         <button class="mp-tab active" onclick="switchTab(this,'parcelles')">🍇 Parcelles</button>
-        <button class="mp-tab" onclick="switchTab(this,'znt')">💧 ZNT Eau</button>
+        <button class="mp-tab" onclick="switchTab(this,'znt')">💧 ZNT</button>
         <button class="mp-tab" onclick="switchTab(this,'sol')">🧪 Sol</button>
         <button class="mp-tab" onclick="switchTab(this,'meteo')">🌤 Météo</button>
       </div>
 
-      <!-- Tab: Parcelles -->
+      <!-- Tab Parcelles -->
       <div class="mp-tab-content active" id="tab-parcelles">
         <div class="mp-section">
           <div class="mp-sec-title">Parcelles déclarées</div>
           <div id="mp-parcelles"></div>
         </div>
-        <!-- Tab: Météo -->
-      <div class="mp-tab-content" id="tab-meteo">
-        <div id="meteo-content">
-          <div class="znt-loading">Sélectionnez un client pour voir la météo.</div>
-        </div>
+        <button class="mp-btn" onclick="alert('→ Préparer la visite dans Claude')">📋 Préparer la visite</button>
       </div>
 
-            <button class="mp-btn" onclick="alert('→ Préparer la visite dans Claude')">📋 Préparer la visite</button>
-      </div>
-
-      <!-- Tab: Sol -->
-      <div class="mp-tab-content" id="tab-sol">
-        <div id="sol-content">
-          <div class="sol-no-data"><span class="ico">🧪</span>Cliquez sur une parcelle pour afficher l'analyse de sol.</div>
-        </div>
-      </div>
-
-      <!-- Tab: ZNT -->
+      <!-- Tab ZNT -->
       <div class="mp-tab-content" id="tab-znt">
         <div class="znt-selector">
           <div class="znt-sel-label">Distance ZNT réglementaire</div>
@@ -556,8 +527,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
             <button class="znt-btn" onclick="setZntDistance(this,50)">50 m</button>
           </div>
         </div>
-        <div id="znt-ready-indicator" style="padding:6px 14px;font-size:10px;color:var(--or);">Donnees ZNT en chargement...</div>
-          <div id="znt-content">
+        <div id="znt-ready-indicator" style="padding:6px 14px;font-size:10px;color:var(--or);">Données ZNT en chargement…</div>
+        <div id="znt-content">
           <div class="znt-loading">Cliquez sur une parcelle pour calculer la ZNT</div>
         </div>
         <div class="znt-warning">
@@ -565,9 +536,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
           Calcul basé sur le fichier DDTM83 (cours d'eau BCAE reconnus, extraction Mars 2026). La ZNT réglementaire applicable dépend de l'AMM du produit utilisé. Toujours vérifier l'étiquette du produit avant toute application.
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- Tab Sol -->
+      <div class="mp-tab-content" id="tab-sol">
+        <div id="sol-content">
+          <div class="sol-no-data"><span class="ico">🧪</span>Cliquez sur une parcelle pour afficher l'analyse de sol.</div>
+        </div>
+      </div>
+
+      <!-- Tab Météo -->
+      <div class="mp-tab-content" id="tab-meteo">
+        <div id="meteo-content">
+          <div class="znt-loading">Sélectionnez un client pour voir la météo.</div>
+        </div>
+      </div>
+
+    </div><!-- /map-panel -->
+  </div><!-- /map-area -->
+</div><!-- /view-carte -->
 
 <!-- VUE CLIENTS -->
 <div class="view" id="view-clients">
@@ -584,7 +570,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
   <div class="clients-grid" id="clients-grid"></div>
 </div>
 
-<!-- VUE CATALOGUE (placeholder) -->
+<!-- VUE CATALOGUE -->
 <div class="view" id="view-catalogue" style="align-items:center;justify-content:center;flex-direction:column;gap:12px;">
   <div style="font-size:40px;">📦</div>
   <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;">Catalogue produits</div>
@@ -594,8 +580,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 <!-- VUE DASHBOARD -->
 <div class="view" id="view-dashboard">
   <div>
-    <div class="dash-title">Bonjour, Stéphane 👋</div>
-    <div class="dash-sub">Lundi 24 mars 2026 · Secteur Var Est</div>
+    <div class="dash-title" id="dash-greeting">Bonjour, Stéphane 👋</div>
+    <div class="dash-sub" id="dash-date">—</div>
 
     <div class="kpi-grid">
       <div class="kpi-card">
@@ -616,9 +602,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
       <div class="kpi-card">
         <div class="kpi-label">Obj. mensuel</div>
         <div class="kpi-val">76%</div>
-        <div class="obj-bar-wrap">
-          <div class="obj-labels"><span>38 000 €</span><span>50 000 €</span></div>
-          <div class="obj-bar"><div class="obj-fill" style="width:76%"></div></div>
+        <div style="margin-top:6px;">
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text3);margin-bottom:3px;"><span>38 000 €</span><span>50 000 €</span></div>
+          <div style="height:4px;background:var(--border2);border-radius:2px;"><div style="height:100%;width:76%;background:var(--vert-c);border-radius:2px;"></div></div>
         </div>
       </div>
     </div>
@@ -646,7 +632,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
           <div class="acti-ico ico-visite">📍</div>
           <div class="acti-body">
             <div class="acti-title">Visite terrain — Rose des Vents</div>
-            <div class="acti-desc">EARL Baude · Ollioules · Compte-rendu envoyé</div>
+            <div class="acti-desc">EARL Baude · La Roquebrussanne · Compte-rendu envoyé</div>
           </div>
           <div class="acti-time">Vendredi</div>
         </div>
@@ -659,29 +645,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
           <div class="acti-time">Mer.</div>
         </div>
       </div>
-
       <div class="dash-section">
         <div class="dash-sec-title">🍇 Répartition portefeuille</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;">
-            <span style="color:var(--text2);">Rose des Vents</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;">57.5 ha</span>
-          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;"><span style="color:var(--text2);">Rose des Vents</span><span style="font-family:'Syne',sans-serif;font-weight:600;">57.5 ha</span></div>
           <div style="height:4px;background:var(--border2);border-radius:2px;"><div style="height:100%;width:54%;background:var(--vert-c);border-radius:2px;"></div></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;">
-            <span style="color:var(--text2);">ADAPEI Var</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;">17.7 ha</span>
-          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;"><span style="color:var(--text2);">ADAPEI Var</span><span style="font-family:'Syne',sans-serif;font-weight:600;">17.7 ha</span></div>
           <div style="height:4px;background:var(--border2);border-radius:2px;"><div style="height:100%;width:17%;background:var(--orange);border-radius:2px;"></div></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;">
-            <span style="color:var(--text2);">Domaine de Lolice</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;">15.8 ha</span>
-          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;"><span style="color:var(--text2);">Domaine de Lolice</span><span style="font-family:'Syne',sans-serif;font-weight:600;">15.8 ha</span></div>
           <div style="height:4px;background:var(--border2);border-radius:2px;"><div style="height:100%;width:15%;background:var(--orange);border-radius:2px;"></div></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;">
-            <span style="color:var(--text2);">Florent Laroche</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;">15.2 ha</span>
-          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;"><span style="color:var(--text2);">Florent Laroche</span><span style="font-family:'Syne',sans-serif;font-weight:600;">15.2 ha</span></div>
           <div style="height:4px;background:var(--border2);border-radius:2px;"><div style="height:100%;width:14%;background:var(--text3);border-radius:2px;"></div></div>
         </div>
         <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
@@ -703,7 +676,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);hei
 </div>
 
 <script>
-const MAPBOX = 'pk.eyJ1Ijoic3p1bmlubyIsImEiOiJjbW40ZHZrMnowYmZxMnJyMXRwMmk5c2l2In0.bmxknhaFSLbd1cuy0HXA_Q';
+// ── TUILES SATELLITE : Esri World Imagery (gratuit, sans token) ──
+// Remplacement de Mapbox satellite qui nécessitait un token payant/restreint
 
 const CS = { VRC:{c:'#5A8F3C',f:'rgba(61,107,40,0.5)'}, VRG:{c:'#5A8F3C',f:'rgba(61,107,40,0.3)'}, OLI:{c:'#8B5E3C',f:'rgba(120,80,40,0.5)'}, JAC:{c:'#C9A84C',f:'rgba(180,150,60,0.4)'}, PTR:{c:'#C9A84C',f:'rgba(180,150,60,0.3)'}, def:{c:'#888',f:'rgba(100,100,80,0.3)'} };
 const STATUT_C = { green:'#5A8F3C', attention:'#D35400', red:'#C0392B', gray:'#6b6e58' };
@@ -716,17 +690,23 @@ let activeClient = null;
 let activeFilter = 'tous';
 let searchQ = '';
 
-
-// ══════════════════════════════════════════════════════
-//  DATA LOADER — fichiers JSON externes (GitHub)
-// ══════════════════════════════════════════════════════
-
-// ⚙️  Changer BASE_URL vers votre repo GitHub après upload
 const BASE_URL = 'https://stephanezunino-bot.github.io/BERGON-FIELD';
 
 let CLIENTS      = null;
 let DDTM83_BCAE  = null;
 let ANALYSE_DATA = null;
+
+// Date dynamique dashboard
+(function() {
+  const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const MOIS  = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  const now   = new Date();
+  const h     = now.getHours();
+  const greet = h < 12 ? 'Bonjour' : h < 18 ? 'Bon après-midi' : 'Bonsoir';
+  document.getElementById('dash-greeting').textContent = `${greet}, Stéphane 👋`;
+  document.getElementById('dash-date').textContent =
+    `${JOURS[now.getDay()]} ${now.getDate()} ${MOIS[now.getMonth()]} ${now.getFullYear()} · Secteur Var Est`;
+})();
 
 async function loadAllData() {
   showLoader(true);
@@ -748,14 +728,14 @@ async function loadAllData() {
       .then(data => {
         if(data) {
           DDTM83_BCAE = data;
-          var ind = document.getElementById('znt-ready-indicator');
+          const ind = document.getElementById('znt-ready-indicator');
           if(ind) ind.style.display = 'none';
         }
       })
-      .catch(function(){});
+      .catch(()=>{});
   } catch(e) {
     document.getElementById('loader').innerHTML =
-      '<div style="color:#C0392B;font-size:13px;">Erreur chargement<br><small>' + e.message + '</small></div>';
+      `<div style="color:#C0392B;font-size:13px;">Erreur chargement<br><small>${e.message}</small></div>`;
   }
 }
 
@@ -765,75 +745,78 @@ function showLoader(on) {
 }
 
 function initMap() {
-// ── MAP INIT ──
-map = L.map('field-map',{zoomControl:false,attributionControl:false,zoomSnap:0.5,zoomDelta:0.5,wheelPxPerZoomLevel:120}).setView([43.28,6.08],11);
-osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20});
-satLayer = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=${MAPBOX}`,{maxZoom:20,tileSize:512,zoomOffset:-1});
-ignLayer = L.tileLayer('https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',{maxZoom:18});
-satLayer.addTo(map);
-L.control.zoom({position:'bottomright'}).addTo(map);
+  map = L.map('field-map',{zoomControl:false,attributionControl:false,zoomSnap:0.5,zoomDelta:0.5,wheelPxPerZoomLevel:120}).setView([43.28,6.08],11);
 
-// Draw polygons
-const allBounds = [];
-Object.entries(CLIENTS).forEach(([key,client]) => {
-  polygons[key] = [];
-  client.parcelles.forEach(p => {
-    const ll = p.coords.map(pt=>[pt[1],pt[0]]);
-    const cs = CS[p.culture]||CS.def;
-    const style = {color:cs.c,fillColor:cs.f,weight:p.bio?2:1.5,opacity:1,fillOpacity:0.7};
-    const poly = L.polygon(ll,style).addTo(map);
-    poly.bindTooltip(`<div style="font-family:'DM Sans',sans-serif;font-size:10px;background:rgba(13,16,10,0.95);color:#e8ead4;border:1px solid #2e3620;border-radius:5px;padding:5px 9px;"><strong style="color:#5A8F3C;display:block;">${client.nom}</strong>${p.culture} · ${(p.surface_ca/100).toFixed(2)} ha${p.bio?' · 🌿'+p.bio:''}</div>`,{sticky:true,className:'',opacity:1});
-    // Mark parcelles with analysis data
-    const aKey2 = `${key}:${p.id}`;
-    if(ANALYSE_DATA[aKey2]) {
-      poly.setStyle({...style, weight:2.5, dashArray:'none'});
-      // Add a small circle marker at centroid
-      const ring2 = p.coords;
-      const cLng = ring2.reduce((s,pt)=>s+pt[0],0)/ring2.length;
-      const cLat = ring2.reduce((s,pt)=>s+pt[1],0)/ring2.length;
-      const dot = L.circleMarker([cLat,cLng],{
-        radius:4, color:'#fff', weight:1.5,
-        fillColor:'#5A8F3C', fillOpacity:1
-      }).addTo(map);
-      dot.on('click',()=>{ activeParcId=p.id; solCurrentIdx=0; openPanel(key, p.coords);
-        setTimeout(()=>{ const t=document.querySelectorAll('.mp-tab')[2]; if(t) switchTab(t,'sol'); else autoRefreshSol(); },100);
-      });
-    }
-    poly.on('mouseover',()=>poly.setStyle({weight:3,fillOpacity:0.9}));
-    poly.on('mouseout',()=>poly.setStyle(style));
-    poly.on('click',()=>{
-      activeParcId=p.id; solCurrentIdx=0;
-      openPanel(key, p.coords);
-      setTimeout(autoRefreshSol, 50);
+  osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20});
+
+  // ✅ Esri World Imagery — satellite gratuit, sans token, qualité identique à Mapbox
+  satLayer = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {maxZoom:19, attribution:'Tiles © Esri'}
+  );
+
+  ignLayer = L.tileLayer(
+    'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',
+    {maxZoom:18}
+  );
+
+  satLayer.addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+
+  const allBounds = [];
+  Object.entries(CLIENTS).forEach(([key,client]) => {
+    polygons[key] = [];
+    client.parcelles.forEach(p => {
+      const ll = p.coords.map(pt=>[pt[1],pt[0]]);
+      const cs = CS[p.culture]||CS.def;
+      const style = {color:cs.c,fillColor:cs.f,weight:p.bio?2:1.5,opacity:1,fillOpacity:0.7};
+      const poly = L.polygon(ll,style).addTo(map);
+      poly.bindTooltip(
+        `<div style="font-family:'DM Sans',sans-serif;font-size:10px;background:rgba(13,16,10,0.95);color:#e8ead4;border:1px solid #2e3620;border-radius:5px;padding:5px 9px;">
+          <strong style="color:#5A8F3C;display:block;">${client.nom}</strong>
+          ${p.culture} · ${(p.surface_ca/100).toFixed(2)} ha${p.bio?' · 🌿'+p.bio:''}
+        </div>`,
+        {sticky:true,className:'',opacity:1}
+      );
+      const aKey2 = `${key}:${p.id}`;
+      if(ANALYSE_DATA[aKey2]) {
+        poly.setStyle({...style, weight:2.5});
+        const ring2 = p.coords;
+        const cLng = ring2.reduce((s,pt)=>s+pt[0],0)/ring2.length;
+        const cLat = ring2.reduce((s,pt)=>s+pt[1],0)/ring2.length;
+        const dot = L.circleMarker([cLat,cLng],{radius:4,color:'#fff',weight:1.5,fillColor:'#5A8F3C',fillOpacity:1}).addTo(map);
+        dot.on('click',()=>{
+          activeParcId=p.id; solCurrentIdx=0;
+          openPanel(key, p.coords);
+          setTimeout(()=>{ const t=document.querySelectorAll('.mp-tab')[2]; if(t) switchTab(t,'sol'); else autoRefreshSol(); },100);
+        });
+      }
+      poly.on('mouseover',()=>poly.setStyle({weight:3,fillOpacity:0.9}));
+      poly.on('mouseout',()=>poly.setStyle(style));
+      poly.on('click',()=>{ activeParcId=p.id; solCurrentIdx=0; openPanel(key, p.coords); setTimeout(autoRefreshSol, 50); });
+      ll.forEach(pt=>allBounds.push(pt));
+      polygons[key].push({poly,parcelle:p,style});
     });
-    ll.forEach(pt=>allBounds.push(pt));
-    polygons[key].push({poly,parcelle:p,style});
   });
-});
-if(allBounds.length) map.fitBounds(L.latLngBounds(allBounds),{padding:[20,20]});
+  if(allBounds.length) map.fitBounds(L.latLngBounds(allBounds),{padding:[20,20]});
   buildSidebar();
   buildClientsGrid();
 }
 
-// ── SIDEBAR ──
 function buildSidebar() {
   if(!CLIENTS) return;
   const list = document.getElementById('client-list');
   let entries = Object.entries(CLIENTS);
-
   if(searchQ) entries = entries.filter(([,c])=>c.nom.toLowerCase().includes(searchQ)||c.commune.toLowerCase().includes(searchQ));
   if(activeFilter==='bio') entries = entries.filter(([,c])=>c.bio);
   if(activeFilter==='alerte') entries = entries.filter(([,c])=>c.alerte);
   if(activeFilter==='VRC') entries = entries.filter(([,c])=>c.vrcHa>0);
-
   document.getElementById('s-clients').textContent = entries.length;
   document.getElementById('s-ha').textContent = Math.round(entries.reduce((a,[,c])=>a+c.totalHa,0));
   document.getElementById('s-parcs').textContent = entries.reduce((a,[,c])=>a+c.nParc,0);
-
   list.innerHTML = entries.map(([key,c],i)=>{
     const sc = STATUT_C[c.statut]||'#6b6e58';
-    const delay = i*0.05;
-    return `<div class="cl-item ${activeClient===key?'active':''}" onclick="openPanel('${key}')" style="animation-delay:${delay}s">
+    return `<div class="cl-item ${activeClient===key?'active':''}" onclick="openPanel('${key}')" style="animation-delay:${i*0.05}s">
       <div class="cl-color-bar" style="background:${sc};"></div>
       <div class="cl-body">
         <div class="cl-name">${c.nom}</div>
@@ -851,30 +834,22 @@ function buildSidebar() {
   }).join('') || `<div style="padding:24px;text-align:center;color:var(--text3);font-size:12px;">Aucun résultat</div>`;
 }
 
-function setFilter(btn,f) {
-  document.querySelectorAll('.sf').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  activeFilter=f;
-  buildSidebar();
-}
+function setFilter(btn,f){document.querySelectorAll('.sf').forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=f;buildSidebar();}
 function searchClients(v){searchQ=v.toLowerCase();buildSidebar();}
 
-// ── PANEL ──
 function openPanel(key, parcelCoords) {
   if(!CLIENTS) return;
   activeClient=key;
   buildSidebar();
   const c=CLIENTS[key];
   if(!c) return;
-  if(!parcelCoords) { activeParcId=null; solCurrentIdx=0; }
-  // Auto-refresh onglets actifs
+  if(!parcelCoords){activeParcId=null;solCurrentIdx=0;}
   setTimeout(()=>{
     const activeTab = document.querySelector('.mp-tab.active');
     if(activeTab && activeTab.textContent.includes('ZNT')) triggerZnt();
     if(activeTab && activeTab.textContent.includes('Sol')) autoRefreshSol();
     if(activeTab && activeTab.textContent.includes('Météo')) renderMeteoTab(activeClient);
-  }, 100);
-  // Zoom: on parcel if clicked, on full domain if from sidebar
+  },100);
   if(parcelCoords && parcelCoords.length) {
     const pBounds = parcelCoords.map(cc=>[cc[1],cc[0]]);
     map.flyToBounds(L.latLngBounds(pBounds).pad(0.5),{duration:0.6,maxZoom:17});
@@ -883,7 +858,6 @@ function openPanel(key, parcelCoords) {
     c.parcelles.forEach(p=>p.coords.forEach(cc=>bounds.push([cc[1],cc[0]])));
     if(bounds.length) map.flyToBounds(L.latLngBounds(bounds).pad(0.3),{duration:0.8});
   }
-
   document.getElementById('mp-name').textContent=c.nom;
   document.getElementById('mp-loc').textContent=c.commune;
   document.getElementById('mp-kpis').innerHTML=`
@@ -902,6 +876,7 @@ function openPanel(key, parcelCoords) {
   }).join('');
   document.getElementById('map-panel').classList.add('open');
 }
+
 function closePanel(){
   document.getElementById('map-panel').classList.remove('open');
   clearZntLayers();
@@ -909,7 +884,6 @@ function closePanel(){
   buildSidebar();
 }
 
-// ── LAYER SWITCH ──
 function setLayer(btn,type){
   document.querySelectorAll('.layer-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -919,27 +893,20 @@ function setLayer(btn,type){
   else ignLayer.addTo(map);
 }
 
-// ── CLIENTS GRID ──
 function buildClientsGrid(){
   if(!CLIENTS) return;
   const grid=document.getElementById('clients-grid');
   grid.innerHTML=Object.entries(CLIENTS).map(([key,c],i)=>{
     const sc=STATUT_C[c.statut]||'#6b6e58';
-    const delay=i*0.08;
-    return `<div class="ccard" onclick="switchToMap('${key}')" style="animation-delay:${delay}s">
+    return `<div class="ccard" onclick="switchToMap('${key}')" style="animation-delay:${i*0.08}s">
       <div class="ccard-top">
         <div class="ccard-color" style="background:${sc};"></div>
         <div class="ccard-info">
           <div class="ccard-name">${c.nom}</div>
           <div class="ccard-loc">📍 ${c.commune}</div>
-          <div class="ccard-tags">
-            ${c.bio?'<span class="cl-tag tag-bio">🌿 Agriculture Bio</span>':'<span class="cl-tag tag-conv">Conventionnel</span>'}
-          </div>
+          <div class="ccard-tags">${c.bio?'<span class="cl-tag tag-bio">🌿 Agriculture Bio</span>':'<span class="cl-tag tag-conv">Conventionnel</span>'}</div>
         </div>
-        <div class="ccard-ha">
-          <div class="ccard-ha-v">${c.totalHa}</div>
-          <div class="ccard-ha-l">hectares</div>
-        </div>
+        <div class="ccard-ha"><div class="ccard-ha-v">${c.totalHa}</div><div class="ccard-ha-l">hectares</div></div>
       </div>
       <div class="ccard-stats">
         <div class="cc-stat"><div class="cc-stat-v">${c.vrcHa}</div><div class="cc-stat-l">Ha vignes</div></div>
@@ -962,7 +929,6 @@ function switchToMap(key){
   setTimeout(()=>openPanel(key),100);
 }
 
-// ── VIEW SWITCH ──
 function showView(name,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -971,7 +937,6 @@ function showView(name,btn){
   if(name==='carte') setTimeout(()=>map.invalidateSize(),50);
 }
 
-// ── TAB SWITCH ──
 function switchTab(btn, tab) {
   document.querySelectorAll('.mp-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -986,402 +951,295 @@ function switchTab(btn, tab) {
   }
 }
 
-// Track active parcelle for sol tab
 let activeParcId = null;
 
-// ══════════════════════════════════════════════════════
-//  MODULE ANALYSE SOL — données Aurea embarquées
-// ══════════════════════════════════════════════════════
+// ══ MODULE SOL ══
 let solCurrentIdx = 0;
 
 function renderSolTab(clientKey, parcId) {
   const content = document.getElementById('sol-content');
   const key = `${clientKey}:${parcId}`;
   const analyses = ANALYSE_DATA[key];
-
   if (!analyses || analyses.length === 0) {
-    content.innerHTML = `<div class="sol-no-data"><span class="ico">🔍</span>Aucune analyse disponible<br>pour cette parcelle.<br><span style="font-size:9px;color:var(--text3);margin-top:4px;display:block;">Aurea · ${parcId}</span></div>`;
+    content.innerHTML = `<div class="sol-no-data"><span class="ico">🔍</span>Aucune analyse disponible pour cette parcelle.<br><span style="font-size:9px;color:var(--text3);margin-top:4px;display:block;">Aurea · ${parcId}</span></div>`;
     return;
   }
-
   solCurrentIdx = Math.min(solCurrentIdx, analyses.length - 1);
   const a = analyses[solCurrentIdx];
-
-  const STATUS_LABEL = { ok:'✓ OK', low:'↓ Bas', high:'↑ Élevé', nd:'—' };
-  const STATUS_ICON  = { ok:'✅', low:'🔴', high:'🟡', nd:'⬜' };
-
-  // Param bars — % position in reasonable range
+  const STATUS_LABEL = {ok:'✓ OK',low:'↓ Bas',high:'↑ Élevé',nd:'—'};
   function barPct(label, val) {
     if (!val) return 50;
     const v = parseFloat(String(val).replace('<','').replace('>',''));
     if (isNaN(v)) return 50;
-    const ranges = {
-      'pH eau':  [5.5, 9.0], 'MO':      [0, 5],
-      'Calc. actif': [0, 20],'K₂O':     [0, 800],
-      'MgO':     [0, 800],   'P₂O₅':    [0, 60],
-      'Bore':    [0, 1],     'CEC':      [0, 40],
-    };
+    const ranges = {'pH eau':[5.5,9.0],'MO':[0,5],'Calc. actif':[0,20],'K₂O':[0,800],'MgO':[0,800],'P₂O₅':[0,60],'Bore':[0,1],'CEC':[0,40]};
     const r = ranges[label];
     if (!r) return 50;
-    return Math.min(100, Math.max(5, (v - r[0]) / (r[1] - r[0]) * 100));
+    return Math.min(100, Math.max(5, (v-r[0])/(r[1]-r[0])*100));
   }
-
-  const paramsHtml = Object.entries(a.params).map(([label, p]) => {
+  const paramsHtml = Object.entries(a.params).map(([label,p]) => {
     const pct = barPct(label, p.val);
-    const dispVal = p.val || '—';
-    const unit = p.unit ? `<span class="sol-unit">${p.unit}</span>` : '';
     return `<div class="sol-card ${p.status}">
       <div class="sol-label">${label}</div>
-      <div class="sol-val">${dispVal}${unit}</div>
+      <div class="sol-val">${p.val||'—'}${p.unit?`<span class="sol-unit">${p.unit}</span>`:''}</div>
       <div class="sol-bar"><div class="sol-bar-fill ${p.status}" style="width:${pct}%"></div></div>
       <div class="sol-status ${p.status}">${STATUS_LABEL[p.status]||'—'}</div>
     </div>`;
   }).join('');
-
-  // Conseils An1
-  const ELEM_LABELS = {p2o5:'P₂O₅',k2o:'K₂O',mgo:'MgO',cao:'CaO',zn:'Zn',mn:'Mn',cu:'Cu',fe:'Fe',bore:'Bore'};
-  const ELEM_UNITS  = {p2o5:'kg/ha',k2o:'kg/ha',mgo:'kg/ha',cao:'kg/ha',zn:'g/ha',mn:'g/ha',cu:'g/ha',fe:'g/ha',bore:'g/ha'};
-  const conseilsEntries = Object.entries(a.conseils_an1 || {}).filter(([,v])=>v&&v!=='0'&&v!=='0.0');
+  const ELEM_LABELS={p2o5:'P₂O₅',k2o:'K₂O',mgo:'MgO',cao:'CaO',zn:'Zn',mn:'Mn',cu:'Cu',fe:'Fe',bore:'Bore'};
+  const ELEM_UNITS ={p2o5:'kg/ha',k2o:'kg/ha',mgo:'kg/ha',cao:'kg/ha',zn:'g/ha',mn:'g/ha',cu:'g/ha',fe:'g/ha',bore:'g/ha'};
+  const conseilsEntries = Object.entries(a.conseils_an1||{}).filter(([,v])=>v&&v!=='0'&&v!=='0.0');
   const conseilsHtml = conseilsEntries.length > 0
-    ? conseilsEntries.map(([k,v]) => `<div class="sol-conseil-row">
-        <span class="sol-conseil-elem">${ELEM_LABELS[k]||k}</span>
-        <span class="sol-conseil-val">${v}</span>
-        <span class="sol-conseil-unit">${ELEM_UNITS[k]||''}</span>
-      </div>`).join('')
+    ? conseilsEntries.map(([k,v])=>`<div class="sol-conseil-row"><span class="sol-conseil-elem">${ELEM_LABELS[k]||k}</span><span class="sol-conseil-val">${v}</span><span class="sol-conseil-unit">${ELEM_UNITS[k]||''}</span></div>`).join('')
     : '<div style="font-size:10px;color:var(--text3);">Aucun conseil An1</div>';
-
   const navHtml = analyses.length > 1
     ? `<div class="sol-analyse-nav">
         <button class="sol-nav-btn" onclick="navSol(-1,'${clientKey}','${parcId}')">‹</button>
         <span class="sol-nav-count">${solCurrentIdx+1}/${analyses.length}</span>
         <button class="sol-nav-btn" onclick="navSol(1,'${clientKey}','${parcId}')">›</button>
-      </div>`
-    : '';
-
+      </div>` : '';
   content.innerHTML = `
     <div class="sol-analyse-header">
-      <div>
-        <div class="sol-analyse-ref">${a.ref}</div>
-        <div class="sol-analyse-date">📅 ${a.date || '—'} · Aurea</div>
-      </div>
+      <div><div class="sol-analyse-ref">${a.ref}</div><div class="sol-analyse-date">📅 ${a.date||'—'} · Aurea</div></div>
       ${navHtml}
     </div>
     <div class="sol-grid">${paramsHtml}</div>
     <div class="sol-conseils">
       <div class="sol-conseils-title">Conseils An1 (kg ou g/ha)</div>
       ${conseilsHtml}
-    </div>
-  `;
+    </div>`;
 }
 
-function navSol(dir, clientKey, parcId) {
-  const key = `${clientKey}:${parcId}`;
-  const analyses = ANALYSE_DATA[key];
-  if (!analyses) return;
-  solCurrentIdx = (solCurrentIdx + dir + analyses.length) % analyses.length;
-  renderSolTab(clientKey, parcId);
+function navSol(dir,clientKey,parcId){
+  const key=`${clientKey}:${parcId}`;
+  const analyses=ANALYSE_DATA[key];
+  if(!analyses) return;
+  solCurrentIdx=(solCurrentIdx+dir+analyses.length)%analyses.length;
+  renderSolTab(clientKey,parcId);
 }
-
-// Patch switchTab to trigger Sol rendering
-
-// ══════════════════════════════════════════════════════
-//  MODULE ZNT EAU — DDTM83 BCAE (données embarquées)
-//  Source : DDTM83 · Extraction Mars 2026 · 330 tronçons BCAE Var
-// ══════════════════════════════════════════════════════
-let zntDistance = 5;
-let zntLayers   = { rivers: null, buffers: null };
-
-function setZntDistance(btn, dist) {
-  document.querySelectorAll('.znt-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  zntDistance = dist;
-  if(activeClient) triggerZnt();
-}
-
-async function triggerZnt() {
-  if(!activeClient || !DDTM83_BCAE) {
-    document.getElementById('znt-content').innerHTML =
-      '<div class="znt-loading">⏳ Données en cours de chargement…</div>';
-    return;
-  }
-  const client = CLIENTS[activeClient];
-  const content = document.getElementById('znt-content');
-  content.innerHTML = `<div class="znt-loading"><span class="znt-spinner"></span>Calcul ZNT en cours…</div>`;
-  clearZntLayers();
-
-  // Compute client bbox
-  const allCoords = [];
-  client.parcelles.forEach(p => p.coords.forEach(c => allCoords.push(c)));
-  const lngs = allCoords.map(c=>c[0]), lats = allCoords.map(c=>c[1]);
-  const minLng = Math.min(...lngs) - 0.05;
-  const maxLng = Math.max(...lngs) + 0.05;
-  const minLat = Math.min(...lats) - 0.05;
-  const maxLat = Math.max(...lats) + 0.05;
-
-  // Filter DDTM83 BCAE to client bbox
-  if(!DDTM83_BCAE || !DDTM83_BCAE.features) { content.innerHTML='<div class="znt-loading">⚠️ Données ZNT non chargées</div>'; return; }
-  const rivers = DDTM83_BCAE.features.filter(feat => {
-    const coords = feat.geometry.type === 'LineString'
-      ? feat.geometry.coordinates
-      : feat.geometry.coordinates.flat();
-    return coords.some(c => c[0]>=minLng && c[0]<=maxLng && c[1]>=minLat && c[1]<=maxLat);
-  });
-
-  // Filter: only keep rivers that actually intersect the expanded bbox
-  // (WFS bbox is generous, Turf will do precise intersection)
-  if(rivers.length === 0) {
-    content.innerHTML = `<div class="znt-no-river"><span class="ico">✅</span>Aucun cours d'eau BCAE détecté dans cette zone.<br><span style="font-size:9px;color:var(--text3)">Surface totale traitable sans restriction ZNT.</span></div>`;
-    return;
-  }
-
-  // Draw rivers on map (blue lines)
-  const riverGeoJSON = { type:'FeatureCollection', features: rivers };
-  zntLayers.rivers = L.geoJSON(riverGeoJSON, {
-    style: function(feature) {
-      var cat = feature.properties && feature.properties.categorie ? feature.properties.categorie : '';
-      if(cat === 'permanent') return { color:'#1a75ff', weight:3, opacity:0.95 };
-      if(cat === 'intermittent_nomme') return { color:'#3498DB', weight:2, opacity:0.85, dashArray:'6,3' };
-      return { color:'#7ab3d4', weight:1.5, opacity:0.6, dashArray:'3,5' };
-    },
-    onEachFeature: function(feature, layer) {
-      var nom = feature.properties && feature.properties.nom ? feature.properties.nom : '';
-      var cat = feature.properties && feature.properties.categorie ? feature.properties.categorie : '';
-      var label = cat==='permanent' ? 'Permanent' : cat==='intermittent_nomme' ? 'Intermittent' : 'A expertiser';
-      layer.bindTooltip((nom ? nom+' - ' : '')+label, {sticky:true});
-    }
-  }).addTo(map);
-
-  // Cultures non traitables exclues
-  var CULT_EX = {'JAC':1,'AGR':1,'PTR':1,'HBL':1,'SNE':1};
-  var parcsTraitables = client.parcelles.filter(function(p){ return !CULT_EX[p.culture]; });
-  var results = [], byCulture = {};
-  for(var pi=0; pi<parcsTraitables.length; pi++) {
-    var p = parcsTraitables[pi];
-    var parcPoly = turf.polygon([p.coords.map(function(c){return [c[0],c[1]];})]);
-    var parcAreaM2 = turf.area(parcPoly);
-    if(!byCulture[p.culture]) byCulture[p.culture] = { totalM2:0, zntM2:0, parcelles:[] };
-    byCulture[p.culture].totalM2 += parcAreaM2;
-    var zntAreaM2 = 0, hitRivers = [];
-    for(var ri=0; ri<rivers.length; ri++) {
-      try {
-        var buf = turf.buffer(rivers[ri], zntDistance/1000, { units:'kilometers' });
-        if(!buf) continue;
-        var inter = turf.intersect(buf, parcPoly);
-        if(inter) {
-          var interArea = turf.area(inter);
-          if(interArea > 0.5) {
-            zntAreaM2 += interArea;
-            var rname = (rivers[ri].properties && rivers[ri].properties.nom) ? rivers[ri].properties.nom : "Cours d'eau";
-            if(hitRivers.indexOf(rname)<0) hitRivers.push(rname);
-            if(!zntLayers.buffers) zntLayers.buffers = L.layerGroup().addTo(map);
-            L.geoJSON(inter, { style:{ color:'#C0392B', fillColor:'rgba(192,57,43,0.35)', weight:1.5, opacity:1, fillOpacity:0.45 } }).addTo(zntLayers.buffers);
-          }
-        }
-      } catch(ex) {}
-    }
-    byCulture[p.culture].zntM2 += zntAreaM2;
-    byCulture[p.culture].parcelles.push({ id:p.id, parcAreaM2:parcAreaM2, zntAreaM2:zntAreaM2, hitRivers:hitRivers, culture:p.culture, bio:p.bio });
-    results.push({ id:p.id, parcAreaM2:parcAreaM2, zntAreaM2:zntAreaM2, hitRivers:hitRivers, culture:p.culture, bio:p.bio });
-  }
-  var allRiversSet = {};
-  results.forEach(function(r){ r.hitRivers.forEach(function(n){ allRiversSet[n]=1; }); });
-  var allRivers = Object.keys(allRiversSet);
-  var html = '';
-  if(allRivers.length > 0) {
-    html += '<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d\'eau BCAE (' + zntDistance + 'm)</div>';
-    html += '<div class="znt-river-list">';
-    allRivers.forEach(function(n){ if(n) html += '<div class="znt-river-item"><div class="znt-river-dot"></div>' + n + '</div>'; });
-    html += '</div>';
-    Object.keys(byCulture).forEach(function(cult) {
-      var data = byCulture[cult];
-      var surfHa = (data.totalM2/10000).toFixed(2);
-      var zntHa  = (data.zntM2/10000).toFixed(3);
-      var netHa  = ((data.totalM2-data.zntM2)/10000).toFixed(2);
-      var pct    = data.totalM2>0 ? ((data.zntM2/data.totalM2)*100).toFixed(1) : '0';
-      var cultLabel = cult==='VRC'?'Vigne':cult==='VRG'?'Vigne (vert)':cult==='OLI'?'Olive':cult;
-      var warn = data.zntM2>0.5;
-      var rouge = 'var(--rouge)', vert = 'var(--vert-c)';
-      html += '<div class="mp-sec-title" style="margin:8px 0 5px;">' + cultLabel + ' — ZNT ' + zntDistance + 'm</div>';
-      html += '<div class="znt-impact-grid">'
-        + '<div class="znt-impact-card"><div class="znt-impact-val" style="color:' + vert + '">' + surfHa + ' ha</div><div class="znt-impact-lbl">Surface traitable</div></div>'
-        + '<div class="znt-impact-card' + (warn?' warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?rouge:vert) + '">' + zntHa + ' ha</div><div class="znt-impact-lbl">Non traitable</div></div>'
-        + '<div class="znt-impact-card"><div class="znt-impact-val">' + netHa + ' ha</div><div class="znt-impact-lbl">Surface nette</div></div>'
-        + '<div class="znt-impact-card' + (warn?' warn':'') + '"><div class="znt-impact-val" style="color:' + (warn?rouge:vert) + '">' + pct + '%</div><div class="znt-impact-lbl">% impacte</div></div>'
-        + '</div>';
-      var impacted = data.parcelles.filter(function(r){return r.zntAreaM2>0.5;});
-      if(impacted.length>0) {
-        html += '<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactees (' + impacted.length + ')</div><div class="znt-parcelle-table">';
-        impacted.forEach(function(r) {
-          var zH=(r.zntAreaM2/10000).toFixed(3);
-          var nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
-          var pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
-          html += '<div class="zpt-row"><div class="zpt-id">' + r.id + '</div>'
-            + '<div class="zpt-surf">net <strong>' + nH + ' ha</strong></div>'
-            + '<div class="zpt-znt hit">-' + zH + ' ha (' + pc + '%)</div></div>';
-        });
-        html += '</div>';
-      }
-    });
-    html += '</div>';
-  } else {
-    html = '<div class="znt-no-river"><span class="ico">OK</span>Aucun cours d\'eau BCAE detecte a moins de ' + zntDistance + 'm.</div>';
-  }
-  content.innerHTML = html;
-}
-
-function clearZntLayers() {
-  if(zntLayers.rivers) { map.removeLayer(zntLayers.rivers); zntLayers.rivers=null; }
-  if(zntLayers.buffers) { map.removeLayer(zntLayers.buffers); zntLayers.buffers=null; }
-}
-
 
 function autoRefreshSol() {
-  // If Sol tab is already active, refresh it without clicking
-  const activeSolTab = document.querySelector('.mp-tab.active');
-  if(activeSolTab && activeSolTab.textContent.includes('Sol')) {
+  const activeTab = document.querySelector('.mp-tab.active');
+  if(activeTab && activeTab.textContent.includes('Sol')) {
     if(activeClient && activeParcId) renderSolTab(activeClient, activeParcId);
   }
 }
 
-// ══════════════════════════════════════════════════════
-//  MODULE MÉTÉO — Weenat via Cloudflare Worker
-// ══════════════════════════════════════════════════════
+// ══ MODULE ZNT ══
+let zntDistance = 5;
+let zntLayers   = {rivers:null,buffers:null};
 
-function distKm(lat1, lng1, lat2, lng2) {
-  const R = 6371;
-  const dlat = (lat2-lat1)*Math.PI/180;
-  const dlng = (lng2-lng1)*Math.PI/180;
-  const a = Math.sin(dlat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dlng/2)**2;
-  return R * 2 * Math.asin(Math.sqrt(a));
+function setZntDistance(btn,dist){
+  document.querySelectorAll('.znt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  zntDistance=dist;
+  if(activeClient) triggerZnt();
 }
 
-function findNearestPlot(clientKey) {
-  if(!WEENAT_PLOTS || !WEENAT_PLOTS.length || !CLIENTS) return null;
-  const client = CLIENTS[clientKey];
-  if(!client) return null;
-  const lngs = client.parcelles.flatMap(p=>p.coords.map(c=>c[0]));
-  const lats  = client.parcelles.flatMap(p=>p.coords.map(c=>c[1]));
-  const clat  = lats.reduce((a,b)=>a+b,0)/lats.length;
-  const clng  = lngs.reduce((a,b)=>a+b,0)/lngs.length;
-  let best=null, bestD=999;
-  for(const plot of WEENAT_PLOTS) {
-    if(!plot.metrics.includes('T')) continue;
-    const d = distKm(clat, clng, plot.lat, plot.lng);
-    if(d < bestD) { bestD=d; best={...plot, dist_km: d.toFixed(1)}; }
+async function triggerZnt() {
+  if(!activeClient||!DDTM83_BCAE){
+    document.getElementById('znt-content').innerHTML='<div class="znt-loading">⏳ Données en cours de chargement…</div>';
+    return;
+  }
+  const client=CLIENTS[activeClient];
+  const content=document.getElementById('znt-content');
+  content.innerHTML=`<div class="znt-loading"><span class="znt-spinner"></span>Calcul ZNT en cours…</div>`;
+  clearZntLayers();
+  const allCoords=[];
+  client.parcelles.forEach(p=>p.coords.forEach(c=>allCoords.push(c)));
+  const lngs=allCoords.map(c=>c[0]),lats=allCoords.map(c=>c[1]);
+  const minLng=Math.min(...lngs)-0.05,maxLng=Math.max(...lngs)+0.05;
+  const minLat=Math.min(...lats)-0.05,maxLat=Math.max(...lats)+0.05;
+  if(!DDTM83_BCAE||!DDTM83_BCAE.features){content.innerHTML='<div class="znt-loading">⚠️ Données ZNT non chargées</div>';return;}
+  const rivers=DDTM83_BCAE.features.filter(feat=>{
+    const coords=feat.geometry.type==='LineString'?feat.geometry.coordinates:feat.geometry.coordinates.flat();
+    return coords.some(c=>c[0]>=minLng&&c[0]<=maxLng&&c[1]>=minLat&&c[1]<=maxLat);
+  });
+  if(rivers.length===0){content.innerHTML=`<div class="znt-no-river"><span class="ico">✅</span>Aucun cours d'eau BCAE détecté dans cette zone.</div>`;return;}
+  zntLayers.rivers=L.geoJSON({type:'FeatureCollection',features:rivers},{
+    style:function(feature){
+      var cat=feature.properties&&feature.properties.categorie?feature.properties.categorie:'';
+      if(cat==='permanent') return{color:'#1a75ff',weight:3,opacity:0.95};
+      if(cat==='intermittent_nomme') return{color:'#3498DB',weight:2,opacity:0.85,dashArray:'6,3'};
+      return{color:'#7ab3d4',weight:1.5,opacity:0.6,dashArray:'3,5'};
+    },
+    onEachFeature:function(feature,layer){
+      var nom=feature.properties&&feature.properties.nom?feature.properties.nom:'';
+      var cat=feature.properties&&feature.properties.categorie?feature.properties.categorie:'';
+      var label=cat==='permanent'?'Permanent':cat==='intermittent_nomme'?'Intermittent':'À expertiser';
+      layer.bindTooltip((nom?nom+' — ':'')+label,{sticky:true});
+    }
+  }).addTo(map);
+  var CULT_EX={'JAC':1,'AGR':1,'PTR':1,'HBL':1,'SNE':1};
+  var parcsTraitables=client.parcelles.filter(function(p){return !CULT_EX[p.culture];});
+  var results=[],byCulture={};
+  for(var pi=0;pi<parcsTraitables.length;pi++){
+    var p=parcsTraitables[pi];
+    var parcPoly=turf.polygon([p.coords.map(function(c){return[c[0],c[1]];})]);
+    var parcAreaM2=turf.area(parcPoly);
+    if(!byCulture[p.culture]) byCulture[p.culture]={totalM2:0,zntM2:0,parcelles:[]};
+    byCulture[p.culture].totalM2+=parcAreaM2;
+    var zntAreaM2=0,hitRivers=[];
+    for(var ri=0;ri<rivers.length;ri++){
+      try{
+        var buf=turf.buffer(rivers[ri],zntDistance/1000,{units:'kilometers'});
+        if(!buf) continue;
+        var inter=turf.intersect(buf,parcPoly);
+        if(inter){
+          var interArea=turf.area(inter);
+          if(interArea>0.5){
+            zntAreaM2+=interArea;
+            var rname=(rivers[ri].properties&&rivers[ri].properties.nom)?rivers[ri].properties.nom:"Cours d'eau";
+            if(hitRivers.indexOf(rname)<0) hitRivers.push(rname);
+            if(!zntLayers.buffers) zntLayers.buffers=L.layerGroup().addTo(map);
+            L.geoJSON(inter,{style:{color:'#C0392B',fillColor:'rgba(192,57,43,0.35)',weight:1.5,opacity:1,fillOpacity:0.45}}).addTo(zntLayers.buffers);
+          }
+        }
+      }catch(ex){}
+    }
+    byCulture[p.culture].zntM2+=zntAreaM2;
+    byCulture[p.culture].parcelles.push({id:p.id,parcAreaM2,zntAreaM2,hitRivers,culture:p.culture,bio:p.bio});
+    results.push({id:p.id,parcAreaM2,zntAreaM2,hitRivers,culture:p.culture,bio:p.bio});
+  }
+  var allRiversSet={};
+  results.forEach(function(r){r.hitRivers.forEach(function(n){allRiversSet[n]=1;});});
+  var allRivers=Object.keys(allRiversSet);
+  var html='';
+  if(allRivers.length>0){
+    html+=`<div class="znt-result"><div class="mp-sec-title" style="margin-bottom:6px;">Cours d'eau BCAE (${zntDistance}m)</div><div class="znt-river-list">`;
+    allRivers.forEach(function(n){if(n) html+=`<div class="znt-river-item"><div class="znt-river-dot"></div>${n}</div>`;});
+    html+='</div>';
+    Object.keys(byCulture).forEach(function(cult){
+      var data=byCulture[cult];
+      var surfHa=(data.totalM2/10000).toFixed(2);
+      var zntHa=(data.zntM2/10000).toFixed(3);
+      var netHa=((data.totalM2-data.zntM2)/10000).toFixed(2);
+      var pct=data.totalM2>0?((data.zntM2/data.totalM2)*100).toFixed(1):'0';
+      var cultLabel=cult==='VRC'?'Vigne':cult==='VRG'?'Vigne (vert)':cult==='OLI'?'Olive':cult;
+      var warn=data.zntM2>0.5;
+      html+=`<div class="mp-sec-title" style="margin:8px 0 5px;">${cultLabel} — ZNT ${zntDistance}m</div>
+        <div class="znt-impact-grid">
+          <div class="znt-impact-card"><div class="znt-impact-val" style="color:var(--vert-c)">${surfHa} ha</div><div class="znt-impact-lbl">Surface traitable</div></div>
+          <div class="znt-impact-card${warn?' warn':''}"><div class="znt-impact-val" style="color:${warn?'var(--rouge)':'var(--vert-c)'}">${zntHa} ha</div><div class="znt-impact-lbl">Non traitable</div></div>
+          <div class="znt-impact-card"><div class="znt-impact-val">${netHa} ha</div><div class="znt-impact-lbl">Surface nette</div></div>
+          <div class="znt-impact-card${warn?' warn':''}"><div class="znt-impact-val" style="color:${warn?'var(--rouge)':'var(--vert-c)'}">${pct}%</div><div class="znt-impact-lbl">% impacté</div></div>
+        </div>`;
+      var impacted=data.parcelles.filter(function(r){return r.zntAreaM2>0.5;});
+      if(impacted.length>0){
+        html+=`<div class="mp-sec-title" style="margin:8px 0 5px;font-size:9px;">Parcelles impactées (${impacted.length})</div><div class="znt-parcelle-table">`;
+        impacted.forEach(function(r){
+          var zH=(r.zntAreaM2/10000).toFixed(3);
+          var nH=((r.parcAreaM2-r.zntAreaM2)/10000).toFixed(3);
+          var pc=((r.zntAreaM2/r.parcAreaM2)*100).toFixed(1);
+          html+=`<div class="zpt-row"><div class="zpt-id">${r.id}</div><div class="zpt-surf">net <strong>${nH} ha</strong></div><div class="zpt-znt hit">-${zH} ha (${pc}%)</div></div>`;
+        });
+        html+='</div>';
+      }
+    });
+    html+='</div>';
+  } else {
+    html=`<div class="znt-no-river"><span class="ico">✅</span>Aucun cours d'eau BCAE détecté à moins de ${zntDistance}m.</div>`;
+  }
+  content.innerHTML=html;
+}
+
+function clearZntLayers(){
+  if(zntLayers.rivers){map.removeLayer(zntLayers.rivers);zntLayers.rivers=null;}
+  if(zntLayers.buffers){map.removeLayer(zntLayers.buffers);zntLayers.buffers=null;}
+}
+
+// ══ MODULE MÉTÉO WEENAT ══
+function distKm(lat1,lng1,lat2,lng2){
+  const R=6371,dlat=(lat2-lat1)*Math.PI/180,dlng=(lng2-lng1)*Math.PI/180;
+  const a=Math.sin(dlat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dlng/2)**2;
+  return R*2*Math.asin(Math.sqrt(a));
+}
+
+function findNearestPlot(clientKey){
+  if(!WEENAT_PLOTS||!WEENAT_PLOTS.length||!CLIENTS) return null;
+  const client=CLIENTS[clientKey];if(!client) return null;
+  const lngs=client.parcelles.flatMap(p=>p.coords.map(c=>c[0]));
+  const lats=client.parcelles.flatMap(p=>p.coords.map(c=>c[1]));
+  const clat=lats.reduce((a,b)=>a+b,0)/lats.length;
+  const clng=lngs.reduce((a,b)=>a+b,0)/lngs.length;
+  let best=null,bestD=999;
+  for(const plot of WEENAT_PLOTS){
+    if(!plot.metrics||!plot.metrics.includes('T')) continue;
+    const d=distKm(clat,clng,plot.lat,plot.lng);
+    if(d<bestD){bestD=d;best={...plot,dist_km:d.toFixed(1)};}
   }
   return best;
 }
 
-async function renderMeteoTab(clientKey) {
-  const content = document.getElementById('meteo-content');
-  content.innerHTML = '<div class="znt-loading">⏳ Chargement météo…</div>';
-
-  const plot = findNearestPlot(clientKey);
-  if(!plot) {
-    content.innerHTML = '<div class="meteo-no-data">Aucune station disponible.</div>';
-    return;
-  }
-
-  // Dates: 4 derniers jours
-  const now = new Date();
-  const end = now.toISOString().slice(0,10);
-  const start = new Date(now - 4*24*3600*1000).toISOString().slice(0,10);
-
-  try {
-    const url = `${WEENAT_PROXY}/v3/data/plots/${plot.id}?timespan=day&start=${start}T00:00:00Z&end=${end}T23:59:59Z`;
-    const r = await fetch(url);
+async function renderMeteoTab(clientKey){
+  const content=document.getElementById('meteo-content');
+  content.innerHTML='<div class="znt-loading">⏳ Chargement météo…</div>';
+  const plot=findNearestPlot(clientKey);
+  if(!plot){content.innerHTML='<div class="meteo-no-data">Aucune station disponible.</div>';return;}
+  const now=new Date();
+  const end=now.toISOString().slice(0,10);
+  const start=new Date(now-4*24*3600*1000).toISOString().slice(0,10);
+  try{
+    const url=`${WEENAT_PROXY}/v3/data/plots/${plot.id}?timespan=day&start=${start}T00:00:00Z&end=${end}T23:59:59Z`;
+    const r=await fetch(url);
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    const data = await r.json();
-    renderMeteoData(plot, data);
-  } catch(e) {
-    content.innerHTML = `<div class="meteo-no-data">⚠️ Erreur: ${e.message}</div>`;
-  }
+    const data=await r.json();
+    renderMeteoData(plot,data);
+  }catch(e){content.innerHTML=`<div class="meteo-no-data">⚠️ Erreur: ${e.message}</div>`;}
 }
 
-function renderMeteoData(plot, data) {
-  const content = document.getElementById('meteo-content');
-  const results = Array.isArray(data) ? data : (data.results || []);
-
-  // Dernière mesure
-  const last = results.filter(d=>d.T!=null).slice(-1)[0] || results[results.length-1] || {};
-  const T   = last.T != null ? last.T.toFixed(1) : '—';
-  const U   = last.U != null ? Math.round(last.U) : '—';
-  const RR  = last.RR != null ? last.RR.toFixed(1) : '—';
-  const ETP = last.ETP != null ? last.ETP.toFixed(1) : '—';
-
-  // Cumul pluie 4 jours
-  const rrCumul = results.reduce((s,d)=>s+(d.RR||0),0).toFixed(1);
-
-  // Jours
-  const DAYS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-  const daysHtml = results.slice(-4).map(d => {
-    const dt = new Date(d.datetime || d.timestamp || d.date || '');
-    const label = isNaN(dt) ? '—' : `${DAYS_FR[dt.getDay()]} ${dt.getDate()}/${dt.getMonth()+1}`;
-    const t = d.T != null ? `${d.T.toFixed(1)}°` : '—';
-    const rr = d.RR != null ? `${d.RR.toFixed(1)}mm` : '—';
-    const u  = d.U  != null ? `${Math.round(d.U)}%` : '—';
+function renderMeteoData(plot,data){
+  const content=document.getElementById('meteo-content');
+  const results=Array.isArray(data)?data:(data.results||[]);
+  const last=results.filter(d=>d.T!=null).slice(-1)[0]||results[results.length-1]||{};
+  const T=last.T!=null?last.T.toFixed(1):'—';
+  const U=last.U!=null?Math.round(last.U):'—';
+  const rrCumul=results.reduce((s,d)=>s+(d.RR||0),0).toFixed(1);
+  const DAYS_FR=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  const daysHtml=results.slice(-4).map(d=>{
+    const dt=new Date(d.datetime||d.timestamp||d.date||'');
+    const label=isNaN(dt)?'—':`${DAYS_FR[dt.getDay()]} ${dt.getDate()}/${dt.getMonth()+1}`;
     return `<div class="meteo-day-row">
       <span class="meteo-day-date">${label}</span>
-      <span class="meteo-day-t">🌡 ${t}</span>
-      <span class="meteo-day-rr">🌧 ${rr}</span>
-      <span class="meteo-day-u">💧 ${u}</span>
+      <span class="meteo-day-t">🌡 ${d.T!=null?d.T.toFixed(1)+'°':'—'}</span>
+      <span class="meteo-day-rr">🌧 ${d.RR!=null?d.RR.toFixed(1)+'mm':'—'}</span>
+      <span class="meteo-day-u">💧 ${d.U!=null?Math.round(d.U)+'%':'—'}</span>
     </div>`;
   }).join('');
-
-  // Tensiomètre
-  let tensioHtml = '';
-  if(plot.has_tensio) {
-    const depths = ['20','30','60'];
-    const tensioRows = depths.map(d => {
-      const key = `HPOT-${d}`;
-      const val = last[key];
-      if(val == null) return '';
-      // kPa: 0-20=ok (vert), 20-60=attention (orange), >60=critique (rouge)
-      const pct = Math.min(100, Math.abs(val)/80*100);
-      const cls = Math.abs(val)<20 ? 'tensio-ok' : Math.abs(val)<60 ? 'tensio-warn' : 'tensio-crit';
+  let tensioHtml='';
+  if(plot.has_tensio){
+    const depths=['20','30','60'];
+    const tensioRows=depths.map(d=>{
+      const val=last[`HPOT-${d}`];
+      if(val==null) return '';
+      const pct=Math.min(100,Math.abs(val)/80*100);
+      const cls=Math.abs(val)<20?'tensio-ok':Math.abs(val)<60?'tensio-warn':'tensio-crit';
+      const color=cls==='tensio-ok'?'#27AE60':cls==='tensio-warn'?'#E67E22':'#C0392B';
       return `<div class="meteo-tensio-row">
         <span class="meteo-tensio-depth">-${d}cm</span>
-        <span class="meteo-tensio-val" style="color:${cls==='tensio-ok'?'#27AE60':cls==='tensio-warn'?'#E67E22':'#C0392B'}">${val.toFixed(0)} kPa</span>
+        <span class="meteo-tensio-val" style="color:${color}">${val.toFixed(0)} kPa</span>
         <div class="meteo-tensio-bar"><div class="meteo-tensio-fill ${cls}" style="width:${pct}%"></div></div>
       </div>`;
     }).filter(Boolean).join('');
-    if(tensioRows) tensioHtml = `
-      <div class="meteo-tensio">
-        <div class="meteo-tensio-title">Tensiométrie (dernier relevé)</div>
-        ${tensioRows}
-      </div>`;
+    if(tensioRows) tensioHtml=`<div class="meteo-tensio"><div class="meteo-tensio-title">Tensiométrie (dernier relevé)</div>${tensioRows}</div>`;
   }
-
-  content.innerHTML = `
+  content.innerHTML=`
     <div class="meteo-station">
       <div class="meteo-station-name">📡 ${plot.name}</div>
       <div class="meteo-station-loc">${plot.org} · ${plot.location_text}</div>
       <div class="meteo-station-dist">à ${plot.dist_km} km du domaine</div>
     </div>
     <div class="meteo-grid">
-      <div class="meteo-card">
-        <div class="meteo-card-label">Température</div>
-        <div class="meteo-card-val">${T}<span class="meteo-card-unit">°C</span></div>
-      </div>
-      <div class="meteo-card">
-        <div class="meteo-card-label">Humidité</div>
-        <div class="meteo-card-val">${U}<span class="meteo-card-unit">%</span></div>
-      </div>
-      <div class="meteo-card">
-        <div class="meteo-card-label">Pluie cumul</div>
-        <div class="meteo-card-val">${rrCumul}<span class="meteo-card-unit">mm</span></div>
-      </div>
+      <div class="meteo-card"><div class="meteo-card-label">Température</div><div class="meteo-card-val">${T}<span class="meteo-card-unit">°C</span></div></div>
+      <div class="meteo-card"><div class="meteo-card-label">Humidité</div><div class="meteo-card-val">${U}<span class="meteo-card-unit">%</span></div></div>
+      <div class="meteo-card"><div class="meteo-card-label">Pluie cumul</div><div class="meteo-card-val">${rrCumul}<span class="meteo-card-unit">mm</span></div></div>
     </div>
     <div class="meteo-days">
       <div class="meteo-days-title">4 derniers jours</div>
-      ${daysHtml || '<div style="font-size:10px;color:var(--text3)">Pas de données</div>'}
+      ${daysHtml||'<div style="font-size:10px;color:var(--text3)">Pas de données</div>'}
     </div>
-    ${tensioHtml}
-  `;
+    ${tensioHtml}`;
 }
 
-
-// ── START ──
 loadAllData();
 </script>
 </body>
