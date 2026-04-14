@@ -1,0 +1,1541 @@
+{
+  "version": "2026.1",
+  "updated": "2026-04-13",
+  "source": "Bergon SAS — Le Muy, Var (83)",
+  "produits": [
+    {
+      "nom": "ALGISIUM",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 2.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 4.5,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "AMPEXIO",
+      "cible": "Mildiou",
+      "famille": "Benzamides+CAA",
+      "dose": 0.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Break oxathia — MAX 1/an",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.5,
+      "calcul_ift": true,
+      "cond_taille": 4,
+      "cond_label": "sac 4kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "BB RSR DISPERSS NC",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 3.75,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.75,
+      "dose_ref_ift": 3.75,
+      "calcul_ift": true,
+      "cond_taille": 15,
+      "cond_label": "sac 15kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "CHAMP FLO AMPLI",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 1.3,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre — ZNT 20m",
+      "cu_kg_ha": 0.468,
+      "dose_ref_ift": 1.5,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "ETONAN",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "⚠️ Incompat. cuivre — 2 cuves",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 4.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "GORILLA F",
+      "cible": "Mildiou",
+      "famille": "Phtalimides+CAA",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 2.0,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "sac 5kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "HELIOCUIVRE",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.4,
+      "dose_ref_ift": 1.0,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "HUDSON PRO / TEBAIDE",
+      "cible": "Mildiou",
+      "famille": "Acylpicolides+Phospho",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H361"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H361d",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 3.0,
+      "calcul_ift": true,
+      "cond_taille": 6,
+      "cond_label": "sac 6kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "KILIM FLASH",
+      "cible": "Mildiou",
+      "famille": "Phospho+Phtalimides",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 4.0,
+      "calcul_ift": true,
+      "cond_taille": 12,
+      "cond_label": "sac 12kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "LEXIC FLASH",
+      "cible": "Mildiou",
+      "famille": "Phospho+Cyano+Phtali",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351",
+        "H361"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351+H361fd",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 3.0,
+      "calcul_ift": true,
+      "cond_taille": 6,
+      "cond_label": "sac 6kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "LIMOCIDE",
+      "cible": "Mildiou",
+      "famille": "Biocontrôle",
+      "dose": 1.6,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Double cible M+O",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 1.6,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "MESTAR",
+      "cible": "Mildiou",
+      "famille": "Biocontrôle",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 2.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "NORDOX 75 WG",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.75,
+      "dose_ref_ift": 2.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "sac 10kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "PACK ORONDIS+ZONGRUUM",
+      "cible": "Mildiou",
+      "famille": "OSBPI+QiI",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.2,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "pack 5ha",
+      "cond_type": "pack",
+      "ha_par_unite": 5
+    },
+    {
+      "nom": "PACK ZEUS — Kamparano",
+      "cible": "Mildiou",
+      "famille": "Phospho+OSBPI",
+      "dose": 2.22,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 14,
+      "note": "Pack 1,5ha — 2,22 L/ha effectif",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 3.33,
+      "calcul_ift": true,
+      "cond_taille": 1.5,
+      "cond_label": "pack 1.5ha",
+      "cond_type": "pack",
+      "ha_par_unite": 1.5
+    },
+    {
+      "nom": "PACK ZEUS — Zorvec",
+      "cible": "Mildiou",
+      "famille": "OSBPI",
+      "dose": 0.13,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 14,
+      "note": "Max 2 OXTP/an",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.2,
+      "calcul_ift": true,
+      "cond_taille": 1.5,
+      "cond_label": "pack 1.5ha",
+      "cond_type": "pack",
+      "ha_par_unite": 1.5
+    },
+    {
+      "nom": "PANGOLIN DG",
+      "cible": "Mildiou",
+      "famille": "Phospho+Cuivre",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 28,
+      "note": "ZNT 20m",
+      "cu_kg_ha": 0.6,
+      "dose_ref_ift": 5.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "sac 10kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "REDELI",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 2.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 2.5,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "SOLUTION ENERVIN+ALUCINAN",
+      "cible": "Mildiou",
+      "famille": "QoSI+Phospho",
+      "dose": 1.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "⚠️ Résistances méd.",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 1.5,
+      "calcul_ift": true,
+      "cond_taille": 2,
+      "cond_label": "pack 2ha",
+      "cond_type": "pack",
+      "ha_par_unite": 2
+    },
+    {
+      "nom": "YUCCA",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 28kg/7ans",
+      "cu_kg_ha": 0.378,
+      "dose_ref_ift": 8.4,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "ALGEBRE",
+      "cible": "Oïdium",
+      "famille": "Benzophénones",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 28,
+      "note": "Max 2/an",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.2,
+      "calcul_ift": true,
+      "cond_taille": 1,
+      "cond_label": "bidon 1L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "ARMICARB",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 5.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "sac 10kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "CARBOBASIC",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Substance de base",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 4.0,
+      "calcul_ift": true,
+      "cond_taille": 25,
+      "cond_label": "sac 25kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "CONYDIA",
+      "cible": "Oïdium",
+      "famille": "Triazoles+Amidoximes",
+      "dose": 0.5,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 21,
+      "note": "H351",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.5,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "CYFLODIUM",
+      "cible": "Oïdium",
+      "famille": "Amidoximes",
+      "dose": 0.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Max 2/an",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.5,
+      "calcul_ift": true,
+      "cond_taille": 1,
+      "cond_label": "bidon 1L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "HELIOSOUFRE S",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 6.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 7.5,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "LIMOCIDE (oïdium)",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 1.6,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Double cible M+O",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 1.6,
+      "calcul_ift": true,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "MAMBO SC",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.1,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 12.1,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "MESTAR (oïdium)",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 2.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "MICROSOUFRE",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 12.5,
+      "calcul_ift": true,
+      "cond_taille": 25,
+      "cond_label": "sac 25kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "SAMOURAÏ",
+      "cible": "Oïdium",
+      "famille": "Triazoles",
+      "dose": 1.2,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Max 1/an",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 2.0,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "SCORE",
+      "cible": "Oïdium",
+      "famille": "Triazoles",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 21,
+      "note": "H351",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.2,
+      "calcul_ift": true,
+      "cond_taille": 1,
+      "cond_label": "bidon 1L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "SOLFOXIDANTE",
+      "cible": "Oïdium",
+      "famille": "Soufre poudre",
+      "dose": 30.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Cadence 10j",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 30.0,
+      "calcul_ift": true,
+      "cond_taille": 25,
+      "cond_label": "sac 25kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "SOUFRE SUBLIME",
+      "cible": "Oïdium",
+      "famille": "Soufre poudre",
+      "dose": 25.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 25.0,
+      "calcul_ift": true,
+      "cond_taille": 25,
+      "cond_label": "sac 25kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "SOUFREBE NEO",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 12.5,
+      "calcul_ift": true,
+      "cond_taille": 20,
+      "cond_label": "sac 20kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "SULFORIX RAINFREE",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.1,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "DRE 48h",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 12.1,
+      "calcul_ift": true,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "THIOVIT JET",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 12.5,
+      "calcul_ift": true,
+      "cond_taille": 20,
+      "cond_label": "sac 20kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "YARIS",
+      "cible": "Oïdium",
+      "famille": "SDHI",
+      "dose": 0.15,
+      "unite": "L/ha",
+      "cmr": "H362*",
+      "mentions_h": [
+        "H362"
+      ],
+      "uab": false,
+      "dar": 35,
+      "note": "H362 ≠ CMR HVE — DAR 35j",
+      "cu_kg_ha": 0,
+      "dose_ref_ift": 0.15,
+      "calcul_ift": true,
+      "cond_taille": 1,
+      "cond_label": "bidon 1L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "AG Zinc 120F",
+      "cible": "Nutrition",
+      "famille": "Oligo Zn foliaire",
+      "dose": 1.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Carence Zn — avant floraison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "AlgaBioPlus",
+      "cible": "Nutrition",
+      "famille": "Algue+NPK organique",
+      "dose": 4.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Sortie feuilles → mi-véraison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "BASFOLIAR SPYRA SL",
+      "cible": "Nutrition",
+      "famille": "Biostimulant micro-algues",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "UAB — max 6/an",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "EcoBios Vigne",
+      "cible": "Nutrition",
+      "famille": "Lipopeptide cuivre",
+      "dose": 0.15,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → véraison — qualité baies",
+      "cu_kg_ha": 0.0075,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 1,
+      "cond_label": "bidon 1L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "GeoDyn N109",
+      "cible": "Nutrition",
+      "famille": "Azote foliaire organique",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "5 feuilles → mi-véraison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "HomeoPLante 171",
+      "cible": "Nutrition",
+      "famille": "Phytothérapie Mn+Zn",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Débourrement → boutons floraux",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "HomeoPLante 172",
+      "cible": "Nutrition",
+      "famille": "Phytothérapie Mg+B",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → véraison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "KAIZ'N",
+      "cible": "Nutrition",
+      "famille": "Azote organique poudre",
+      "dose": 2.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "1ères feuilles → maturité",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 20,
+      "cond_label": "sac 20kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "KAIZ'NK",
+      "cible": "Nutrition",
+      "famille": "Azote+K organique poudre",
+      "dose": 2.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Formation baies → maturité",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "sac 10kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "Kori Feuille",
+      "cible": "Nutrition",
+      "famille": "Biostimulant N+S+oligos",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Avant floraison — démarrage",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Kori Force",
+      "cible": "Nutrition",
+      "famille": "Biostimulant N+K+B",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → récolte",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Kori Zen",
+      "cible": "Nutrition",
+      "famille": "Biostimulant antistress",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Tout au long du cycle",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Lamina FeMn",
+      "cible": "Nutrition",
+      "famille": "Algue+Fe+Mn EDTA",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Grappes séparées → nouaison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Laminaflor",
+      "cible": "Nutrition",
+      "famille": "Algue+B+Mg floraison",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Bore floraison — grappes séparées → nouaison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Laminaveg",
+      "cible": "Nutrition",
+      "famille": "Algue pure Laminaria",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Stades G, H, J",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Mendone",
+      "cible": "Nutrition",
+      "famille": "Algue Ascophyllum+Cu+Zn+Mn",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Débourrement → récolte",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 10,
+      "cond_label": "bidon 10L",
+      "cond_type": "bidon"
+    },
+    {
+      "nom": "Pepton 85/16",
+      "cible": "Nutrition",
+      "famille": "Acides aminés+Fe",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Plantation, 7-8 feuilles, nouaison",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "sac 5kg",
+      "cond_type": "sac"
+    },
+    {
+      "nom": "STICoP Innov",
+      "cible": "Nutrition",
+      "famille": "Algue+B+Cu+Mn+Zn",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Post-vendange, BBCH 35-75",
+      "cu_kg_ha": 0,
+      "calcul_ift": false,
+      "dose_ref_ift": null,
+      "cond_taille": 5,
+      "cond_label": "bidon 5L",
+      "cond_type": "bidon"
+    }
+  ],
+  "conditionnements": {
+    "CHAMP FLO AMPLI": [
+      5
+    ],
+    "ETONAN": [
+      10
+    ],
+    "ALGISIUM": [
+      10
+    ],
+    "REDELI": [
+      10
+    ],
+    "AMPEXIO": [
+      8,
+      4
+    ],
+    "BB RSR DISPERSS NC": [
+      15
+    ],
+    "PANGOLIN DG": [
+      10
+    ],
+    "HUDSON PRO / TEBAIDE": [
+      6
+    ],
+    "LEXIC FLASH": [
+      6
+    ],
+    "KILIM FLASH": [
+      12
+    ],
+    "GORILLA F": [
+      5
+    ],
+    "THIOVIT JET": [
+      20
+    ],
+    "SOUFREBE NEO": [
+      20
+    ],
+    "MICROSOUFRE": [
+      25
+    ],
+    "SULFORIX RAINFREE": [
+      10
+    ],
+    "HELIOSOUFRE S": [
+      10
+    ],
+    "MAMBO SC": [
+      10
+    ],
+    "SOLFOXIDANTE": [
+      25
+    ],
+    "SOUFRE SUBLIME": [
+      25
+    ],
+    "ARMICARB": [
+      10
+    ],
+    "CARBOBASIC": [
+      25
+    ],
+    "YARIS": [
+      5,
+      1
+    ],
+    "ALGEBRE": [
+      5,
+      1
+    ],
+    "CYFLODIUM": [
+      5,
+      1
+    ],
+    "SAMOURAÏ": [
+      10
+    ],
+    "CONYDIA": [
+      5
+    ],
+    "SCORE": [
+      5,
+      1
+    ],
+    "MESTAR": [
+      10
+    ],
+    "MESTAR (oïdium)": [
+      10
+    ],
+    "LIMOCIDE": [
+      5
+    ],
+    "LIMOCIDE (oïdium)": [
+      5
+    ],
+    "NORDOX 75 WG": [
+      25,
+      10
+    ],
+    "HELIOCUIVRE": [
+      5
+    ],
+    "BASFOLIAR SPYRA SL": [
+      5
+    ],
+    "YUCCA": [
+      5
+    ],
+    "PACK ZEUS — Kamparano": [
+      0
+    ],
+    "PACK ZEUS — Zorvec": [
+      0
+    ],
+    "SOLUTION ENERVIN+ALUCINAN": [
+      0
+    ],
+    "PACK ORONDIS+ZONGRUUM": [
+      0
+    ],
+    "GeoDyn N109": [
+      10
+    ],
+    "Pepton 85/16": [
+      5
+    ],
+    "Kori Feuille": [
+      10
+    ],
+    "Kori Force": [
+      10
+    ],
+    "Kori Zen": [
+      10
+    ],
+    "Laminaflor": [
+      5
+    ],
+    "Laminaveg": [
+      5
+    ],
+    "Lamina FeMn": [
+      5
+    ],
+    "AlgaBioPlus": [
+      5
+    ],
+    "Mendone": [
+      10
+    ],
+    "STICoP Innov": [
+      5
+    ],
+    "AG Zinc 120F": [
+      10
+    ],
+    "EcoBios Vigne": [
+      1
+    ],
+    "HomeoPLante 171": [
+      5
+    ],
+    "HomeoPLante 172": [
+      5
+    ],
+    "KAIZ'N": [
+      20
+    ],
+    "KAIZ'NK": [
+      10
+    ]
+  },
+  "melanges_interdits": {
+    "toujours_interdits": [
+      "H340",
+      "H350",
+      "H360",
+      "H370",
+      "H372"
+    ],
+    "matrice": {
+      "H351": [
+        "H351",
+        "H341",
+        "H371"
+      ],
+      "H341": [
+        "H351",
+        "H341",
+        "H371"
+      ],
+      "H371": [
+        "H351",
+        "H341",
+        "H371",
+        "H373"
+      ],
+      "H373": [
+        "H371",
+        "H373",
+        "H361",
+        "H362"
+      ],
+      "H361": [
+        "H373",
+        "H361",
+        "H362"
+      ],
+      "H362": [
+        "H373",
+        "H361",
+        "H362"
+      ]
+    }
+  },
+  "conditionnements_v2": {
+    "ALGISIUM": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "AMPEXIO": {
+      "taille": 4,
+      "label": "sac 4kg",
+      "type": "sac"
+    },
+    "BB RSR DISPERSS NC": {
+      "taille": 15,
+      "label": "sac 15kg",
+      "type": "sac"
+    },
+    "CHAMP FLO AMPLI": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "ETONAN": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "GORILLA F": {
+      "taille": 5,
+      "label": "sac 5kg",
+      "type": "sac"
+    },
+    "HELIOCUIVRE": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "HUDSON PRO / TEBAIDE": {
+      "taille": 6,
+      "label": "sac 6kg",
+      "type": "sac"
+    },
+    "KILIM FLASH": {
+      "taille": 12,
+      "label": "sac 12kg",
+      "type": "sac"
+    },
+    "LEXIC FLASH": {
+      "taille": 6,
+      "label": "sac 6kg",
+      "type": "sac"
+    },
+    "LIMOCIDE": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "MESTAR": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "NORDOX 75 WG": {
+      "taille": 10,
+      "label": "sac 10kg",
+      "type": "sac"
+    },
+    "PACK ZEUS — Kamparano": {
+      "taille": 1.5,
+      "label": "pack 1.5ha",
+      "type": "pack",
+      "ha_par_unite": 1.5
+    },
+    "PACK ZEUS — Zorvec": {
+      "taille": 1.5,
+      "label": "pack 1.5ha",
+      "type": "pack",
+      "ha_par_unite": 1.5
+    },
+    "PACK ORONDIS+ZONGRUUM": {
+      "taille": 5,
+      "label": "pack 5ha",
+      "type": "pack",
+      "ha_par_unite": 5
+    },
+    "PANGOLIN DG": {
+      "taille": 10,
+      "label": "sac 10kg",
+      "type": "sac"
+    },
+    "REDELI": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "SOLUTION ENERVIN+ALUCINAN": {
+      "taille": 2,
+      "label": "pack 2ha",
+      "type": "pack",
+      "ha_par_unite": 2
+    },
+    "YUCCA": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "ALGEBRE": {
+      "taille": 1,
+      "label": "bidon 1L",
+      "type": "bidon"
+    },
+    "ARMICARB": {
+      "taille": 10,
+      "label": "sac 10kg",
+      "type": "sac"
+    },
+    "CARBOBASIC": {
+      "taille": 25,
+      "label": "sac 25kg",
+      "type": "sac"
+    },
+    "CONYDIA": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "CYFLODIUM": {
+      "taille": 1,
+      "label": "bidon 1L",
+      "type": "bidon"
+    },
+    "HELIOSOUFRE S": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "LIMOCIDE (oïdium)": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "MAMBO SC": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "MESTAR (oïdium)": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "MICROSOUFRE": {
+      "taille": 25,
+      "label": "sac 25kg",
+      "type": "sac"
+    },
+    "SAMOURAÏ": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "SCORE": {
+      "taille": 1,
+      "label": "bidon 1L",
+      "type": "bidon"
+    },
+    "SOLFOXIDANTE": {
+      "taille": 25,
+      "label": "sac 25kg",
+      "type": "sac"
+    },
+    "SOUFRE SUBLIME": {
+      "taille": 25,
+      "label": "sac 25kg",
+      "type": "sac"
+    },
+    "SOUFREBE NEO": {
+      "taille": 20,
+      "label": "sac 20kg",
+      "type": "sac"
+    },
+    "SULFORIX RAINFREE": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "THIOVIT JET": {
+      "taille": 20,
+      "label": "sac 20kg",
+      "type": "sac"
+    },
+    "YARIS": {
+      "taille": 1,
+      "label": "bidon 1L",
+      "type": "bidon"
+    },
+    "AG Zinc 120F": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "AlgaBioPlus": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "BASFOLIAR SPYRA SL": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "EcoBios Vigne": {
+      "taille": 1,
+      "label": "bidon 1L",
+      "type": "bidon"
+    },
+    "GeoDyn N109": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "HomeoPLante 171": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "HomeoPLante 172": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "KAIZ'N": {
+      "taille": 20,
+      "label": "sac 20kg",
+      "type": "sac"
+    },
+    "KAIZ'NK": {
+      "taille": 10,
+      "label": "sac 10kg",
+      "type": "sac"
+    },
+    "Kori Feuille": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "Kori Force": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "Kori Zen": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "Lamina FeMn": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "Laminaflor": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "Laminaveg": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    },
+    "Mendone": {
+      "taille": 10,
+      "label": "bidon 10L",
+      "type": "bidon"
+    },
+    "Pepton 85/16": {
+      "taille": 5,
+      "label": "sac 5kg",
+      "type": "sac"
+    },
+    "STICoP Innov": {
+      "taille": 5,
+      "label": "bidon 5L",
+      "type": "bidon"
+    }
+  }
+}
