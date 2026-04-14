@@ -1,0 +1,334 @@
+{
+  "id": "BRG-MNYRBLX2-V89Y",
+  "meta": {
+    "createdAt": "2026-04-14T15:09:05.078Z",
+    "updatedAt": "2026-04-14T15:26:13.339Z",
+    "version": "2.0",
+    "savedAt": null
+  },
+  "client": {
+    "nom": "LA VIGNERONNE",
+    "secteur": "CUERS",
+    "certif": "HVE V4",
+    "type": "CONV - HVE",
+    "conseiller": "Stéphane",
+    "nbPass": 6
+  },
+  "entites": [
+    {
+      "nom": "LA VIGNERONNE",
+      "surf": 22
+    },
+    {
+      "nom": "GARREL JULIEN",
+      "surf": 8
+    },
+    {
+      "nom": "GARREL ROLAND",
+      "surf": 0.5
+    },
+    {
+      "nom": "",
+      "surf": 0
+    },
+    {
+      "nom": "",
+      "surf": 0
+    }
+  ],
+  "dates": {
+    "t1": "20/04/2026",
+    "t2": "4 mai",
+    "t3": "18 mai",
+    "t4": "31 mai",
+    "t5": "14 juin",
+    "t6": "28 juin",
+    "vendange": "",
+    "cadence": 14
+  },
+  "stocks": {},
+  "passages": {
+    "1": [
+      {
+        "nom": "ALGISIUM",
+        "n": "ALGISIUM",
+        "c": "Mildiou",
+        "f": "Phosphonates",
+        "d": 2.5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "Biocontrôle",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 0.8,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468
+      },
+      {
+        "nom": "THIOVIT JET",
+        "n": "THIOVIT JET",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 4,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "Biocontrôle",
+        "cu_kg_ha": 0
+      }
+    ],
+    "2": [
+      {
+        "nom": "ALGISIUM",
+        "n": "ALGISIUM",
+        "c": "Mildiou",
+        "f": "Phosphonates",
+        "d": 2.5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "Biocontrôle",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468
+      },
+      {
+        "nom": "ALGEBRE",
+        "n": "ALGEBRE",
+        "c": "Oïdium",
+        "f": "Benzophénones",
+        "d": 0.2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 28,
+        "note": "Max 2/an",
+        "cu_kg_ha": 0
+      }
+    ],
+    "3": [
+      {
+        "nom": "PACK ZEUS — Kamparano",
+        "n": "PACK ZEUS — Kamparano",
+        "c": "Mildiou",
+        "f": "Phospho+OSBPI",
+        "d": 2.22,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 14,
+        "note": "Pack 1,5ha — 2,22 L/ha effectif",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "PACK ZEUS — Zorvec",
+        "n": "PACK ZEUS — Zorvec",
+        "c": "Mildiou",
+        "f": "OSBPI",
+        "d": 0.13,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 14,
+        "note": "Max 2 OXTP/an",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "CYFLODIUM",
+        "n": "CYFLODIUM",
+        "c": "Oïdium",
+        "f": "Amidoximes",
+        "d": 0.5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 21,
+        "note": "Max 2/an",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "BASFOLIAR SPYRA SL",
+        "n": "BASFOLIAR SPYRA SL",
+        "c": "Nutrition",
+        "f": "Biostimulant micro-algues",
+        "d": 2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "UAB — max 6/an",
+        "cu_kg_ha": 0
+      }
+    ],
+    "4": [
+      {
+        "nom": "AMPEXIO",
+        "n": "AMPEXIO",
+        "c": "Mildiou",
+        "f": "Benzamides+CAA",
+        "d": 0.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 21,
+        "note": "Break oxathia — MAX 1/an",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "YARIS",
+        "n": "YARIS",
+        "c": "Oïdium",
+        "f": "SDHI",
+        "d": 0.15,
+        "u": "L/ha",
+        "cmr": "H362*",
+        "mentions_h": [
+          "H362"
+        ],
+        "uab": false,
+        "dar": 35,
+        "note": "H362 ≠ CMR HVE — DAR 35j",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "BASFOLIAR SPYRA SL",
+        "n": "BASFOLIAR SPYRA SL",
+        "c": "Nutrition",
+        "f": "Biostimulant micro-algues",
+        "d": 2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "UAB — max 6/an",
+        "cu_kg_ha": 0
+      }
+    ],
+    "5": [
+      {
+        "nom": "PACK ZEUS — Kamparano",
+        "n": "PACK ZEUS — Kamparano",
+        "c": "Mildiou",
+        "f": "Phospho+OSBPI",
+        "d": 2.22,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 14,
+        "note": "Pack 1,5ha — 2,22 L/ha effectif",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "PACK ZEUS — Zorvec",
+        "n": "PACK ZEUS — Zorvec",
+        "c": "Mildiou",
+        "f": "OSBPI",
+        "d": 0.13,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 14,
+        "note": "Max 2 OXTP/an",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "SAMOURAÏ",
+        "n": "SAMOURAÏ",
+        "c": "Oïdium",
+        "f": "Triazoles",
+        "d": 1.2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 21,
+        "note": "Max 1/an",
+        "cu_kg_ha": 0
+      }
+    ],
+    "6": [
+      {
+        "nom": "ALGISIUM",
+        "n": "ALGISIUM",
+        "c": "Mildiou",
+        "f": "Phosphonates",
+        "d": 2.5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "Biocontrôle",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "BB RSR DISPERSS NC",
+        "n": "BB RSR DISPERSS NC",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.75
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 10,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      }
+    ]
+  },
+  "currentPass": 6,
+  "currentCible": null
+}
