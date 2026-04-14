@@ -1,0 +1,971 @@
+{
+  "version": "2026.1",
+  "updated": "2026-04-13",
+  "source": "Bergon SAS — Le Muy, Var (83)",
+  "produits": [
+    {
+      "nom": "ALGISIUM",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 2.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "AMPEXIO",
+      "cible": "Mildiou",
+      "famille": "Benzamides+CAA",
+      "dose": 0.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Break oxathia — MAX 1/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "BB RSR DISPERSS NC",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 3.75,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.75
+    },
+    {
+      "nom": "CHAMP FLO AMPLI",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 1.3,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre — ZNT 20m",
+      "cu_kg_ha": 0.468
+    },
+    {
+      "nom": "ETONAN",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 14,
+      "note": "⚠️ Incompat. cuivre — 2 cuves",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "GORILLA F",
+      "cible": "Mildiou",
+      "famille": "Phtalimides+CAA",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "HELIOCUIVRE",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.4
+    },
+    {
+      "nom": "HUDSON PRO / TEBAIDE",
+      "cible": "Mildiou",
+      "famille": "Acylpicolides+Phospho",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H361"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H361d",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "KILIM FLASH",
+      "cible": "Mildiou",
+      "famille": "Phospho+Phtalimides",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "LEXIC FLASH",
+      "cible": "Mildiou",
+      "famille": "Phospho+Cyano+Phtali",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351",
+        "H361"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351+H361fd",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "LIMOCIDE",
+      "cible": "Mildiou",
+      "famille": "Biocontrôle",
+      "dose": 1.6,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Double cible M+O",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "MESTAR",
+      "cible": "Mildiou",
+      "famille": "Biocontrôle",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "NORDOX 75 WG",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 cuivre",
+      "cu_kg_ha": 0.75
+    },
+    {
+      "nom": "PACK ORONDIS+ZONGRUUM",
+      "cible": "Mildiou",
+      "famille": "OSBPI+QiI",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 28,
+      "note": "H351",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "PACK ZEUS — Kamparano",
+      "cible": "Mildiou",
+      "famille": "Phospho+OSBPI",
+      "dose": 2.22,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 14,
+      "note": "Pack 1,5ha — 2,22 L/ha effectif",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "PACK ZEUS — Zorvec",
+      "cible": "Mildiou",
+      "famille": "OSBPI",
+      "dose": 0.13,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 14,
+      "note": "Max 2 OXTP/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "PANGOLIN DG",
+      "cible": "Mildiou",
+      "famille": "Phospho+Cuivre",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 28,
+      "note": "ZNT 20m",
+      "cu_kg_ha": 0.6
+    },
+    {
+      "nom": "REDELI",
+      "cible": "Mildiou",
+      "famille": "Phosphonates",
+      "dose": 2.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SOLUTION ENERVIN+ALUCINAN",
+      "cible": "Mildiou",
+      "famille": "QoSI+Phospho",
+      "dose": 1.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "⚠️ Résistances méd.",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "YUCCA",
+      "cible": "Mildiou",
+      "famille": "Cuivres",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "SPe1 28kg/7ans",
+      "cu_kg_ha": 0.378
+    },
+    {
+      "nom": "ALGEBRE",
+      "cible": "Oïdium",
+      "famille": "Benzophénones",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 28,
+      "note": "Max 2/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "ARMICARB",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 3.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "CARBOBASIC",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 4.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Substance de base",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "CONYDIA",
+      "cible": "Oïdium",
+      "famille": "Triazoles+Amidoximes",
+      "dose": 0.5,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 21,
+      "note": "H351",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "CYFLODIUM",
+      "cible": "Oïdium",
+      "famille": "Amidoximes",
+      "dose": 0.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Max 2/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "HELIOSOUFRE S",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 6.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "LIMOCIDE (oïdium)",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 1.6,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Double cible M+O",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "MAMBO SC",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.1,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "MESTAR (oïdium)",
+      "cible": "Oïdium",
+      "famille": "Biocontrôle",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "MICROSOUFRE",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 21,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SAMOURAÏ",
+      "cible": "Oïdium",
+      "famille": "Triazoles",
+      "dose": 1.2,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": false,
+      "dar": 21,
+      "note": "Max 1/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SCORE",
+      "cible": "Oïdium",
+      "famille": "Triazoles",
+      "dose": 0.2,
+      "unite": "L/ha",
+      "cmr": "CMR2",
+      "mentions_h": [
+        "H351"
+      ],
+      "uab": false,
+      "dar": 21,
+      "note": "H351",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SOLFOXIDANTE",
+      "cible": "Oïdium",
+      "famille": "Soufre poudre",
+      "dose": 30.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 1,
+      "note": "Cadence 10j",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SOUFRE SUBLIME",
+      "cible": "Oïdium",
+      "famille": "Soufre poudre",
+      "dose": 25.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 5,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SOUFREBE NEO",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "SULFORIX RAINFREE",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.1,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "DRE 48h",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "THIOVIT JET",
+      "cible": "Oïdium",
+      "famille": "Soufre",
+      "dose": 12.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 3,
+      "note": "Biocontrôle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "YARIS",
+      "cible": "Oïdium",
+      "famille": "SDHI",
+      "dose": 0.15,
+      "unite": "L/ha",
+      "cmr": "H362*",
+      "mentions_h": [
+        "H362"
+      ],
+      "uab": false,
+      "dar": 35,
+      "note": "H362 ≠ CMR HVE — DAR 35j",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "AG Zinc 120F",
+      "cible": "Nutrition",
+      "famille": "Oligo Zn foliaire",
+      "dose": 1.5,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Carence Zn — avant floraison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "AlgaBioPlus",
+      "cible": "Nutrition",
+      "famille": "Algue+NPK organique",
+      "dose": 4.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Sortie feuilles → mi-véraison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "BASFOLIAR SPYRA SL",
+      "cible": "Nutrition",
+      "famille": "Biostimulant micro-algues",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "UAB — max 6/an",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "EcoBios Vigne",
+      "cible": "Nutrition",
+      "famille": "Lipopeptide cuivre",
+      "dose": 0.15,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → véraison — qualité baies",
+      "cu_kg_ha": 0.0075
+    },
+    {
+      "nom": "GeoDyn N109",
+      "cible": "Nutrition",
+      "famille": "Azote foliaire organique",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "5 feuilles → mi-véraison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "HomeoPLante 171",
+      "cible": "Nutrition",
+      "famille": "Phytothérapie Mn+Zn",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Débourrement → boutons floraux",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "HomeoPLante 172",
+      "cible": "Nutrition",
+      "famille": "Phytothérapie Mg+B",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → véraison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "KAIZ'N",
+      "cible": "Nutrition",
+      "famille": "Azote organique poudre",
+      "dose": 2.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "1ères feuilles → maturité",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "KAIZ'NK",
+      "cible": "Nutrition",
+      "famille": "Azote+K organique poudre",
+      "dose": 2.5,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Formation baies → maturité",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Kori Feuille",
+      "cible": "Nutrition",
+      "famille": "Biostimulant N+S+oligos",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Avant floraison — démarrage",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Kori Force",
+      "cible": "Nutrition",
+      "famille": "Biostimulant N+K+B",
+      "dose": 5.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Floraison → récolte",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Kori Zen",
+      "cible": "Nutrition",
+      "famille": "Biostimulant antistress",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Tout au long du cycle",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Lamina FeMn",
+      "cible": "Nutrition",
+      "famille": "Algue+Fe+Mn EDTA",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Grappes séparées → nouaison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Laminaflor",
+      "cible": "Nutrition",
+      "famille": "Algue+B+Mg floraison",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Bore floraison — grappes séparées → nouaison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Laminaveg",
+      "cible": "Nutrition",
+      "famille": "Algue pure Laminaria",
+      "dose": 2.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Stades G, H, J",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Mendone",
+      "cible": "Nutrition",
+      "famille": "Algue Ascophyllum+Cu+Zn+Mn",
+      "dose": 3.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Débourrement → récolte",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "Pepton 85/16",
+      "cible": "Nutrition",
+      "famille": "Acides aminés+Fe",
+      "dose": 2.0,
+      "unite": "kg/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Plantation, 7-8 feuilles, nouaison",
+      "cu_kg_ha": 0
+    },
+    {
+      "nom": "STICoP Innov",
+      "cible": "Nutrition",
+      "famille": "Algue+B+Cu+Mn+Zn",
+      "dose": 1.0,
+      "unite": "L/ha",
+      "cmr": "Non",
+      "mentions_h": [],
+      "uab": true,
+      "dar": 0,
+      "note": "Post-vendange, BBCH 35-75",
+      "cu_kg_ha": 0
+    }
+  ],
+  "conditionnements": {
+    "CHAMP FLO AMPLI": [
+      5
+    ],
+    "ETONAN": [
+      10
+    ],
+    "ALGISIUM": [
+      10
+    ],
+    "REDELI": [
+      10
+    ],
+    "AMPEXIO": [
+      8,
+      4
+    ],
+    "BB RSR DISPERSS NC": [
+      15
+    ],
+    "PANGOLIN DG": [
+      10
+    ],
+    "HUDSON PRO / TEBAIDE": [
+      6
+    ],
+    "LEXIC FLASH": [
+      6
+    ],
+    "KILIM FLASH": [
+      12
+    ],
+    "GORILLA F": [
+      5
+    ],
+    "THIOVIT JET": [
+      20
+    ],
+    "SOUFREBE NEO": [
+      20
+    ],
+    "MICROSOUFRE": [
+      25
+    ],
+    "SULFORIX RAINFREE": [
+      10
+    ],
+    "HELIOSOUFRE S": [
+      10
+    ],
+    "MAMBO SC": [
+      10
+    ],
+    "SOLFOXIDANTE": [
+      25
+    ],
+    "SOUFRE SUBLIME": [
+      25
+    ],
+    "ARMICARB": [
+      10
+    ],
+    "CARBOBASIC": [
+      25
+    ],
+    "YARIS": [
+      5,
+      1
+    ],
+    "ALGEBRE": [
+      5,
+      1
+    ],
+    "CYFLODIUM": [
+      5,
+      1
+    ],
+    "SAMOURAÏ": [
+      10
+    ],
+    "CONYDIA": [
+      5
+    ],
+    "SCORE": [
+      5,
+      1
+    ],
+    "MESTAR": [
+      10
+    ],
+    "MESTAR (oïdium)": [
+      10
+    ],
+    "LIMOCIDE": [
+      5
+    ],
+    "LIMOCIDE (oïdium)": [
+      5
+    ],
+    "NORDOX 75 WG": [
+      25,
+      10
+    ],
+    "HELIOCUIVRE": [
+      5
+    ],
+    "BASFOLIAR SPYRA SL": [
+      5
+    ],
+    "YUCCA": [
+      5
+    ],
+    "PACK ZEUS — Kamparano": [
+      0
+    ],
+    "PACK ZEUS — Zorvec": [
+      0
+    ],
+    "SOLUTION ENERVIN+ALUCINAN": [
+      0
+    ],
+    "PACK ORONDIS+ZONGRUUM": [
+      0
+    ],
+    "GeoDyn N109": [
+      10
+    ],
+    "Pepton 85/16": [
+      5
+    ],
+    "Kori Feuille": [
+      10
+    ],
+    "Kori Force": [
+      10
+    ],
+    "Kori Zen": [
+      10
+    ],
+    "Laminaflor": [
+      5
+    ],
+    "Laminaveg": [
+      5
+    ],
+    "Lamina FeMn": [
+      5
+    ],
+    "AlgaBioPlus": [
+      5
+    ],
+    "Mendone": [
+      10
+    ],
+    "STICoP Innov": [
+      5
+    ],
+    "AG Zinc 120F": [
+      10
+    ],
+    "EcoBios Vigne": [
+      1
+    ],
+    "HomeoPLante 171": [
+      5
+    ],
+    "HomeoPLante 172": [
+      5
+    ],
+    "KAIZ'N": [
+      20
+    ],
+    "KAIZ'NK": [
+      10
+    ]
+  },
+  "melanges_interdits": {
+    "toujours_interdits": [
+      "H340",
+      "H350",
+      "H360",
+      "H370",
+      "H372"
+    ],
+    "matrice": {
+      "H351": [
+        "H351",
+        "H341",
+        "H371"
+      ],
+      "H341": [
+        "H351",
+        "H341",
+        "H371"
+      ],
+      "H371": [
+        "H351",
+        "H341",
+        "H371",
+        "H373"
+      ],
+      "H373": [
+        "H371",
+        "H373",
+        "H361",
+        "H362"
+      ],
+      "H361": [
+        "H373",
+        "H361",
+        "H362"
+      ],
+      "H362": [
+        "H373",
+        "H361",
+        "H362"
+      ]
+    }
+  }
+}
