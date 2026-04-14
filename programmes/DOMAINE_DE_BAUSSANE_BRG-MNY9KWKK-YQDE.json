@@ -1,0 +1,451 @@
+{
+  "id": "BRG-MNY9KWKK-YQDE",
+  "meta": {
+    "createdAt": "2026-04-14T06:52:25.700Z",
+    "updatedAt": "2026-04-14T06:59:15.337Z",
+    "version": "2.0",
+    "savedAt": null
+  },
+  "client": {
+    "nom": "DOMAINE DE BAUSSANE",
+    "secteur": "LA ROQUEBRUSSANE",
+    "certif": "Agriculture Biologique",
+    "type": "- UAB -",
+    "conseiller": "Stéphane",
+    "nbPass": 9
+  },
+  "entites": [
+    {
+      "nom": "DOMAINE DE BAUSSANE",
+      "surf": 11.5
+    },
+    {
+      "nom": "",
+      "surf": 0
+    },
+    {
+      "nom": "",
+      "surf": 0
+    },
+    {
+      "nom": "",
+      "surf": 0
+    },
+    {
+      "nom": "",
+      "surf": 0
+    }
+  ],
+  "dates": {
+    "t1": "25/04",
+    "t2": "5 mai",
+    "t3": "15 mai",
+    "t4": "25 mai",
+    "t5": "4 juin",
+    "t6": "14 juin",
+    "vendange": "",
+    "cadence": 10
+  },
+  "stocks": {},
+  "passages": {
+    "1": [
+      {
+        "nom": "HELIOCUIVRE",
+        "n": "HELIOCUIVRE",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 0.8,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.4
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 4,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 171",
+        "n": "HomeoPLante 171",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mn+Zn",
+        "d": 3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Débourrement → boutons floraux",
+        "cu_kg_ha": 0
+      }
+    ],
+    "2": [
+      {
+        "nom": "HELIOCUIVRE",
+        "n": "HELIOCUIVRE",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 0.8,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.4
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 6,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 171",
+        "n": "HomeoPLante 171",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mn+Zn",
+        "d": 3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Débourrement → boutons floraux",
+        "cu_kg_ha": 0
+      }
+    ],
+    "3": [
+      {
+        "nom": "HELIOCUIVRE",
+        "n": "HELIOCUIVRE",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.4
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 8,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 171",
+        "n": "HomeoPLante 171",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mn+Zn",
+        "d": 3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Débourrement → boutons floraux",
+        "cu_kg_ha": 0
+      }
+    ],
+    "4": [
+      {
+        "nom": "BB RSR DISPERSS NC",
+        "n": "BB RSR DISPERSS NC",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.75
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 10,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "BASFOLIAR SPYRA SL",
+        "n": "BASFOLIAR SPYRA SL",
+        "c": "Nutrition",
+        "f": "Biostimulant micro-algues",
+        "d": 2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "UAB — max 6/an",
+        "cu_kg_ha": 0
+      }
+    ],
+    "5": [
+      {
+        "nom": "BB RSR DISPERSS NC",
+        "n": "BB RSR DISPERSS NC",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.75
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 12,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 172",
+        "n": "HomeoPLante 172",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mg+B",
+        "d": 5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Floraison → véraison",
+        "cu_kg_ha": 0
+      }
+    ],
+    "6": [
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1.3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 12,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 172",
+        "n": "HomeoPLante 172",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mg+B",
+        "d": 5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Floraison → véraison",
+        "cu_kg_ha": 0
+      }
+    ],
+    "7": [
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1.3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 12,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "HomeoPLante 172",
+        "n": "HomeoPLante 172",
+        "c": "Nutrition",
+        "f": "Phytothérapie Mg+B",
+        "d": 5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Floraison → véraison",
+        "cu_kg_ha": 0
+      }
+    ],
+    "8": [
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1.3,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 10,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "KAIZ'NK",
+        "n": "KAIZ'NK",
+        "c": "Nutrition",
+        "f": "Azote+K organique poudre",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Formation baies → maturité",
+        "cu_kg_ha": 0
+      }
+    ],
+    "9": [
+      {
+        "nom": "BB RSR DISPERSS NC",
+        "n": "BB RSR DISPERSS NC",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "SPe1 cuivre",
+        "cu_kg_ha": 0.75
+      },
+      {
+        "nom": "SULFORIX RAINFREE",
+        "n": "SULFORIX RAINFREE",
+        "c": "Oïdium",
+        "f": "Soufre",
+        "d": 10,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 3,
+        "note": "DRE 48h",
+        "cu_kg_ha": 0
+      },
+      {
+        "nom": "KAIZ'NK",
+        "n": "KAIZ'NK",
+        "c": "Nutrition",
+        "f": "Azote+K organique poudre",
+        "d": 2.5,
+        "u": "kg/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 0,
+        "note": "Formation baies → maturité",
+        "cu_kg_ha": 0
+      }
+    ],
+    "10": []
+  },
+  "currentPass": 9,
+  "currentCible": null
+}
