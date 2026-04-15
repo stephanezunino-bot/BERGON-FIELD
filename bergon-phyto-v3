@@ -1,0 +1,2465 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergon SAS — Programme Phytosanitaire 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lexend:wght@300;400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* ── VARIABLES BERGON OFFICIELLES ── */
+:root{
+/* Couleurs Bergon officielles */
+–vert:       #2E9E3A;   /* Bergon green officiel */
+–vert-dark:  #1e6e27;
+–vert-deep:  #14491b;
+–vert-p:     #eaf6eb;
+–vert-mid:   #3db84a;
+
+–or:         #C8961A;
+–or-p:       #FFF8E1;
+
+–bleu:       #1565C0;
+–bleu-p:     #E3F2FD;
+
+–rouge:      #B71C1C;
+–rouge-p:    #FFEBEE;
+
+–orange:     #E65100;
+–orange-p:   #FFF3E0;
+
+–violet:     #6A1B9A;
+–violet-p:   #F3E5F5;
+
+–gris1:      #37474F;
+–gris2:      #ECEFF1;
+–gris3:      #B0BEC5;
+
+/* Typographie Bergon */
+–font-title: ‘Cormorant Garamond’, Georgia, serif;
+–font-body:  ‘Lexend’, sans-serif;
+–font-mono:  ‘DM Mono’, monospace;
+
+–radius: 10px;
+–shadow: 0 2px 12px rgba(0,0,0,.1);
+}
+
+body{
+font-family: var(–font-body);
+background: #F0F4F0;
+color: #212121;
+min-height: 100vh;
+font-size: 14px;
+font-weight: 400;
+}
+
+/* ── HEADER ── */
+.app-header{
+background: var(–vert-deep);
+padding: 12px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 3px solid var(–or);
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-badge{
+width: 36px; height: 36px;
+background: var(–or);
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+font-size: 18px;
+}
+.app-header h1{
+font-family: var(–font-title);
+font-size: 17px;
+font-weight: 700;
+color: #fff;
+letter-spacing: .3px;
+}
+.app-header h1 span{color: var(–or);}
+.prog-id{
+font-family: var(–font-mono);
+font-size: 9px;
+color: rgba(255,255,255,.4);
+margin-top: 2px;
+}
+.yr{
+background: var(–or);
+color: var(–vert-deep);
+font-family: var(–font-mono);
+font-weight: 700;
+font-size: 13px;
+padding: 3px 10px;
+border-radius: 5px;
+white-space: nowrap;
+}
+
+/* ── STEPS NAV ── */
+.steps{
+display: flex;
+background: var(–vert-dark);
+padding: 0 20px;
+overflow-x: auto;
+gap: 4px;
+}
+.step-btn{
+padding: 10px 16px;
+font-family: var(–font-body);
+font-size: 12px;
+font-weight: 600;
+color: rgba(255,255,255,.5);
+border: none;
+background: none;
+cursor: pointer;
+border-bottom: 3px solid transparent;
+white-space: nowrap;
+transition: all .2s;
+}
+.step-btn.active{color: var(–or); border-bottom-color: var(–or);}
+
+/* ── MAIN ── */
+.main{max-width: 960px; margin: 20px auto; padding: 0 14px 100px;}
+
+/* ── CARDS ── */
+.card{
+background: #fff;
+border-radius: var(–radius);
+box-shadow: var(–shadow);
+margin-bottom: 14px;
+overflow: hidden;
+}
+.card-header{
+background: var(–vert-deep);
+padding: 11px 18px;
+display: flex;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap;
+}
+.card-header h2{
+font-family: var(–font-title);
+font-size: 15px;
+font-weight: 600;
+color: #fff;
+letter-spacing: .3px;
+}
+.card-header .badge{
+background: var(–or);
+color: var(–vert-deep);
+font-size: 10px;
+font-weight: 700;
+padding: 2px 8px;
+border-radius: 12px;
+}
+.card-body{padding: 18px;}
+
+/* ── FORMS ── */
+.form-grid{display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+.form-group{display: flex; flex-direction: column; gap: 4px;}
+.form-group label{
+font-size: 11px;
+font-weight: 700;
+color: var(–gris1);
+text-transform: uppercase;
+letter-spacing: .5px;
+}
+.form-group input,
+.form-group select{
+border: 1.5px solid var(–gris3);
+border-radius: 6px;
+padding: 9px 11px;
+font-family: var(–font-body);
+font-size: 14px;
+color: #212121;
+outline: none;
+background: #fff;
+transition: border-color .2s;
+}
+.form-group input:focus,
+.form-group select:focus{border-color: var(–vert);}
+.form-group input::placeholder{color: #B0BEC5;}
+.form-group input.error{border-color: var(–rouge);}
+.error-msg{font-size: 11px; color: var(–rouge); font-weight: 600; margin-top: 2px;}
+
+/* ── ENTITÉS ── */
+.entites-grid{
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 10px;
+margin-top: 12px;
+}
+.entite-card{border: 1.5px solid; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;}
+.entite-card.e1{border-color:#1565C0;background:#EFF6FF;}
+.entite-card.e2{border-color:#2E9E3A;background:#eaf6eb;}
+.entite-card.e3{border-color:#6A1B9A;background:#FAF5FF;}
+.entite-card.e4{border-color:#E65100;background:#FFF7ED;}
+.entite-card.e5{border-color:#00695C;background:#F0FDFA;}
+.entite-card label{font-size: 11px; font-weight: 700; text-transform: uppercase;}
+.entite-card.e1 label{color:#1565C0;}
+.entite-card.e2 label{color:#2E9E3A;}
+.entite-card.e3 label{color:#6A1B9A;}
+.entite-card.e4 label{color:#E65100;}
+.entite-card.e5 label{color:#00695C;}
+.entite-card input{
+border: 1.5px solid var(–gris3);
+border-radius: 5px;
+padding: 7px 9px;
+font-family: var(–font-body);
+font-size: 13px;
+outline: none;
+width: 100%;
+}
+.entite-surf{display: flex; gap: 6px; align-items: center;}
+.entite-surf input{width: 80px;}
+.entite-surf span{
+font-family: var(–font-mono);
+font-size: 12px;
+color: var(–gris1);
+font-weight: 500;
+}
+
+/* ── DATES ── */
+.dates-grid{display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 12px;}
+.date-item{display: flex; flex-direction: column; gap: 4px;}
+.date-item label{font-size: 11px; font-weight: 700; color: var(–vert);}
+.date-item input{
+border: 1.5px solid var(–gris3);
+border-radius: 6px;
+padding: 8px 10px;
+font-family: var(–font-mono);
+font-size: 13px;
+outline: none;
+}
+.date-item input:focus{border-color: var(–vert);}
+.date-pivot label{color: var(–or) !important;}
+.date-pivot input{border-color: var(–or) !important;}
+
+/* ── CADENCE ── */
+.cadence-box{
+background: var(–vert-p);
+border-radius: 8px;
+border: 1.5px solid var(–vert);
+padding: 10px 14px;
+margin-bottom: 12px;
+}
+.cadence-box .clabel{font-size: 12px; font-weight: 700; color: var(–vert); margin-bottom: 7px;}
+.cadence-radios{display: flex; gap: 14px; flex-wrap: wrap;}
+.cadence-radios label{font-size: 12px; color: var(–gris1); display: flex; align-items: center; gap: 5px; cursor: pointer;}
+
+/* ── PASSAGES ── */
+.passage-tabs{display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px;}
+.pass-tab{
+padding: 7px 13px;
+border-radius: 20px;
+font-family: var(–font-body);
+font-size: 12px;
+font-weight: 600;
+border: 2px solid var(–gris3);
+background: #fff;
+cursor: pointer;
+transition: all .2s;
+color: var(–gris1);
+position: relative;
+}
+.pass-tab.active{background: var(–vert); border-color: var(–vert); color: #fff;}
+.pass-tab.has-data::after{
+content: ‘●’;
+position: absolute; top: -4px; right: -4px;
+font-size: 10px;
+color: var(–vert);
+}
+.pass-tab-pivot{border-color: var(–bleu); color: var(–bleu);}
+.pass-tab-pivot.active{background: var(–bleu); border-color: var(–bleu);}
+.passage-panel{display: none;}
+.passage-panel.active{display: block;}
+.passage-info{
+background: var(–gris2);
+border-radius: 8px;
+padding: 9px 13px;
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 13px;
+flex-wrap: wrap;
+}
+.passage-info strong{color: var(–vert);}
+.pass-date-badge{
+background: var(–vert);
+color: #fff;
+padding: 2px 9px;
+border-radius: 11px;
+font-family: var(–font-mono);
+font-size: 12px;
+font-weight: 500;
+}
+
+/* ── CIBLES ── */
+.cible-btns{display: flex; gap: 7px; margin-bottom: 12px; flex-wrap: wrap;}
+.cible-btn{
+padding: 7px 14px;
+border-radius: 20px;
+font-family: var(–font-body);
+font-size: 12px;
+font-weight: 600;
+border: 2px solid;
+cursor: pointer;
+transition: all .2s;
+background: #fff;
+}
+.cible-btn[data-cible=“Mildiou”]{border-color:var(–bleu);color:var(–bleu);}
+.cible-btn[data-cible=“Mildiou”].sel{background:var(–bleu);color:#fff;}
+.cible-btn[data-cible=“Oïdium”]{border-color:var(–orange);color:var(–orange);}
+.cible-btn[data-cible=“Oïdium”].sel{background:var(–orange);color:#fff;}
+.cible-btn[data-cible=“Nutrition”]{border-color:var(–violet);color:var(–violet);}
+.cible-btn[data-cible=“Nutrition”].sel{background:var(–violet);color:#fff;}
+
+/* ── PRODUITS LISTE ── */
+.produits-list{display: none; margin-bottom: 12px;}
+.produits-list.visible{display: block;}
+.prod-search{
+width: 100%;
+border: 1.5px solid var(–gris3);
+border-radius: 6px;
+padding: 8px 12px;
+font-family: var(–font-body);
+font-size: 13px;
+margin-bottom: 8px;
+outline: none;
+}
+.prod-search:focus{border-color: var(–vert);}
+.prod-items{display: flex; flex-direction: column; gap: 4px; max-height: 260px; overflow-y: auto;}
+.prod-item{
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 8px 10px;
+border: 1.5px solid var(–gris3);
+border-radius: 7px;
+cursor: pointer;
+transition: all .15s;
+background: #fff;
+}
+.prod-item:hover{border-color: var(–vert); background: var(–vert-p);}
+.prod-item.selected{border-color: var(–vert); background: var(–vert-p);}
+.prod-item.non-uab{opacity: .55;}
+.prod-nom{flex: 1; font-size: 13px; font-weight: 600;}
+.prod-sous{font-size: 11px; color: var(–gris1);}
+.prod-chips{display: flex; flex-direction: column; gap: 2px; align-items: flex-end;}
+.chip-sm{font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px;}
+.chip-cmr2{background:var(–rouge-p);color:var(–rouge);}
+.chip-h362{background:var(–or-p);color:#795900;}
+.chip-ok{background:#E8F5E9;color:var(–vert-dark);}
+.chip-uab{background:#E8F5E9;color:var(–vert-dark);}
+.chip-nuab{background:var(–orange-p);color:var(–orange);}
+
+/* ── SÉLECTION PRODUITS ── */
+.selected-prods{display: flex; flex-direction: column; gap: 6px; margin-top: 12px;}
+.sel-prod-card{
+border: 1.5px solid;
+border-radius: 8px;
+padding: 10px 12px;
+display: flex;
+align-items: center;
+gap: 8px;
+flex-wrap: wrap;
+}
+.sel-prod-card.mildiou{border-color:var(–bleu);background:var(–bleu-p);}
+.sel-prod-card.oidium{border-color:var(–orange);background:var(–orange-p);}
+.sel-prod-card.nutrition{border-color:var(–violet);background:var(–violet-p);}
+.sel-prod-name{flex: 1; font-size: 13px; font-weight: 700; min-width: 130px;}
+.dose-inp{display: flex; align-items: center; gap: 5px;}
+.dose-inp input{
+width: 65px;
+border: 1.5px solid var(–gris3);
+border-radius: 5px;
+padding: 5px 7px;
+font-family: var(–font-mono);
+font-size: 13px;
+font-weight: 500;
+text-align: center;
+outline: none;
+}
+.dose-inp input:focus{border-color: var(–vert);}
+.dose-unite{font-size: 11px; color: var(–gris1);}
+.qty-total{
+font-family: var(–font-mono);
+font-size: 12px;
+font-weight: 500;
+color: var(–vert-dark);
+min-width: 75px;
+text-align: right;
+}
+.btn-rm{
+background: none; border: none;
+cursor: pointer; font-size: 17px;
+color: var(–gris3); padding: 2px;
+transition: color .15s;
+}
+.btn-rm:hover{color: var(–rouge);}
+.empty-pass{
+text-align: center; padding: 20px;
+color: var(–gris3); font-size: 13px;
+font-style: italic;
+border: 2px dashed var(–gris3);
+border-radius: 8px;
+}
+
+/* ── ALERTES ── */
+.alerte{border-radius:8px;padding:10px 14px;margin-top:10px;display:flex;align-items:flex-start;gap:8px;font-size:12px;}
+.alerte-rouge{background:var(–rouge-p);border-left:4px solid var(–rouge);}
+.alerte-orange{background:var(–orange-p);border-left:4px solid var(–orange);}
+.alerte-vert{background:var(–vert-p);border-left:4px solid var(–vert);}
+.alerte .ico{font-size:16px;flex-shrink:0;}
+.alerte .titre{font-weight:700;margin-bottom:2px;}
+.alerte-rouge .titre{color:var(–rouge);}
+.alerte-orange .titre{color:var(–orange);}
+.alerte-vert .titre{color:var(–vert-dark);}
+
+/* ── DAR AVERTISSEMENT ── */
+.dar-warning{
+background: #fff3e0;
+border: 2px solid var(–orange);
+border-radius: 8px;
+padding: 12px 16px;
+margin-bottom: 14px;
+display: none;
+}
+.dar-warning.show{display: block;}
+.dar-warning-title{
+font-weight: 700;
+color: var(–orange);
+font-size: 13px;
+margin-bottom: 6px;
+}
+.dar-item{font-size: 12px; margin: 3px 0; color: #212121;}
+
+/* ── IFT ── */
+.ift-bar{
+background: var(–vert-p);
+border-radius: 8px;
+padding: 10px 14px;
+margin-top: 10px;
+display: flex;
+align-items: center;
+gap: 14px;
+flex-wrap: wrap;
+}
+.ift-total{
+font-family: var(–font-mono);
+font-size: 20px;
+font-weight: 500;
+color: var(–vert-dark);
+}
+.ift-label{font-size: 11px; color: var(–gris1);}
+
+/* ── BOUTONS ── */
+.btn{
+padding: 10px 18px;
+border-radius: 8px;
+font-family: var(–font-body);
+font-size: 13px;
+font-weight: 700;
+border: none;
+cursor: pointer;
+transition: all .2s;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+}
+.btn-primary{background:var(–vert);color:#fff;}
+.btn-primary:hover{background:var(–vert-dark);}
+.btn-secondary{background:var(–gris2);color:var(–gris1);}
+.btn-or{background:var(–or);color:var(–vert-deep);}
+.btn-bleu{background:var(–bleu);color:#fff;}
+.btn-violet{background:var(–violet);color:#fff;}
+.btn-rouge{background:var(–rouge);color:#fff;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+
+.actions{
+display: flex;
+gap: 10px;
+justify-content: space-between;
+align-items: center;
+margin-top: 16px;
+flex-wrap: wrap;
+}
+
+/* ── RÉCAP ── */
+.recap-kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:14px;}
+.kpi{background:var(–gris2);border-radius:8px;padding:9px 12px;}
+.kpi .kl{font-size:10px;font-weight:700;color:var(–gris1);text-transform:uppercase;}
+.kpi .kv{
+font-family: var(–font-mono);
+font-size: 14px;
+font-weight: 500;
+color: var(–vert-dark);
+margin-top: 2px;
+}
+.recap-table{width:100%;border-collapse:collapse;font-size:12px;}
+.recap-table th{background:var(–vert-deep);color:#fff;padding:7px 10px;text-align:left;font-size:11px;}
+.recap-table td{padding:7px 10px;border-bottom:1px solid var(–gris2);vertical-align:top;}
+.recap-table tr:hover td{background:var(–vert-p);}
+.tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;}
+.tag-m{background:var(–bleu-p);color:var(–bleu);}
+.tag-o{background:var(–orange-p);color:var(–orange);}
+.tag-n{background:var(–violet-p);color:var(–violet);}
+
+/* ── CEGID TABLE ── */
+.cegid-table-wrap{overflow-x:auto;}
+.cegid-table{width:100%;border-collapse:collapse;font-size:11px;min-width:500px;}
+.cegid-table th{padding:7px 10px;font-size:10px;font-weight:700;white-space:nowrap;}
+.cegid-table th.th-prod{background:var(–gris1);color:#fff;text-align:left;}
+.cegid-table th.th-num{background:var(–bleu);color:#fff;text-align:center;}
+.cegid-table th.th-stock{background:var(–or);color:var(–vert-deep);text-align:center;}
+.cegid-table th.th-net{background:var(–rouge);color:#fff;text-align:center;}
+.cegid-table th.th-cmd{background:#212121;color:#fff;text-align:center;}
+.cegid-table th.th-ent{color:#fff;text-align:center;}
+.cegid-table td{padding:6px 10px;border-bottom:1px solid var(–gris2);vertical-align:middle;}
+.cegid-table td.td-stock input{
+width:65px;border:1.5px solid var(–or);
+border-radius:4px;padding:4px 6px;
+font-family:var(–font-mono);font-size:12px;
+text-align:center;outline:none;background:var(–or-p);
+}
+.cegid-table tr:hover td{background:#FAFAFA;}
+
+/* ── CLIENTS LIST ── */
+.clients-list{display:flex;flex-direction:column;gap:8px;}
+.client-item{
+border:1.5px solid var(–gris3);border-radius:8px;
+padding:12px 16px;cursor:pointer;
+transition:all .15s;
+display:flex;align-items:center;justify-content:space-between;
+background:#fff;
+}
+.client-item:hover{border-color:var(–vert);background:var(–vert-p);}
+.client-nom{font-family:var(–font-title);font-size:15px;font-weight:600;color:var(–vert-dark);}
+.client-meta{font-size:11px;color:var(–gris1);margin-top:2px;}
+.client-date{font-family:var(–font-mono);font-size:10px;color:var(–gris3);}
+
+/* ── CONFIG OVERLAY ── */
+.config-overlay{
+position:fixed;inset:0;
+background:rgba(0,0,0,.75);
+z-index:9999;
+display:flex;align-items:center;justify-content:center;
+padding:20px;
+}
+.config-box{
+background:#fff;
+border-radius:var(–radius);
+padding:28px;
+max-width:480px;width:100%;
+box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+.config-box h2{
+font-family:var(–font-title);
+font-size:20px;font-weight:600;
+color:var(–vert-dark);margin-bottom:6px;
+}
+.config-box p{font-size:13px;color:var(–gris1);margin-bottom:18px;line-height:1.5;}
+.config-box input{
+width:100%;
+border:1.5px solid var(–gris3);
+border-radius:6px;padding:10px 12px;
+font-family:var(–font-mono);font-size:13px;
+outline:none;margin-bottom:12px;
+}
+.config-box input:focus{border-color:var(–vert);}
+
+/* ── TOAST ── */
+.toast{
+position:fixed;bottom:20px;right:20px;
+background:var(–vert-deep);color:#fff;
+padding:11px 18px;border-radius:8px;
+font-size:13px;font-weight:600;
+box-shadow:0 4px 16px rgba(0,0,0,.2);
+z-index:9999;
+transform:translateY(80px);opacity:0;
+transition:all .3s;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.error{background:var(–rouge);}
+
+/* ── DOC OVERLAY ── */
+.doc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;display:none;flex-direction:column;}
+.doc-overlay.show{display:flex;}
+.doc-overlay-header{
+background:var(–vert-deep);padding:10px 16px;
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;flex-shrink:0;
+border-bottom:2px solid var(–or);
+}
+.doc-overlay-header span{color:#fff;font-weight:700;font-size:14px;}
+.doc-overlay-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.doc-overlay iframe{flex:1;border:none;background:#fff;}
+
+/* ── LOADING ── */
+.loading{text-align:center;padding:40px;color:var(–gris1);}
+.spinner{
+display:inline-block;width:32px;height:32px;
+border:3px solid var(–gris3);border-top-color:var(–vert);
+border-radius:50%;
+animation:spin .8s linear infinite;margin-bottom:10px;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── SURFACE TOTAL ── */
+.surf-total-display{
+margin-top:10px;padding:8px 12px;
+background:var(–vert-p);border-radius:6px;
+font-family:var(–font-mono);font-size:13px;font-weight:500;
+color:var(–vert-dark);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+.form-grid{grid-template-columns:1fr;}
+.dates-grid{grid-template-columns:1fr 1fr;}
+.entites-grid{grid-template-columns:1fr 1fr;}
+.main{padding:0 10px 100px;}
+.app-header h1{font-size:13px;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ══ CONFIG OVERLAY ══ -->
+
+<div class="config-overlay" id="config-overlay">
+  <div class="config-box">
+    <h2>🌿 Bergon SAS — Configuration</h2>
+    <p>Saisir votre token GitHub personnel pour activer la sauvegarde des programmes et le chargement du catalogue. Stocké uniquement sur cet appareil.</p>
+    <input type="password" id="cfg-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <input type="text" id="cfg-user" placeholder="Utilisateur GitHub" value="stephanezunino-bot">
+    <input type="text" id="cfg-repo" placeholder="Nom du repo" value="BERGON-FIELD">
+    <input type="text" id="cfg-conseiller" placeholder="Votre prénom" value="Stéphane">
+    <div style="display:flex;gap:10px;margin-top:4px;">
+      <button class="btn btn-primary" style="flex:1;" onclick="saveConfig()">✅ Enregistrer & démarrer</button>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--gris3);margin-top:10px;text-align:center;">
+      Token jamais transmis à un tiers — stocké localement uniquement
+    </div>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+
+<div class="app-header">
+  <div class="logo">
+    <div class="logo-badge">🌿</div>
+    <div>
+      <h1>Bergon <span>SAS</span> — Programme Phytosanitaire</h1>
+      <div class="prog-id" id="hdr-id"></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="btn btn-secondary" style="padding:6px 12px;font-size:11px;" onclick="retourBergonField()" id="btn-retour" title="Retour à Bergon Field">← BF</button>
+    <button class="btn btn-secondary" style="padding:6px 12px;font-size:11px;" onclick="showClients()">📁 Clients</button>
+    <div class="yr">2026</div>
+  </div>
+</div>
+
+<!-- ══ STEPS ══ -->
+
+<div class="steps">
+  <button class="step-btn active" onclick="goStep(1)" id="sb1">① Client & Entités</button>
+  <button class="step-btn" onclick="goStep(2)" id="sb2">② Programme</button>
+  <button class="step-btn" onclick="goStep(3)" id="sb3">③ Récap & Documents</button>
+</div>
+
+<div class="main">
+
+<!-- ══ STEP 1 ══ -->
+
+<div id="step-1">
+  <div class="card">
+    <div class="card-header"><h2>Informations client</h2></div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nom du client *</label>
+          <input type="text" id="c_nom" placeholder="Ex: GARREL Julien" oninput="syncClient()">
+          <span class="error-msg" id="err-nom" style="display:none;">Nom obligatoire</span>
+        </div>
+        <div class="form-group">
+          <label>Secteur / Commune</label>
+          <input type="text" id="c_secteur" placeholder="Ex: Cuers" oninput="syncClient()">
+        </div>
+        <div class="form-group">
+          <label>Certification</label>
+          <select id="c_certif" onchange="onCertifChange()">
+            <option value="HVE V4">HVE V4</option>
+            <option value="Conventionnel">Conventionnel</option>
+            <option value="Agriculture Biologique">Agriculture Biologique</option>
+            <option value="HVE V4 + Bio">HVE V4 + Bio</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Type de programme</label>
+          <input type="text" id="c_type" placeholder="Ex: Conventionnel — 6 traitements" oninput="syncClient()">
+        </div>
+        <div class="form-group">
+          <label>Nombre de passages *</label>
+          <input type="number" id="c_nbpass" value="6" min="1" max="20" oninput="onNbPassChange()">
+        </div>
+        <div class="form-group">
+          <label>Conseiller Bergon</label>
+          <input type="text" id="c_conseiller" oninput="syncClient()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Entités juridiques</h2>
+      <span class="badge">Surfaces pour ventilation CEGID</span>
+    </div>
+    <div class="card-body">
+      <div style="font-size:12px;color:var(--gris1);margin-bottom:10px;">
+        Saisir les entités à facturer séparément. Surface totale calculée automatiquement.
+        <br><span style="color:var(--rouge);font-weight:700;">Au moins 1 entité avec surface obligatoire *</span>
+      </div>
+      <div class="entites-grid" id="entites-grid"></div>
+      <div class="surf-total-display" id="surf-total-display">Surface totale : — ha</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Dates des passages</h2>
+      <span class="badge">⭐ T4 = Pivot floraison</span>
+    </div>
+    <div class="card-body">
+      <div class="cadence-box">
+        <div class="clabel">⚡ Saisir T1 — les autres dates se calculent automatiquement</div>
+        <div class="cadence-radios">
+          <label><input type="radio" name="cadence" value="14" checked onchange="calcDates()"> Conventionnel / HVE — 14j (13j floraison)</label>
+          <label><input type="radio" name="cadence" value="10" onchange="calcDates()"> Agriculture Biologique — 10j</label>
+        </div>
+      </div>
+      <!-- FIX : dates grid dynamique, générée par JS -->
+      <div class="dates-grid" id="dates-grid"></div>
+      <div style="margin-top:12px;">
+        <div class="form-group">
+          <label>Date début vendange — pour calcul DAR ⚠️</label>
+          <input type="text" id="d_vendange" placeholder="Ex: 25 août" style="max-width:200px;" oninput="syncClient()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <span style="font-size:12px;color:var(--gris1);">* Champs obligatoires</span>
+    <button class="btn btn-primary" onclick="validerStep1()">Saisir le programme →</button>
+  </div>
+</div>
+
+<!-- ══ STEP 2 ══ -->
+
+<div id="step-2" style="display:none;">
+  <div id="alertes-melange"></div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Programme par passage</h2>
+      <span class="badge" id="surf-badge">— ha</span>
+    </div>
+    <div class="card-body">
+      <div class="passage-tabs" id="ptabs"></div>
+      <div id="ppanels"></div>
+    </div>
+  </div>
+  <div id="ift-section"></div>
+  <div id="cu-section"></div>
+  <div class="actions">
+    <button class="btn btn-secondary" onclick="goStep(1)">← Retour</button>
+    <button class="btn btn-primary" onclick="validerStep2()">Voir le récap →</button>
+  </div>
+</div>
+
+<!-- ══ STEP 3 ══ -->
+
+<div id="step-3" style="display:none;">
+  <!-- FIX : Bloc DAR bloquant -->
+  <div class="dar-warning" id="dar-warning">
+    <div class="dar-warning-title">⚠️ Alertes DAR — Vérifier avant de générer les documents</div>
+    <div id="dar-warning-body"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2>Récapitulatif</h2></div>
+    <div class="card-body">
+      <div class="recap-kpis" id="recap-kpis"></div>
+      <div id="znt-recap"></div>
+      <table class="recap-table">
+        <thead><tr>
+          <th>Pass.</th><th>Date</th><th>Produit</th><th>Cible</th>
+          <th>Dose /ha</th><th>Qté totale</th><th>IFT</th><th>DAR</th>
+        </tr></thead>
+        <tbody id="recap-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Ventilation CEGID</h2>
+      <span class="badge">Stock N-1 optionnel</span>
+    </div>
+    <div class="card-body">
+      <div class="cegid-table-wrap">
+        <table class="cegid-table" id="cegid-table"></table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2>Générer & Sauvegarder</h2></div>
+    <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="sauvegarder()" id="btn-save">💾 Sauvegarder</button>
+      <button class="btn btn-secondary" onclick="reconfigurerToken()" style="font-size:11px;">⚙️ Token</button>
+      <button class="btn btn-or" onclick="genDocClient()">🖨️ Aperçu calendrier</button>
+      <button class="btn btn-primary" onclick="imprimerCalendrier()">📄 Imprimer / Exporter PDF</button>
+      <button class="btn btn-violet" onclick="genFicheCEGID()">📋 Fiche CEGID</button>
+      <button class="btn btn-bleu" onclick="exportJSON()">⬇️ Export JSON</button>
+      <button class="btn btn-secondary" onclick="exportCSVCEGID()" style="background:var(--vert);color:#fff;">📊 Export CSV CEGID</button>
+      <button class="btn btn-rouge" style="margin-left:auto;" onclick="nouveauProg()">🔄 Nouveau</button>
+    </div>
+    <div id="save-status" style="padding:0 18px 14px;font-size:12px;color:var(--gris1);font-family:var(--font-mono);"></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-secondary" onclick="goStep(2)">← Modifier</button>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- ══ OVERLAY CLIENTS ══ -->
+
+<div class="doc-overlay" id="clients-overlay">
+  <div class="doc-overlay-header">
+    <span>📁 Programmes sauvegardés</span>
+    <div class="doc-overlay-actions">
+      <button class="btn btn-primary" onclick="nouveauProg(true)" style="padding:6px 12px;font-size:12px;">+ Nouveau programme</button>
+      <button onclick="document.getElementById('clients-overlay').classList.remove('show')"
+        style="background:var(--rouge);color:#fff;border:none;padding:7px 14px;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer;">✕</button>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:20px;">
+    <div id="clients-list-content"></div>
+  </div>
+</div>
+
+<!-- ══ OVERLAY DOC ══ -->
+
+<div class="doc-overlay" id="doc-overlay">
+  <div class="doc-overlay-header">
+    <span id="doc-title">Document</span>
+    <div class="doc-overlay-actions">
+      <a id="doc-dl" download style="background:var(--or);color:var(--vert-deep);padding:7px 14px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;">⬇️ Télécharger</a>
+      <button onclick="document.getElementById('doc-overlay').classList.remove('show')"
+        style="background:var(--rouge);color:#fff;border:none;padding:7px 14px;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer;">✕</button>
+    </div>
+  </div>
+  <iframe id="doc-iframe" style="flex:1;border:none;background:#fff;"></iframe>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// CONFIG GITHUB
+// ══════════════════════════════════════════════════════
+const GH = {
+  get token(){ return localStorage.getItem('gh_token')||''; },
+  get user(){ return localStorage.getItem('gh_user')||'stephanezunino-bot'; },
+  get repo(){ return localStorage.getItem('gh_repo')||'BERGON-FIELD'; },
+  get conseiller(){ return localStorage.getItem('gh_conseiller')||'Stéphane'; },
+  apiBase(){ return `https://api.github.com/repos/${this.user}/${this.repo}/contents`; },
+  headers(){
+    return {
+      'Authorization': `token ${this.token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+  }
+};
+
+function saveConfig(){
+  const token = document.getElementById('cfg-token').value.trim();
+  const user  = document.getElementById('cfg-user').value.trim();
+  const repo  = document.getElementById('cfg-repo').value.trim();
+  const cons  = document.getElementById('cfg-conseiller').value.trim();
+  // Token optionnel — requis uniquement pour sauvegarder
+  if(token) localStorage.setItem('gh_token', token);
+  localStorage.setItem('gh_user',  user||'stephanezunino-bot');
+  localStorage.setItem('gh_repo',  repo||'BERGON-FIELD');
+  localStorage.setItem('gh_conseiller', cons||'Stéphane');
+  document.getElementById('config-overlay').style.display='none';
+  document.getElementById('c_conseiller').value = GH.conseiller;
+  initApp();
+}
+
+function checkConfig(){
+  // Démarrage sans token — la config n'est plus bloquante
+  document.getElementById('config-overlay').style.display='none';
+  return true;
+}
+
+// ══════════════════════════════════════════════════════
+// CATALOGUE — embarqué directement (pas de fetch, fonctionne offline)
+// ══════════════════════════════════════════════════════
+const CATALOGUE_DATA = {"version":"2026.1","updated":"2026-04-13","source":"Bergon SAS — Le Muy, Var (83)","produits":[{"nom":"ALGISIUM","cible":"Mildiou","famille":"Phosphonates","dose":2.5,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":14,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":4.5,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"AMPEXIO","cible":"Mildiou","famille":"Benzamides+CAA","dose":0.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":21,"note":"Break oxathia — MAX 1/an","cu_kg_ha":0,"dose_ref_ift":0.5,"calcul_ift":true,"cond_taille":4,"cond_label":"sac 4kg","cond_type":"sac"},{"nom":"BB RSR DISPERSS NC","cible":"Mildiou","famille":"Cuivres","dose":3.75,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":14,"note":"SPe1 cuivre","cu_kg_ha":0.75,"dose_ref_ift":3.75,"calcul_ift":true,"cond_taille":15,"cond_label":"sac 15kg","cond_type":"sac"},{"nom":"CHAMP FLO AMPLI","cible":"Mildiou","famille":"Cuivres","dose":1.3,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":21,"note":"SPe1 cuivre — ZNT 20m","cu_kg_ha":0.468,"dose_ref_ift":1.5,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"ETONAN","cible":"Mildiou","famille":"Phosphonates","dose":3.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":14,"note":"⚠️ Incompat. cuivre — 2 cuves","cu_kg_ha":0,"dose_ref_ift":4.0,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"GORILLA F","cible":"Mildiou","famille":"Phtalimides+CAA","dose":2.0,"unite":"kg/ha","cmr":"CMR2","mentions_h":["H351"],"uab":false,"dar":28,"note":"H351","cu_kg_ha":0,"dose_ref_ift":2.0,"calcul_ift":true,"cond_taille":5,"cond_label":"sac 5kg","cond_type":"sac"},{"nom":"HELIOCUIVRE","cible":"Mildiou","famille":"Cuivres","dose":1.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":21,"note":"SPe1 cuivre","cu_kg_ha":0.4,"dose_ref_ift":1.0,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"HUDSON PRO / TEBAIDE","cible":"Mildiou","famille":"Acylpicolides+Phospho","dose":3.0,"unite":"kg/ha","cmr":"CMR2","mentions_h":["H361"],"uab":false,"dar":28,"note":"H361d","cu_kg_ha":0,"dose_ref_ift":3.0,"calcul_ift":true,"cond_taille":6,"cond_label":"sac 6kg","cond_type":"sac"},{"nom":"KILIM FLASH","cible":"Mildiou","famille":"Phospho+Phtalimides","dose":4.0,"unite":"kg/ha","cmr":"CMR2","mentions_h":["H351"],"uab":false,"dar":28,"note":"H351","cu_kg_ha":0,"dose_ref_ift":4.0,"calcul_ift":true,"cond_taille":12,"cond_label":"sac 12kg","cond_type":"sac"},{"nom":"LEXIC FLASH","cible":"Mildiou","famille":"Phospho+Cyano+Phtali","dose":3.0,"unite":"kg/ha","cmr":"CMR2","mentions_h":["H351","H361"],"uab":false,"dar":28,"note":"H351+H361fd","cu_kg_ha":0,"dose_ref_ift":3.0,"calcul_ift":true,"cond_taille":6,"cond_label":"sac 6kg","cond_type":"sac"},{"nom":"LIMOCIDE","cible":"Mildiou","famille":"Biocontrôle","dose":1.6,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":1,"note":"Double cible M+O","cu_kg_ha":0,"dose_ref_ift":1.6,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"MESTAR","cible":"Mildiou","famille":"Biocontrôle","dose":2.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":3,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":2.0,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"NORDOX 75 WG","cible":"Mildiou","famille":"Cuivres","dose":2.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":21,"note":"SPe1 cuivre","cu_kg_ha":0.75,"dose_ref_ift":2.0,"calcul_ift":true,"cond_taille":10,"cond_label":"sac 10kg","cond_type":"sac"},{"nom":"PACK ORONDIS+ZONGRUUM","cible":"Mildiou","famille":"OSBPI+QiI","dose":0.2,"unite":"L/ha","cmr":"CMR2","mentions_h":["H351"],"uab":false,"dar":28,"note":"H351","cu_kg_ha":0,"dose_ref_ift":0.2,"calcul_ift":true,"cond_taille":5,"cond_label":"pack 5ha","cond_type":"pack","ha_par_unite":5},{"nom":"PACK ZEUS — Kamparano","cible":"Mildiou","famille":"Phospho+OSBPI","dose":2.22,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":14,"note":"Pack 1,5ha — 2,22 L/ha effectif","cu_kg_ha":0,"dose_ref_ift":3.33,"calcul_ift":true,"cond_taille":1.5,"cond_label":"pack 1.5ha","cond_type":"pack","ha_par_unite":1.5},{"nom":"PACK ZEUS — Zorvec","cible":"Mildiou","famille":"OSBPI","dose":0.13,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":14,"note":"Max 2 OXTP/an","cu_kg_ha":0,"dose_ref_ift":0.2,"calcul_ift":true,"cond_taille":1.5,"cond_label":"pack 1.5ha","cond_type":"pack","ha_par_unite":1.5},{"nom":"PANGOLIN DG","cible":"Mildiou","famille":"Phospho+Cuivre","dose":4.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":28,"note":"ZNT 20m","cu_kg_ha":0.6,"dose_ref_ift":5.0,"calcul_ift":true,"cond_taille":10,"cond_label":"sac 10kg","cond_type":"sac"},{"nom":"REDELI","cible":"Mildiou","famille":"Phosphonates","dose":2.5,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":21,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":2.5,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"SOLUTION ENERVIN+ALUCINAN","cible":"Mildiou","famille":"QoSI+Phospho","dose":1.5,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":21,"note":"⚠️ Résistances méd.","cu_kg_ha":0,"dose_ref_ift":1.5,"calcul_ift":true,"cond_taille":2,"cond_label":"pack 2ha","cond_type":"pack","ha_par_unite":2},{"nom":"YUCCA","cible":"Mildiou","famille":"Cuivres","dose":3.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":21,"note":"SPe1 28kg/7ans","cu_kg_ha":0.378,"dose_ref_ift":8.4,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"ALGEBRE","cible":"Oïdium","famille":"Benzophénones","dose":0.2,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":28,"note":"Max 2/an","cu_kg_ha":0,"dose_ref_ift":0.2,"calcul_ift":true,"cond_taille":1,"cond_label":"bidon 1L","cond_type":"bidon"},{"nom":"ARMICARB","cible":"Oïdium","famille":"Biocontrôle","dose":3.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":1,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":5.0,"calcul_ift":true,"cond_taille":10,"cond_label":"sac 10kg","cond_type":"sac"},{"nom":"CARBOBASIC","cible":"Oïdium","famille":"Biocontrôle","dose":4.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Substance de base","cu_kg_ha":0,"dose_ref_ift":4.0,"calcul_ift":true,"cond_taille":25,"cond_label":"sac 25kg","cond_type":"sac"},{"nom":"CONYDIA","cible":"Oïdium","famille":"Triazoles+Amidoximes","dose":0.5,"unite":"L/ha","cmr":"CMR2","mentions_h":["H351"],"uab":false,"dar":21,"note":"H351","cu_kg_ha":0,"dose_ref_ift":0.5,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"CYFLODIUM","cible":"Oïdium","famille":"Amidoximes","dose":0.5,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":21,"note":"Max 2/an","cu_kg_ha":0,"dose_ref_ift":0.5,"calcul_ift":true,"cond_taille":1,"cond_label":"bidon 1L","cond_type":"bidon"},{"nom":"HELIOSOUFRE S","cible":"Oïdium","famille":"Soufre","dose":6.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":5,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":7.5,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"LIMOCIDE (oïdium)","cible":"Oïdium","famille":"Biocontrôle","dose":1.6,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":1,"note":"Double cible M+O","cu_kg_ha":0,"dose_ref_ift":1.6,"calcul_ift":true,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"MAMBO SC","cible":"Oïdium","famille":"Soufre","dose":12.1,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":5,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":12.1,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"MESTAR (oïdium)","cible":"Oïdium","famille":"Biocontrôle","dose":2.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":3,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":2.0,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"MICROSOUFRE","cible":"Oïdium","famille":"Soufre","dose":12.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":21,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":12.5,"calcul_ift":true,"cond_taille":25,"cond_label":"sac 25kg","cond_type":"sac"},{"nom":"SAMOURAÏ","cible":"Oïdium","famille":"Triazoles","dose":1.2,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":false,"dar":21,"note":"Max 1/an","cu_kg_ha":0,"dose_ref_ift":2.0,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"SCORE","cible":"Oïdium","famille":"Triazoles","dose":0.2,"unite":"L/ha","cmr":"CMR2","mentions_h":["H351"],"uab":false,"dar":21,"note":"H351","cu_kg_ha":0,"dose_ref_ift":0.2,"calcul_ift":true,"cond_taille":1,"cond_label":"bidon 1L","cond_type":"bidon"},{"nom":"SOLFOXIDANTE","cible":"Oïdium","famille":"Soufre poudre","dose":30.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":1,"note":"Cadence 10j","cu_kg_ha":0,"dose_ref_ift":30.0,"calcul_ift":true,"cond_taille":25,"cond_label":"sac 25kg","cond_type":"sac"},{"nom":"SOUFRE SUBLIME","cible":"Oïdium","famille":"Soufre poudre","dose":25.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":5,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":25.0,"calcul_ift":true,"cond_taille":25,"cond_label":"sac 25kg","cond_type":"sac"},{"nom":"SOUFREBE NEO","cible":"Oïdium","famille":"Soufre","dose":12.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":3,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":12.5,"calcul_ift":true,"cond_taille":20,"cond_label":"sac 20kg","cond_type":"sac"},{"nom":"SULFORIX RAINFREE","cible":"Oïdium","famille":"Soufre","dose":12.1,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":3,"note":"DRE 48h","cu_kg_ha":0,"dose_ref_ift":12.1,"calcul_ift":true,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"THIOVIT JET","cible":"Oïdium","famille":"Soufre","dose":12.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":3,"note":"Biocontrôle","cu_kg_ha":0,"dose_ref_ift":12.5,"calcul_ift":true,"cond_taille":20,"cond_label":"sac 20kg","cond_type":"sac"},{"nom":"YARIS","cible":"Oïdium","famille":"SDHI","dose":0.15,"unite":"L/ha","cmr":"H362*","mentions_h":["H362"],"uab":false,"dar":35,"note":"H362 ≠ CMR HVE — DAR 35j","cu_kg_ha":0,"dose_ref_ift":0.15,"calcul_ift":true,"cond_taille":1,"cond_label":"bidon 1L","cond_type":"bidon"},{"nom":"AG Zinc 120F","cible":"Nutrition","famille":"Oligo Zn foliaire","dose":1.5,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Carence Zn — avant floraison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"AlgaBioPlus","cible":"Nutrition","famille":"Algue+NPK organique","dose":4.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Sortie feuilles → mi-véraison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"BASFOLIAR SPYRA SL","cible":"Nutrition","famille":"Biostimulant micro-algues","dose":2.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"UAB — max 6/an","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"EcoBios Vigne","cible":"Nutrition","famille":"Lipopeptide cuivre","dose":0.15,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Floraison → véraison — qualité baies","cu_kg_ha":0.0075,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":1,"cond_label":"bidon 1L","cond_type":"bidon"},{"nom":"GeoDyn N109","cible":"Nutrition","famille":"Azote foliaire organique","dose":5.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"5 feuilles → mi-véraison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"HomeoPLante 171","cible":"Nutrition","famille":"Phytothérapie Mn+Zn","dose":3.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Débourrement → boutons floraux","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"HomeoPLante 172","cible":"Nutrition","famille":"Phytothérapie Mg+B","dose":5.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Floraison → véraison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"KAIZ'N","cible":"Nutrition","famille":"Azote organique poudre","dose":2.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"1ères feuilles → maturité","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":20,"cond_label":"sac 20kg","cond_type":"sac"},{"nom":"KAIZ'NK","cible":"Nutrition","famille":"Azote+K organique poudre","dose":2.5,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Formation baies → maturité","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"sac 10kg","cond_type":"sac"},{"nom":"Kori Feuille","cible":"Nutrition","famille":"Biostimulant N+S+oligos","dose":5.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Avant floraison — démarrage","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"Kori Force","cible":"Nutrition","famille":"Biostimulant N+K+B","dose":5.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Floraison → récolte","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"Kori Zen","cible":"Nutrition","famille":"Biostimulant antistress","dose":1.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Tout au long du cycle","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"Lamina FeMn","cible":"Nutrition","famille":"Algue+Fe+Mn EDTA","dose":3.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Grappes séparées → nouaison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"Laminaflor","cible":"Nutrition","famille":"Algue+B+Mg floraison","dose":2.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Bore floraison — grappes séparées → nouaison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"Laminaveg","cible":"Nutrition","famille":"Algue pure Laminaria","dose":2.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Stades G, H, J","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"},{"nom":"Mendone","cible":"Nutrition","famille":"Algue Ascophyllum+Cu+Zn+Mn","dose":3.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Débourrement → récolte","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":10,"cond_label":"bidon 10L","cond_type":"bidon"},{"nom":"Pepton 85/16","cible":"Nutrition","famille":"Acides aminés+Fe","dose":2.0,"unite":"kg/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Plantation, 7-8 feuilles, nouaison","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"sac 5kg","cond_type":"sac"},{"nom":"STICoP Innov","cible":"Nutrition","famille":"Algue+B+Cu+Mn+Zn","dose":1.0,"unite":"L/ha","cmr":"Non","mentions_h":[],"uab":true,"dar":0,"note":"Post-vendange, BBCH 35-75","cu_kg_ha":0,"calcul_ift":false,"dose_ref_ift":null,"cond_taille":5,"cond_label":"bidon 5L","cond_type":"bidon"}],"conditionnements":{"CHAMP FLO AMPLI":[5],"ETONAN":[10],"ALGISIUM":[10],"REDELI":[10],"AMPEXIO":[8,4],"BB RSR DISPERSS NC":[15],"PANGOLIN DG":[10],"HUDSON PRO / TEBAIDE":[6],"LEXIC FLASH":[6],"KILIM FLASH":[12],"GORILLA F":[5],"THIOVIT JET":[20],"SOUFREBE NEO":[20],"MICROSOUFRE":[25],"SULFORIX RAINFREE":[10],"HELIOSOUFRE S":[10],"MAMBO SC":[10],"SOLFOXIDANTE":[25],"SOUFRE SUBLIME":[25],"ARMICARB":[10],"CARBOBASIC":[25],"YARIS":[5,1],"ALGEBRE":[5,1],"CYFLODIUM":[5,1],"SAMOURAÏ":[10],"CONYDIA":[5],"SCORE":[5,1],"MESTAR":[10],"MESTAR (oïdium)":[10],"LIMOCIDE":[5],"LIMOCIDE (oïdium)":[5],"NORDOX 75 WG":[25,10],"HELIOCUIVRE":[5],"BASFOLIAR SPYRA SL":[5],"YUCCA":[5],"PACK ZEUS — Kamparano":[0],"PACK ZEUS — Zorvec":[0],"SOLUTION ENERVIN+ALUCINAN":[0],"PACK ORONDIS+ZONGRUUM":[0],"GeoDyn N109":[10],"Pepton 85/16":[5],"Kori Feuille":[10],"Kori Force":[10],"Kori Zen":[10],"Laminaflor":[5],"Laminaveg":[5],"Lamina FeMn":[5],"AlgaBioPlus":[5],"Mendone":[10],"STICoP Innov":[5],"AG Zinc 120F":[10],"EcoBios Vigne":[1],"HomeoPLante 171":[5],"HomeoPLante 172":[5],"KAIZ'N":[20],"KAIZ'NK":[10]},"melanges_interdits":{"toujours_interdits":["H340","H350","H360","H370","H372"],"matrice":{"H351":["H351","H341","H371"],"H341":["H351","H341","H371"],"H371":["H351","H341","H371","H373"],"H373":["H371","H373","H361","H362"],"H361":["H373","H361","H362"],"H362":["H373","H361","H362"]}}};
+
+let CAT = CATALOGUE_DATA.produits || [];
+let COND = CATALOGUE_DATA.conditionnements || {};
+let MELANGES = CATALOGUE_DATA.melanges_interdits || {};
+
+async function loadCatalogue(){
+  // Catalogue embarqué — pas de fetch nécessaire
+  showToast(`✅ Catalogue chargé — ${CAT.length} produits`);
+}
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+function genId(){
+  return `BRG-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substr(2,4).toUpperCase()}`;
+}
+
+const ENT_COLORS = ['e1','e2','e3','e4','e5'];
+const ENT_LABELS = ['Entité 1','Entité 2','Entité 3','Entité 4','Entité 5'];
+const ENT_DARK   = ['#1565C0','#1e6e27','#6A1B9A','#E65100','#00695C'];
+const ENT_PALE   = ['#DBEAFE','#eaf6eb','#F3E5F5','#FBE9E7','#E0F2F1'];
+
+let S = newState();
+
+function newState(){
+  return {
+    id: genId(),
+    meta: { createdAt: new Date().toISOString(), updatedAt: null, version: '2.1', savedAt: null },
+    client: { nom:'', secteur:'', certif:'HVE V4', type:'', conseiller: GH.conseiller||'Stéphane', nbPass:6 },
+    entites: [{nom:'',surf:0},{nom:'',surf:0},{nom:'',surf:0},{nom:'',surf:0},{nom:'',surf:0}],
+    dates: { t1:'', vendange:'', cadence:14 },  // FIX : plus de t2-t6 fixes, géré dynamiquement
+    stocks: {},
+    passages: {},
+    currentPass: 1,
+    currentCible: null,
+  };
+}
+
+document.getElementById('hdr-id').textContent = S.id;
+
+// ══════════════════════════════════════════════════════
+// FIX : DATES DYNAMIQUES — supportent N passages (pas seulement 6)
+// ══════════════════════════════════════════════════════
+const MOIS={
+  janvier:0,fevrier:1,'février':1,mars:2,avril:3,mai:4,juin:5,
+  juillet:6,aout:7,'août':7,septembre:8,octobre:9,novembre:10,
+  decembre:11,'décembre':11
+};
+const MNOM=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+const BBCH_LABELS = [
+  'Débourrement','Montaison','Boutons floraux','⭐ Floraison','Nouaison','Véraison'
+];
+
+function getBBCHLabel(p){
+  return p <= 6 ? (BBCH_LABELS[p-1]||`Passage ${p}`) : `Passage ${p}`;
+}
+
+function parseD(s){
+  if(!s) return null;
+  s = s.trim().toLowerCase();
+  let m = s.match(/^(\d{1,2})\s+([a-z\u00e0-\u00ff]+)$/);
+  if(m){ const j=parseInt(m[1]),mo=MOIS[m[2]]; if(mo!==undefined) return new Date(2026,mo,j); }
+  m = s.match(/^(\d{1,2})[\/\-](\d{1,2})$/);
+  if(m) return new Date(2026,parseInt(m[2])-1,parseInt(m[1]));
+  return null;
+}
+function fmtD(d){ return d ? d.getDate()+' '+MNOM[d.getMonth()] : ''; }
+function addD(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+
+function buildDatesGrid(){
+  const nb = S.client.nbPass || 6;
+  const grid = document.getElementById('dates-grid');
+  if(!grid) return;
+
+  let html = `
+    <div class="date-item">
+      <label>T1 — Débourrement *</label>
+      <input type="text" id="d_t1" placeholder="Ex: 20 avril" oninput="calcDates()" value="${S.dates['t1']||''}">
+      <span class="error-msg" id="err-t1" style="display:none;">Date T1 obligatoire</span>
+    </div>`;
+
+  for(let p=2; p<=nb; p++){
+    const isPivot = p===4;
+    const label = `T${p} — ${getBBCHLabel(p)}`;
+    html += `
+      <div class="date-item${isPivot?' date-pivot':''}">
+        <label>${label}</label>
+        <input type="text" id="d_t${p}" placeholder="Auto" readonly value="${S.dates['t'+p]||''}">
+      </div>`;
+  }
+  grid.innerHTML = html;
+  grid.style.gridTemplateColumns = nb <= 4 ? `repeat(${nb},1fr)` : 'repeat(3,1fr)';
+}
+
+function calcDates(){
+  const d1 = parseD(document.getElementById('d_t1').value);
+  if(!d1) return;
+  let cad = 14;
+  document.querySelectorAll('input[name="cadence"]').forEach(r=>{ if(r.checked) cad=parseInt(r.value); });
+  S.dates.cadence = cad;
+  S.dates['t1'] = document.getElementById('d_t1').value;
+
+  const nb = S.client.nbPass || 6;
+  let prev = d1;
+  for(let p=2; p<=nb; p++){
+    // T4 (floraison) : intervalle resserré à 13j en conventionnel
+    const interval = (p===4 && cad===14) ? 13 : cad;
+    const d = addD(prev, interval);
+    S.dates['t'+p] = fmtD(d);
+    const el = document.getElementById(`d_t${p}`);
+    if(el) el.value = fmtD(d);
+    prev = d;
+  }
+  syncAll();
+}
+
+function onNbPassChange(){
+  const nb = parseInt(document.getElementById('c_nbpass').value)||6;
+  S.client.nbPass = nb;
+  // Initialiser les passages manquants
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]) S.passages[p]=[];
+  }
+  buildDatesGrid();
+  calcDates();
+}
+
+function onCertifChange(){
+  const isAB = document.getElementById('c_certif').value.toLowerCase().includes('biologique');
+  document.querySelectorAll('input[name="cadence"]').forEach(r=>{ r.checked=(r.value===(isAB?'10':'14')); });
+  calcDates();
+  syncAll();
+}
+
+// ══════════════════════════════════════════════════════
+// NAVIGATION & VALIDATION
+// ══════════════════════════════════════════════════════
+function goStep(n){
+  syncAll();
+  if(n===2) buildPassages();
+  if(n===3){ buildPassages(); buildRecap(); buildCEGID(); checkDAR(); }
+  [1,2,3].forEach(i=>{
+    document.getElementById(`step-${i}`).style.display = i===n ? 'block' : 'none';
+    document.getElementById(`sb${i}`).classList.toggle('active', i===n);
+  });
+  window.scrollTo(0,0);
+}
+
+function validerStep1(){
+  syncAll();
+  let ok = true;
+  const nom = document.getElementById('c_nom').value.trim();
+  const t1  = document.getElementById('d_t1').value.trim();
+  const surf = surfTotal();
+
+  document.getElementById('err-nom').style.display = nom ? 'none' : 'block';
+  document.getElementById('c_nom').classList.toggle('error', !nom);
+  if(!nom) ok = false;
+
+  document.getElementById('err-t1').style.display = t1 ? 'none' : 'block';
+  document.getElementById('d_t1').classList.toggle('error', !t1);
+  if(!t1) ok = false;
+
+  if(surf <= 0){
+    showToast('⚠️ Saisir au moins une entité avec une surface','error');
+    ok = false;
+  }
+
+  if(ok) goStep(2);
+}
+
+function validerStep2(){
+  syncAll();
+  const nb = S.client.nbPass || 6;
+  let hasProds = false;
+  for(let p=1; p<=nb; p++) if(S.passages[p] && S.passages[p].length) hasProds = true;
+  if(!hasProds){
+    showToast('⚠️ Ajouter au moins un produit dans le programme','error');
+    return;
+  }
+  goStep(3);
+}
+
+function syncAll(){
+  S.client.nom        = v('c_nom');
+  S.client.secteur    = v('c_secteur');
+  S.client.certif     = document.getElementById('c_certif').value;
+  S.client.type       = v('c_type');
+  S.client.conseiller = v('c_conseiller');
+  S.client.nbPass     = parseInt(document.getElementById('c_nbpass').value)||6;
+  S.dates.vendange    = v('d_vendange');
+  S.dates['t1']       = v('d_t1');
+
+  const nb = S.client.nbPass || 6;
+  for(let p=2; p<=nb; p++){
+    const el = document.getElementById(`d_t${p}`);
+    if(el) S.dates['t'+p] = el.value;
+  }
+  for(let i=0; i<5; i++){
+    const ni = document.getElementById(`ent_nom_${i}`);
+    const si = document.getElementById(`ent_surf_${i}`);
+    if(ni) S.entites[i].nom  = ni.value.trim();
+    if(si) S.entites[i].surf = parseFloat(si.value)||0;
+  }
+  updateSurfTotal();
+  S.meta.updatedAt = new Date().toISOString();
+}
+
+function v(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
+function syncClient(){ syncAll(); }
+
+function surfTotal(){ return S.entites.reduce((s,e)=>s+(e.surf||0),0); }
+
+function updateSurfTotal(){
+  const tot = surfTotal();
+  const d = document.getElementById('surf-total-display');
+  if(d) d.textContent = `Surface totale : ${tot>0 ? tot.toFixed(1)+' ha' : '—'}`;
+  const b = document.getElementById('surf-badge');
+  if(b) b.textContent = tot>0 ? tot.toFixed(1)+' ha' : '— ha';
+}
+
+// ══════════════════════════════════════════════════════
+// FIX : VALIDATION DAR BLOQUANTE (Step 3)
+// Calcule la différence entre la date du passage et la date vendange
+// Alerte si DAR produit > jours restants avant vendange
+// ══════════════════════════════════════════════════════
+function checkDAR(){
+  const vendange = parseD(S.dates.vendange);
+  const block = document.getElementById('dar-warning');
+  const body  = document.getElementById('dar-warning-body');
+
+  if(!vendange){ block.classList.remove('show'); return; }
+
+  const violations = [];
+  const nb = S.client.nbPass || 6;
+
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p] || !S.passages[p].length) continue;
+    const datePassage = parseD(S.dates['t'+p]);
+    if(!datePassage) continue;
+
+    const joursAvantVendange = Math.round((vendange - datePassage) / (1000*60*60*24));
+
+    S.passages[p].forEach(pr=>{
+      if(!pr.dar || pr.dar <= 0) return;
+      if(pr.dar > joursAvantVendange){
+        violations.push({
+          passage: p,
+          datePassage: S.dates['t'+p] || `T${p}`,
+          produit: pr.nom,
+          dar: pr.dar,
+          joursRestants: joursAvantVendange,
+          depassement: pr.dar - joursAvantVendange
+        });
+      }
+    });
+  }
+
+  if(!violations.length){
+    block.classList.remove('show');
+    return;
+  }
+
+  block.classList.add('show');
+  body.innerHTML = violations.map(v=>`
+    <div class="dar-item">
+      🚫 <strong>T${v.passage} (${v.datePassage})</strong> — <strong>${v.produit}</strong> :
+      DAR ${v.dar}j mais vendange dans ${v.joursRestants}j
+      → <span style="color:var(--rouge);font-weight:700;">dépassement de ${v.depassement} jour(s)</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// ENTITÉS
+// ══════════════════════════════════════════════════════
+function buildEntites(){
+  document.getElementById('entites-grid').innerHTML = ENT_COLORS.map((cls,i)=>`
+    <div class="entite-card ${cls}">
+      <label>${ENT_LABELS[i]}</label>
+      <input type="text" id="ent_nom_${i}" placeholder="Nom de l'entité"
+        value="${S.entites[i].nom||''}" oninput="syncAll()">
+      <div class="entite-surf">
+        <input type="number" id="ent_surf_${i}" placeholder="0" step="0.1" min="0"
+          value="${S.entites[i].surf||''}" oninput="syncAll()">
+        <span>ha</span>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// ALERTES MÉLANGES
+// ══════════════════════════════════════════════════════
+function checkMelanges(){
+  const alertes = [];
+  const nb = S.client.nbPass || 6;
+  for(let p=1; p<=nb; p++){
+    const prods = S.passages[p];
+    if(!prods || prods.length < 2) continue;
+    prods.forEach(pr=>{
+      (pr.mentions_h||[]).forEach(h=>{
+        if((MELANGES.toujours_interdits||[]).includes(h)){
+          alertes.push({ level:'rouge', pass:p, date:S.dates['t'+p],
+            msg:`<strong>${pr.nom}</strong> porte la mention <strong>${h}</strong> — mélange extemporané interdit` });
+        }
+      });
+    });
+    for(let i=0; i<prods.length; i++){
+      for(let j=i+1; j<prods.length; j++){
+        const hA = prods[i].mentions_h||[];
+        const hB = prods[j].mentions_h||[];
+        hA.forEach(ha=>{
+          const interdits = (MELANGES.matrice||{})[ha]||[];
+          hB.forEach(hb=>{
+            if(interdits.includes(hb)){
+              alertes.push({ level:'rouge', pass:p, date:S.dates['t'+p],
+                msg:`<strong>${prods[i].nom}</strong> (${ha}) + <strong>${prods[j].nom}</strong> (${hb}) — mélange interdit (arrêté 12/06/2015)` });
+            }
+          });
+        });
+      }
+    }
+  }
+  return alertes;
+}
+
+function renderAlertesProgramme(){
+  const alertes = checkMelanges();
+  const el = document.getElementById('alertes-melange');
+  if(!alertes.length){ el.innerHTML=''; return; }
+  el.innerHTML = `<div class="card"><div class="card-header" style="background:var(--rouge);"><h2>⚠️ Mélanges extemporanés interdits</h2></div><div class="card-body">`+
+    alertes.map(a=>`
+      <div class="alerte alerte-rouge">
+        <span class="ico">🚫</span>
+        <div>
+          <div class="titre">T${a.pass}${a.date?' — '+a.date:''}</div>
+          <div>${a.msg}</div>
+        </div>
+      </div>`).join('')+
+    '</div></div>';
+}
+
+// ══════════════════════════════════════════════════════
+// FIX : IFT — dose AMM depuis catalogue (plus de DOSES_REF hardcodé)
+// ══════════════════════════════════════════════════════
+function calcIFT(){
+  const BIOCONTROL_FAMILLES = ['biocontr','soufre','cuivr','phosphonat'];
+  let horsBC = 0, bioBC = 0;
+  const lines = [];
+  const nb = S.client.nbPass || 6;
+
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]) continue;
+    S.passages[p].forEach(pr=>{
+      if(pr.c === 'Nutrition') return; // Nutrition exclue de l'IFT
+
+      // FIX : dose AMM = pr.doseAMM si renseigné, sinon pr.d (dose utilisée = dose AMM)
+      const refProd = CAT.find(x=>x.nom===pr.nom);
+      const doseAMM = (refProd && refProd.dose) ? refProd.dose : pr.d;
+      if(!doseAMM || doseAMM === 0) return;
+
+      const ift = pr.d / doseAMM;
+      const fam = (pr.f||'').toLowerCase();
+      const isBioC = BIOCONTROL_FAMILLES.some(k=>fam.includes(k));
+      if(isBioC) bioBC += ift;
+      else horsBC += ift;
+      lines.push({ nom:pr.nom, ift:ift.toFixed(2), pass:p, bioC:isBioC });
+    });
+  }
+  return {
+    total:   (horsBC+bioBC).toFixed(2),
+    horsBC:  horsBC.toFixed(2),
+    bioBC:   bioBC.toFixed(2),
+    lines
+  };
+}
+
+function calcCuivre(){
+  const surf = surfTotal();
+  if(!surf) return { total:0, alert:false };
+  let cu = 0;
+  const nb = S.client.nbPass || 6;
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]||!S.passages[p].length) continue;
+    S.passages[p].forEach(pr=>{
+      const refProd = CAT.find(x=>x.nom===pr.nom);
+      if(refProd && refProd.cu_kg_ha > 0 && refProd.dose > 0)
+        cu += refProd.cu_kg_ha * pr.d / refProd.dose;
+    });
+  }
+  return { total: cu.toFixed(2), alert: cu > 4 };
+}
+
+function renderIFTCuivre(){
+  const ift = calcIFT();
+  const cu  = calcCuivre();
+  let html = `<div class="card"><div class="card-header"><h2>📊 IFT & Cuivre</h2></div><div class="card-body">`;
+  html += `<div class="ift-bar">
+    <div>
+      <div class="ift-label">IFT hors biocontrôle</div>
+      <div class="ift-total">${ift.horsBC}</div>
+    </div>
+    <div>
+      <div class="ift-label">IFT biocontrôle</div>
+      <div class="ift-total" style="color:var(--vert);">${ift.bioBC}</div>
+    </div>
+    <div>
+      <div class="ift-label">IFT Total</div>
+      <div class="ift-total" style="color:var(--vert-dark);">${ift.total}</div>
+    </div>
+  </div>`;
+  if(cu.alert){
+    html += `<div class="alerte alerte-rouge" style="margin-top:10px;">
+      <span class="ico">⚠️</span>
+      <div><div class="titre">Dépassement SPe1 cuivre — ${cu.total} kg Cu métal/ha/an (max 4 kg)</div>
+      <div>Réduire les doses ou le nombre d'applications de produits cuivrés.</div></div></div>`;
+  } else if(parseFloat(cu.total) > 0){
+    html += `<div class="alerte alerte-vert" style="margin-top:10px;">
+      <span class="ico">✅</span>
+      <div><div class="titre">Cuivre SPe1 OK — ${cu.total} kg Cu métal/ha/an (max 4 kg)</div></div></div>`;
+  }
+  html += '</div></div>';
+  document.getElementById('ift-section').innerHTML = html;
+  document.getElementById('cu-section').innerHTML = '';
+}
+
+// ══════════════════════════════════════════════════════
+// STEP 2 — PASSAGES
+// ══════════════════════════════════════════════════════
+function buildPassages(){
+  syncAll();
+  const surf = surfTotal();
+  const nb   = S.client.nbPass || 6;
+
+  document.getElementById('surf-badge').textContent = surf>0 ? surf.toFixed(1)+' ha' : '— ha';
+
+  const tabs   = document.getElementById('ptabs');
+  const panels = document.getElementById('ppanels');
+  tabs.innerHTML = ''; panels.innerHTML = '';
+
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]) S.passages[p] = [];
+    const date = S.dates['t'+p] || '';
+    const tab = document.createElement('button');
+    tab.className = 'pass-tab'+(p===4?' pass-tab-pivot':'')+(S.currentPass===p?' active':'')+(S.passages[p].length?' has-data':'');
+    tab.textContent = `T${p}${date?' — '+date:''}`;
+    tab.onclick = ()=>switchPass(p);
+    tabs.appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = 'passage-panel'+(S.currentPass===p?' active':'');
+    panel.id = `pp-${p}`;
+    panel.innerHTML = buildPanel(p, date, surf, nb);
+    panels.appendChild(panel);
+  }
+
+  document.querySelectorAll('.cible-btn').forEach(b=>b.addEventListener('click',()=>selCible(b)));
+  document.querySelectorAll('.prod-search').forEach(i=>i.addEventListener('input',()=>filterProds(i)));
+  renderAlertesProgramme();
+  renderIFTCuivre();
+}
+
+function buildPanel(p, date, surf, nb){
+  const isAB = S.client.certif.toLowerCase().includes('biologique');
+  const bbchLabel = p<=6 ? ['BBCH 13-15 — Débourrement','BBCH 25-35 — Montaison','BBCH 53-57 — Boutons floraux','BBCH 65-68 — ⭐ Floraison','BBCH 75-79 — Nouaison','BBCH 81-85 — Véraison'][p-1] : `Passage T${p}`;
+  return `
+    <div class="passage-info">
+      <span>Passage <strong>T${p}</strong> — ${bbchLabel}</span>
+      ${date ? `<span class="pass-date-badge">${date}</span>` : '<span style="color:var(--gris3);font-size:12px;">Date non renseignée</span>'}
+      ${p===4 ? '<span style="background:var(--bleu);color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;">⭐ Pivot floraison</span>' : ''}
+      ${isAB  ? '<span style="background:#eaf6eb;color:var(--vert-dark);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;">🌿 AB</span>' : ''}
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+      <div class="cible-btns" data-pass="${p}" style="margin-bottom:0;flex:1;">
+        <button class="cible-btn" data-cible="Mildiou" data-pass="${p}">🔵 Mildiou</button>
+        <button class="cible-btn" data-cible="Oïdium" data-pass="${p}">🟠 Oïdium</button>
+        <button class="cible-btn" data-cible="Nutrition" data-pass="${p}">🟣 Nutrition</button>
+      </div>
+      ${p>1 ? `<button onclick="copierPassage(${p})" style="padding:7px 13px;border-radius:20px;font-size:12px;font-weight:600;border:2px solid var(--gris3);background:#fff;cursor:pointer;color:var(--gris1);white-space:nowrap;" onmouseover="this.style.borderColor='var(--vert)';this.style.background='var(--vert-p)'" onmouseout="this.style.borderColor='var(--gris3)';this.style.background='#fff'">📋 Copier T${p-1}</button>` : ''}
+    </div>
+    <div class="produits-list" id="pl-${p}">
+      <input class="prod-search" placeholder="🔍 Rechercher..." data-pass="${p}">
+      <div class="prod-items" id="pi-${p}"></div>
+    </div>
+    <div class="selected-prods" id="sp-${p}">${renderSel(p,surf)}</div>`;
+}
+
+function renderSel(p, surf){
+  const prods = S.passages[p];
+  if(!prods || !prods.length) return `<div class="empty-pass">Aucun produit — choisissez une cible ci-dessus</div>`;
+
+  const vendange = parseD(S.dates.vendange);
+  const datePass = parseD(S.dates['t'+p]);
+
+  return prods.map((item,idx)=>{
+    const qty = surf ? (item.d*surf).toFixed(1) : '—';
+    const cls = item.c==='Mildiou' ? 'mildiou' : item.c==='Oïdium' ? 'oidium' : 'nutrition';
+    const tag = item.c==='Mildiou' ? '🔵' : item.c==='Oïdium' ? '🟠' : '🟣';
+
+    // FIX DAR : calcul jours restants réel
+    let darW = '';
+    if(item.dar > 0 && vendange && datePass){
+      const joursRestants = Math.round((vendange - datePass) / (1000*60*60*24));
+      if(item.dar > joursRestants){
+        darW = `<span style="font-size:11px;color:var(--rouge);font-weight:700;background:var(--rouge-p);padding:2px 6px;border-radius:4px;">🚫 DAR ${item.dar}j / ${joursRestants}j restants</span>`;
+      } else {
+        darW = `<span style="font-size:11px;color:var(--gris1);">DAR ${item.dar}j ✓</span>`;
+      }
+    } else if(item.dar > 0){
+      darW = `<span style="font-size:11px;color:var(--gris3);">DAR ${item.dar}j</span>`;
+    }
+
+    const hW = item.mentions_h && item.mentions_h.length
+      ? `<span style="font-size:10px;color:var(--rouge);background:var(--rouge-p);padding:1px 5px;border-radius:3px;">${item.mentions_h.join(' ')}</span>`
+      : '';
+
+    return `<div class="sel-prod-card ${cls}">
+      <span class="sel-prod-name">${tag} ${item.nom}</span>
+      <div class="dose-inp">
+        <input type="number" value="${item.d}" step="0.01" min="0" onchange="updDose(${p},${idx},this.value)">
+        <span class="dose-unite">${item.u}</span>
+      </div>
+      <span class="qty-total">${qty} ${item.u.replace('/ha','')}</span>
+      ${darW}${hW}${item.znt>0?`<span style="font-size:10px;color:#1565C0;background:#E3F2FD;padding:1px 5px;border-radius:3px;font-weight:700;">ZNT ${item.znt}m</span>`:""}
+      <button class="btn-rm" onclick="rmProd(${p},${idx})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function switchPass(p){ S.currentPass=p; S.currentCible=null; buildPassages(); }
+
+function selCible(btn){
+  const p = parseInt(btn.dataset.pass);
+  S.currentCible = btn.dataset.cible;
+  btn.closest('.cible-btns').querySelectorAll('.cible-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById(`pl-${p}`).classList.add('visible');
+  renderProdList(p, S.currentCible, '');
+}
+
+function renderProdList(p, cible, q){
+  const isAB = S.client.certif.toLowerCase().includes('biologique');
+  let prods = CAT.filter(x=>x.cible===cible);
+  if(q) prods = prods.filter(x=>x.nom.toLowerCase().includes(q.toLowerCase())||x.famille.toLowerCase().includes(q.toLowerCase()));
+  if(isAB) prods = [...prods.filter(x=>x.uab), ...prods.filter(x=>!x.uab)];
+  const sel = S.passages[p].map(x=>x.nom);
+  document.getElementById(`pi-${p}`).innerHTML = prods.map(pr=>{
+    const isSel = sel.includes(pr.nom);
+    const isNA  = isAB && !pr.uab;
+    const cmrC  = pr.cmr==='CMR2'?'chip-cmr2':pr.cmr==='H362*'?'chip-h362':'chip-ok';
+    const cmrT  = pr.cmr==='Non'?'✓ Non CMR':pr.cmr;
+    const hChips = (pr.mentions_h||[]).map(h=>`<span class="chip-sm chip-cmr2">${h}</span>`).join('');
+    return `<div class="prod-item${isSel?' selected':''}${isNA?' non-uab':''}" onclick="togProd('${pr.nom.replace(/'/g,"\\'")}',${p})">
+      <div style="flex:1;">
+        <div class="prod-nom">${pr.nom}${isNA?'<span style="font-size:10px;color:var(--orange);margin-left:5px;">Non UAB</span>':''}</div>
+        <div class="prod-sous">${pr.famille} — <strong>${pr.dose} ${pr.unite}</strong>${pr.note?' — <em>'+pr.note+'</em>':''}${ZNT_MAP[pr.nom]?' — <span style="color:#1565C0;font-weight:700;">ZNT '+ZNT_MAP[pr.nom]+'m</span>':''}</div>
+      </div>
+      <div class="prod-chips">
+        <span class="chip-sm ${cmrC}">${cmrT}</span>
+        ${hChips}
+        <span class="chip-sm ${pr.uab?'chip-uab':'chip-nuab'}">${pr.uab?'🌿 UAB':'⚠️ Non UAB'}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function copierPassage(p){
+  const source = p - 1;
+  if(!S.passages[source]||!S.passages[source].length){
+    showToast(`⚠️ T${source} est vide — rien à copier`,'error');
+    return;
+  }
+  S.passages[p] = S.passages[source].map(pr=>({...pr}));
+  const surf = surfTotal();
+  document.getElementById(`sp-${p}`).innerHTML = renderSel(p, surf);
+  refreshTabs();
+  renderAlertesProgramme();
+  renderIFTCuivre();
+  showToast(`✅ T${source} copié vers T${p} — ${S.passages[p].length} produit(s)`);
+}
+
+function filterProds(inp){
+  const p = parseInt(inp.dataset.pass);
+  if(S.currentCible) renderProdList(p, S.currentCible, inp.value);
+}
+
+
+// ══════════════════════════════════════════════════════
+// CONTRÔLES MÉTIER — Max passages AMM, Anti-résistances FRAC, ZNT
+// ══════════════════════════════════════════════════════
+
+const MAX_PASSAGES = {
+  'AMPEXIO':1, 'ALGEBRE':2, 'CYFLODIUM':2, 'SAMOURAÏ':1,
+  'PACK ZEUS — Zorvec':2, 'PACK ORONDIS+ZONGRUUM':2,
+  'YARIS':3, 'SCORE':3, 'CONYDIA':3,
+};
+
+const FRAC_GROUPS = {
+  'Triazoles':    ['SAMOURAÏ','SCORE','CONYDIA'],
+  'SDHI':         ['YARIS'],
+  'QoI':          ['SOLUTION ENERVIN+ALUCINAN'],
+  'CAA':          ['AMPEXIO','GORILLA F'],
+  'OSBPI':        ['PACK ZEUS — Zorvec','PACK ORONDIS+ZONGRUUM','PACK ZEUS — Kamparano'],
+  'Benzophénone': ['ALGEBRE'],
+  'Amidoxime':    ['CYFLODIUM'],
+};
+
+const ZNT_MAP = {
+  'CHAMP FLO AMPLI': 20,
+  'PANGOLIN DG': 20,
+};
+
+function getFracGroup(nom){
+  for(const [grp,prods] of Object.entries(FRAC_GROUPS)){
+    if(prods.includes(nom)) return grp;
+  }
+  return null;
+}
+
+function countPassages(nom){
+  const nb = S.client.nbPass||6;
+  let c=0;
+  for(let p=1;p<=nb;p++) if(S.passages[p]&&S.passages[p].some(x=>x.nom===nom)) c++;
+  return c;
+}
+
+function checkFracConsecutif(nom, p){
+  const grp = getFracGroup(nom);
+  if(!grp) return false;
+  const grpProds = FRAC_GROUPS[grp];
+  const prev = p>1 && (S.passages[p-1]||[]).some(x=>grpProds.includes(x.nom) && x.nom!==nom);
+  const next = S.passages[p+1] && (S.passages[p+1]||[]).some(x=>grpProds.includes(x.nom) && x.nom!==nom);
+  return prev || next;
+}
+
+function checkAlertesProgramme(){
+  const alertes = [];
+  const nb = S.client.nbPass||6;
+
+  // Max passages
+  const compteurs = {};
+  for(let p=1;p<=nb;p++){
+    (S.passages[p]||[]).forEach(pr=>{ compteurs[pr.nom]=(compteurs[pr.nom]||0)+1; });
+  }
+  for(const [nom,count] of Object.entries(compteurs)){
+    const max = MAX_PASSAGES[nom];
+    if(max && count>max) alertes.push({
+      level:'rouge',
+      msg:`<strong>${nom}</strong> : ${count} passages — maximum AMM = ${max}/an ⚠️`
+    });
+  }
+
+  // FRAC consécutifs
+  for(let p=1;p<nb;p++){
+    const curr = S.passages[p]||[];
+    const next = S.passages[p+1]||[];
+    for(const [grp,prods] of Object.entries(FRAC_GROUPS)){
+      const cG = curr.filter(x=>prods.includes(x.nom)).map(x=>x.nom);
+      const nG = next.filter(x=>prods.includes(x.nom)).map(x=>x.nom);
+      if(cG.length && nG.length) alertes.push({
+        level:'orange',
+        msg:`Anti-résistance FRAC <strong>${grp}</strong> : T${p} (${cG.join(', ')}) → T${p+1} (${nG.join(', ')}) — alterner les modes d'action`
+      });
+    }
+  }
+
+  return alertes;
+}
+
+function renderAlertesProgramme(){
+  const melanges  = checkMelanges();
+  const programme = checkAlertesProgramme();
+  const toutes    = [
+    ...melanges.map(a=>({...a})),
+    ...programme.map(a=>({...a}))
+  ];
+  const el = document.getElementById('alertes-melange');
+  if(!toutes.length){ el.innerHTML=''; return; }
+  el.innerHTML = `<div class="card"><div class="card-header" style="background:var(--rouge);"><h2>⚠️ Alertes programme</h2></div><div class="card-body">`+
+    toutes.map(a=>`
+      <div class="alerte alerte-${a.level}">
+        <span class="ico">${a.level==='rouge'?'🚫':'⚠️'}</span>
+        <div>
+          ${a.pass?`<div class="titre">T${a.pass}${a.date?' — '+a.date:''}</div>`:''}
+          <div>${a.msg}</div>
+        </div>
+      </div>`).join('')+
+    '</div></div>';
+}
+
+function togProd(nom, p){
+  const pr = CAT.find(x=>x.nom===nom);
+  if(!pr) return;
+  const idx = S.passages[p].findIndex(x=>x.nom===nom);
+
+  if(idx >= 0){
+    S.passages[p].splice(idx, 1);
+  } else {
+    // Contrôle max passages
+    const max = MAX_PASSAGES[nom];
+    if(max){
+      const count = countPassages(nom);
+      if(count >= max){
+        showToast(`⚠️ ${nom} : max AMM ${max}/an — déjà utilisé ${count}x`, 'error');
+      }
+    }
+    // Contrôle FRAC consécutif
+    if(checkFracConsecutif(nom, p)){
+      const grp = getFracGroup(nom);
+      showToast(`⚠️ Risque résistance — groupe FRAC ${grp} passages consécutifs`, 'error');
+    }
+    S.passages[p].push({
+      nom:pr.nom, n:pr.nom, c:pr.cible, f:pr.famille,
+      d:pr.dose, u:pr.unite, cmr:pr.cmr,
+      mentions_h:pr.mentions_h||[],
+      uab:pr.uab, dar:pr.dar||0, note:pr.note,
+      cu_kg_ha:pr.cu_kg_ha||0,
+      znt: ZNT_MAP[pr.nom]||0
+    });
+  }
+  const surf = surfTotal();
+  document.getElementById(`sp-${p}`).innerHTML = renderSel(p, surf);
+  if(S.currentCible) renderProdList(p, S.currentCible, '');
+  refreshTabs();
+  renderAlertesProgramme();
+  renderIFTCuivre();
+}
+
+
+function refreshTabs(){
+  document.querySelectorAll('.pass-tab').forEach((tab,i)=>{
+    const p = i+1;
+    const date = S.dates['t'+p] || '';
+    tab.className = 'pass-tab'+(p===4?' pass-tab-pivot':'')+(S.currentPass===p?' active':'')+(S.passages[p]&&S.passages[p].length?' has-data':'');
+    tab.textContent = `T${p}${date?' — '+date:''}`;
+  });
+}
+
+function updDose(p, idx, val){
+  S.passages[p][idx].d = parseFloat(val)||0;
+  const surf = surfTotal();
+  const qty  = surf ? (S.passages[p][idx].d*surf).toFixed(1) : '—';
+  const cards = document.querySelectorAll(`#sp-${p} .sel-prod-card`);
+  if(cards[idx]){
+    const q = cards[idx].querySelector('.qty-total');
+    if(q) q.textContent = qty+' '+S.passages[p][idx].u.replace('/ha','');
+  }
+  renderIFTCuivre();
+}
+
+function rmProd(p, idx){
+  S.passages[p].splice(idx, 1);
+  const surf = surfTotal();
+  document.getElementById(`sp-${p}`).innerHTML = renderSel(p, surf);
+  refreshTabs();
+  renderAlertesProgramme();
+  renderIFTCuivre();
+}
+
+// ══════════════════════════════════════════════════════
+// STEP 3 — RÉCAP
+// ══════════════════════════════════════════════════════
+function allProds(){
+  const map = {};
+  const surf = surfTotal();
+  const nb = S.client.nbPass || 6;
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]||!S.passages[p].length) continue;
+    S.passages[p].forEach(pr=>{
+      if(!map[pr.nom]) map[pr.nom] = {...pr, besoin:0, nbPass:0};
+      map[pr.nom].besoin += pr.d * surf;
+      map[pr.nom].nbPass++;
+    });
+  }
+  return Object.values(map);
+}
+
+
+function buildZNTRecap(){
+  const zntProds = checkZNTProgramme();
+  const el = document.getElementById('znt-recap');
+  if(!zntProds.length){ el.innerHTML=''; return; }
+  const lignes = zntProds.map(p=>`<div style="font-size:12px;margin:3px 0;"><strong>${p.nom}</strong> : ZNT ${p.znt}m — passages ${p.passages.map(x=>'T'+x).join(', ')}</div>`).join('');
+  const distances = [...new Set(zntProds.map(p=>p.znt+'m'))].join(' / ');
+  el.innerHTML = `<div style="background:#E3F2FD;border:1.5px solid #1565C0;border-radius:8px;padding:10px 14px;margin-bottom:14px;">
+    <div style="font-size:12px;font-weight:700;color:#1565C0;margin-bottom:6px;">🗺️ Produits avec ZNT — Zones Non Traitées</div>
+    ${lignes}
+    <div style="font-size:11px;color:#1565C0;margin-top:6px;">⚠️ Respecter ${distances} des points d'eau pour les produits listés ci-dessus</div>
+  </div>`;
+}
+
+function buildRecap(){
+  const c = S.client, surf = surfTotal();
+  const ents = S.entites.filter(e=>e.surf>0);
+  const ift  = calcIFT();
+  const cu   = calcCuivre();
+  const nb   = S.client.nbPass || 6;
+
+  document.getElementById('recap-kpis').innerHTML = `
+    <div class="kpi"><div class="kl">Client</div><div class="kv" style="font-family:var(--font-title);font-size:15px;">${c.nom||'—'}</div></div>
+    <div class="kpi"><div class="kl">Surface</div><div class="kv">${surf>0?surf.toFixed(1)+' ha':'—'}</div></div>
+    <div class="kpi"><div class="kl">Entités</div><div class="kv">${ents.length||'—'}</div></div>
+    <div class="kpi"><div class="kl">Certification</div><div class="kv" style="font-size:11px;">${c.certif}</div></div>
+    <div class="kpi"><div class="kl">IFT Total</div><div class="kv" style="color:${parseFloat(ift.total)>3?'var(--orange)':'var(--vert-dark)'};">${ift.total}</div></div>
+    <div class="kpi"><div class="kl">Cu métal/ha</div><div class="kv" style="color:${cu.alert?'var(--rouge)':'var(--vert-dark)'};">${cu.total} kg${cu.alert?' ⚠️':''}</div></div>
+    <div class="kpi"><div class="kl">Conseiller</div><div class="kv" style="font-size:12px;">${c.conseiller}</div></div>
+    <div class="kpi"><div class="kl">Réf.</div><div class="kv" style="font-size:9px;">${S.id}</div></div>`;
+
+  const tbody = document.getElementById('recap-body');
+  buildZNTRecap();
+
+  tbody.innerHTML = '';
+  const vendange = parseD(S.dates.vendange);
+
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]||!S.passages[p].length) continue;
+    S.passages[p].forEach(pr=>{
+      const qty = surf ? (pr.d*surf).toFixed(1)+' '+pr.u.replace('/ha','') : '—';
+      const tc  = pr.c==='Mildiou'?'tag-m':pr.c==='Oïdium'?'tag-o':'tag-n';
+      const refProd = CAT.find(x=>x.nom===pr.nom);
+      const doseAMM = (refProd&&refProd.dose) ? refProd.dose : pr.d;
+      const iftLine = doseAMM>0 ? (pr.d/doseAMM).toFixed(2) : '—';
+      const datePass = parseD(S.dates['t'+p]);
+
+      let darCell = `${pr.dar||'—'}j`;
+      if(pr.dar > 0 && vendange && datePass){
+        const joursRestants = Math.round((vendange-datePass)/(1000*60*60*24));
+        if(pr.dar > joursRestants){
+          darCell = `<span style="color:var(--rouge);font-weight:700;">🚫 ${pr.dar}j / ${joursRestants}j</span>`;
+        } else {
+          darCell = `<span style="color:var(--vert-dark);">${pr.dar}j ✓</span>`;
+        }
+      }
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>T${p}</strong></td>
+        <td style="font-family:var(--font-mono);font-size:11px;">${S.dates['t'+p]||'—'}</td>
+        <td><strong>${pr.nom}</strong>${pr.note?`<br><span style="font-size:10px;color:var(--gris1);">${pr.note}</span>`:''}</td>
+        <td><span class="tag ${tc}">${pr.c}</span></td>
+        <td style="font-family:var(--font-mono);">${pr.d} ${pr.u}</td>
+        <td style="font-family:var(--font-mono);font-weight:500;"><strong>${qty}</strong></td>
+        <td style="text-align:center;font-family:var(--font-mono);color:var(--bleu);">${iftLine}</td>
+        <td>${darCell}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// FIX : cmdOptimale — surf requis, corrigé
+// ══════════════════════════════════════════════════════
+function cmdOptimale(besoinNet, nom, surf){
+  const pr = CAT.find(x=>x.nom===nom);
+
+  if(pr && pr.cond_type==='pack' && pr.ha_par_unite && surf){
+    const nbPacks = Math.ceil(surf / pr.ha_par_unite);
+    return { unites:nbPacks, label:pr.cond_label||'pack', litres:besoinNet.toFixed(1), surplus:0, isPack:true };
+  }
+
+  const taille = pr ? (pr.cond_taille||1) : (COND[nom]||[1])[0]||1;
+  if(!taille || taille===0 || besoinNet<=0){
+    return { unites:0, label:'—', litres:'0', surplus:0, isPack:false };
+  }
+  const nbUnites   = Math.ceil(besoinNet / taille);
+  const litresCom  = nbUnites * taille;
+  const surplus    = litresCom - besoinNet;
+  const label      = pr ? (pr.cond_label||taille+'L') : taille+'L';
+  return { unites:nbUnites, label, litres:besoinNet.toFixed(1), surplus:parseFloat(surplus.toFixed(2)), isPack:false };
+}
+
+function buildCEGID(){
+  const prods = allProds();
+  const surf  = surfTotal();
+  const ents  = S.entites.filter(e=>e.surf>0);
+  const table = document.getElementById('cegid-table');
+
+  if(!prods.length || surf===0){
+    table.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:20px;color:var(--gris3);font-style:italic;">Aucun produit ou surface non renseignée</td></tr>';
+    return;
+  }
+
+  const entHeads = ents.map((e,i)=>
+    `<th class="th-ent" colspan="2" style="background:${ENT_DARK[i]};color:#fff;text-align:center;">
+      ${e.nom||ENT_LABELS[i]}<br><span style="font-size:9px;font-weight:400;">${e.surf} ha</span>
+    </th>`).join('');
+
+  const entSubs = ents.map(()=>
+    `<th style="background:#F5F5F5;color:var(--gris1);font-size:9px;text-align:center;">Qté CEGID</th>
+     <th style="background:#F5F5F5;color:var(--gris1);font-size:9px;text-align:center;">Litres/kg</th>`).join('');
+
+  const rows = prods.map(pr=>{
+    const stock      = S.stocks[pr.nom]||0;
+    const besoinNet  = Math.max(0, pr.besoin - stock);
+    // FIX : surf passé en 3e argument
+    const cmd        = cmdOptimale(besoinNet, pr.nom, surf);
+    const pr_cat     = CAT.find(x=>x.nom===pr.nom)||{cond_taille:1};
+    const tailleCond = cmd.isPack ? 0 : (pr_cat.cond_taille||1);
+    const surplusPct = (besoinNet>0 && tailleCond>0) ? cmd.surplus/tailleCond : 0;
+    const surplusTxt = cmd.isPack ? '' : (surplusPct>0.1
+      ? `<div style="color:var(--rouge);font-size:9px;font-weight:700;">+${cmd.surplus.toFixed(1)} → prorata</div>`
+      : cmd.surplus>0 ? `<div style="color:var(--vert-dark);font-size:9px;">+${cmd.surplus.toFixed(1)} absorbé</div>` : '');
+
+    const entCells = ents.map((e,i)=>{
+      let qteCEGID, litresEnt;
+      if(cmd.isPack){
+        const haParUnite = (CAT.find(x=>x.nom===pr.nom)||{ha_par_unite:1.5}).ha_par_unite||1.5;
+        qteCEGID  = Math.ceil(e.surf / haParUnite);
+        litresEnt = besoinNet>0 ? (besoinNet*e.surf/surf).toFixed(1) : '0';
+      } else {
+        const litresBrut = surf>0 ? besoinNet*(e.surf/surf) : 0;
+        const t = (CAT.find(x=>x.nom===pr.nom)||{cond_taille:1}).cond_taille||1;
+        qteCEGID  = Math.ceil(litresBrut/t);
+        litresEnt = litresBrut.toFixed(1);
+      }
+      return `<td style="text-align:center;background:${ENT_PALE[i]};font-family:var(--font-mono);font-weight:700;font-size:14px;">${qteCEGID}</td>
+              <td style="text-align:center;background:${ENT_PALE[i]};font-family:var(--font-mono);font-size:10px;color:${ENT_DARK[i]};">${litresEnt}</td>`;
+    }).join('');
+
+    return `<tr>
+      <td style="font-weight:700;">${pr.nom}</td>
+      <td style="text-align:center;">${cmd.label}</td>
+      <td style="text-align:center;color:var(--bleu);font-family:var(--font-mono);font-weight:500;">${pr.besoin.toFixed(1)}</td>
+      <td class="td-stock"><input type="number" min="0" step="0.1" value="${stock||''}" placeholder="0"
+        data-nom="${pr.nom.replace(/"/g,'&quot;')}" oninput="updStockCEGID(this)"></td>
+      <td style="text-align:center;color:var(--rouge);font-family:var(--font-mono);font-weight:700;">${besoinNet.toFixed(1)}</td>
+      <td style="text-align:center;font-family:var(--font-mono);font-weight:700;font-size:16px;color:var(--vert-dark);">${cmd.unites}</td>
+      <td style="text-align:center;font-size:11px;">${cmd.label}<br>${cmd.litres} L/kg${surplusTxt}</td>
+      ${entCells}
+    </tr>`;
+  }).join('');
+
+  table.innerHTML =
+    `<thead>
+      <tr>
+        <th class="th-prod" rowspan="2" style="text-align:left;">Produit</th>
+        <th class="th-prod" rowspan="2" style="text-align:center;">Format</th>
+        <th class="th-num" rowspan="2">Besoin brut<br><span style="font-size:9px;font-weight:400;">(L ou kg)</span></th>
+        <th class="th-stock" rowspan="2">Stock N-1 ✏️<br><span style="font-size:9px;font-weight:400;">(L ou kg)</span></th>
+        <th class="th-net" rowspan="2">Besoin net<br><span style="font-size:9px;font-weight:400;">(L ou kg)</span></th>
+        <th class="th-cmd" rowspan="2">Qté CEGID<br><span style="font-size:9px;font-weight:400;">(unités)</span></th>
+        <th class="th-cmd" rowspan="2">Détail</th>
+        ${entHeads}
+      </tr>
+      <tr>${entSubs}</tr>
+    </thead>
+    <tbody>${rows}</tbody>`;
+}
+
+function updStockCEGID(input){
+  const nom = input.dataset.nom;
+  if(nom) S.stocks[nom] = parseFloat(input.value)||0;
+}
+
+// ══════════════════════════════════════════════════════
+// SAUVEGARDE GITHUB
+// ══════════════════════════════════════════════════════
+async function sauvegarder(){
+  syncAll();
+  if(!GH.token){
+    showToast('⚠️ Token requis pour sauvegarder — ⚙️ Config','error');
+    return;
+  }
+  const btn    = document.getElementById('btn-save');
+  const status = document.getElementById('save-status');
+  btn.disabled = true; btn.textContent = '💾 Sauvegarde...';
+
+  const filename = `programmes/${(S.client.nom||'client').replace(/\s+/g,'_')}_${S.id}.json`;
+  const content  = btoa(unescape(encodeURIComponent(JSON.stringify(S,null,2))));
+
+  try {
+    let sha = '';
+    try {
+      const check = await fetch(`${GH.apiBase()}/${filename}`,{headers:GH.headers()});
+      if(check.ok){ const d=await check.json(); sha=d.sha; }
+    }catch(e){}
+
+    const body = {message:`Programme ${S.client.nom} — ${new Date().toLocaleDateString('fr-FR')}`, content};
+    if(sha) body.sha = sha;
+
+    const r = await fetch(`${GH.apiBase()}/${filename}`,{
+      method:'PUT', headers:GH.headers(), body:JSON.stringify(body)
+    });
+
+    if(r.ok){
+      S.meta.savedAt = new Date().toISOString();
+      status.innerHTML = `<span style="color:var(--vert-dark);">✅ Sauvegardé — ${new Date().toLocaleTimeString('fr-FR')}</span>`;
+      showToast('✅ Programme sauvegardé sur GitHub');
+    } else {
+      let errMsg = 'Erreur inconnue';
+      try{ const err=await r.json(); errMsg=err.message||errMsg; }catch(e){}
+      if(r.status===401) errMsg='Token invalide ou expiré';
+      if(r.status===403) errMsg='Droits insuffisants — scope "repo" requis';
+      if(r.status===404) errMsg='Repo introuvable';
+      status.innerHTML = `<span style="color:var(--rouge);">❌ ${r.status} — ${errMsg}</span>`;
+      showToast(`❌ ${errMsg}`,'error');
+    }
+  } catch(e) {
+    const isLocal = window.location.protocol==='file:';
+    const errMsg = isLocal ? 'Ouvrir depuis un serveur HTTP (pas file://)' : `Erreur réseau : ${e.message}`;
+    status.innerHTML = `<span style="color:var(--rouge);">❌ ${errMsg}</span>`;
+    showToast(`❌ ${errMsg}`,'error');
+  }
+
+  btn.disabled=false; btn.textContent='💾 Sauvegarder';
+}
+
+// ══════════════════════════════════════════════════════
+// LISTE CLIENTS
+// ══════════════════════════════════════════════════════
+async function showClients(){
+  document.getElementById('clients-overlay').classList.add('show');
+  const content = document.getElementById('clients-list-content');
+  content.innerHTML = '<div class="loading"><div class="spinner"></div><div>Chargement...</div></div>';
+
+  try {
+    const r = await fetch(`${GH.apiBase()}/programmes`,{headers:GH.headers()});
+    if(!r.ok){ content.innerHTML='<div style="text-align:center;padding:40px;color:var(--gris1);">Aucun programme sauvegardé</div>'; return; }
+    const files = await r.json();
+    const jsonFiles = files.filter(f=>f.name.endsWith('.json'));
+    if(!jsonFiles.length){ content.innerHTML='<div style="text-align:center;padding:40px;color:var(--gris1);">Aucun programme sauvegardé</div>'; return; }
+
+    const loaded = await Promise.all(jsonFiles.slice(0,20).map(async f=>{
+      try{ const r2=await fetch(f.download_url); return await r2.json(); }catch(e){ return null; }
+    }));
+
+    const valids = loaded.filter(x=>x&&x.client);
+    valids.sort((a,b)=>(b.meta?.savedAt||'').localeCompare(a.meta?.savedAt||''));
+    window._loadedProgs = valids;
+
+    content.innerHTML = '<div class="clients-list">'+valids.map((prog,vi)=>`
+      <div class="client-item" data-prog-idx="${vi}" onclick="chargerProgIdx(this)">
+        <div>
+          <div class="client-nom">${prog.client.nom||'Sans nom'}</div>
+          <div class="client-meta">${prog.client.certif||''} · ${prog.client.secteur||''} · ${surfTotalProg(prog)} ha · Réf. ${prog.id||'—'}</div>
+        </div>
+        <div class="client-date">${prog.meta?.savedAt?new Date(prog.meta.savedAt).toLocaleDateString('fr-FR'):''}</div>
+      </div>`).join('')+'</div>';
+  }catch(e){
+    content.innerHTML=`<div style="text-align:center;padding:40px;color:var(--rouge);">Erreur : ${e.message}</div>`;
+  }
+}
+
+function surfTotalProg(prog){ return (prog.entites||[]).reduce((s,e)=>s+(e.surf||0),0).toFixed(1); }
+
+function chargerProgIdx(el){
+  const idx  = parseInt(el.dataset.progIdx);
+  const prog = window._loadedProgs && window._loadedProgs[idx];
+  if(!prog){ showToast('❌ Programme introuvable','error'); return; }
+  chargerProgDirect(prog);
+}
+
+function chargerProgDirect(prog){
+  try {
+    S = {...prog, currentPass:1, currentCible:null};
+    // Compat ancienne version (pas de dates dynamiques)
+    if(!S.passages) S.passages = {};
+    document.getElementById('c_nom').value        = S.client.nom||'';
+    document.getElementById('c_secteur').value    = S.client.secteur||'';
+    document.getElementById('c_certif').value     = S.client.certif||'HVE V4';
+    document.getElementById('c_type').value       = S.client.type||'';
+    document.getElementById('c_conseiller').value = S.client.conseiller||GH.conseiller;
+    document.getElementById('c_nbpass').value     = S.client.nbPass||6;
+    document.getElementById('hdr-id').textContent = S.id;
+    buildEntites();
+    buildDatesGrid();
+    // Repopuler les dates
+    const nb = S.client.nbPass || 6;
+    for(let p=1; p<=nb; p++){
+      const el = document.getElementById(`d_t${p}`);
+      if(el && S.dates['t'+p]) el.value = S.dates['t'+p];
+    }
+    const vEl = document.getElementById('d_vendange');
+    if(vEl) vEl.value = S.dates.vendange||'';
+    document.getElementById('clients-overlay').classList.remove('show');
+    goStep(1);
+    showToast(`✅ Programme chargé — ${S.client.nom}`);
+  }catch(e){
+    showToast('❌ Erreur de chargement','error');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// EXPORTS
+// ══════════════════════════════════════════════════════
+function exportJSON(){
+  syncAll();
+  const blob = new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href=url; a.download=`Programme_${(S.client.nom||'Client').replace(/\s+/g,'_')}_${S.id}.json`;
+  a.click();
+  showToast('✅ JSON exporté');
+}
+
+function exportCSVCEGID(){
+  syncAll();
+  const c = S.client, surf = surfTotal();
+  const ents = S.entites.filter(e=>e.surf>0);
+  const nb   = S.client.nbPass||6;
+  if(surf===0){ showToast('Surface non renseignée','error'); return; }
+
+  const dateExport = new Date().toLocaleDateString('fr-FR');
+  const rows = [];
+  const headers = [
+    'REF_PROGRAMME','DATE_EXPORT','CLIENT_NOM','CLIENT_SECTEUR',
+    'CERTIFICATION','CONSEILLER','SURFACE_TOTALE_HA',
+    'PASSAGE','DATE_PASSAGE','CIBLE',
+    'PRODUIT','FORMAT_CONDITIONNEMENT',
+    'DOSE_HA','UNITE','LITRES_KG_TOTAL',
+    'ENTITE','SURFACE_ENTITE_HA','QTE_CEGID_UNITES','LITRES_KG_ENTITE'
+  ];
+  rows.push(headers.join(';'));
+
+  for(let p=1; p<=nb; p++){
+    if(!S.passages[p]||!S.passages[p].length) continue;
+    S.passages[p].forEach(pr=>{
+      const litresTotal = (pr.d*surf).toFixed(2);
+      const cmd = cmdOptimale(parseFloat(litresTotal), pr.nom, surf);
+      const entList = ents.length ? ents : [{nom:'GLOBAL',surf}];
+      entList.forEach(e=>{
+        let litresEnt, qteCEGID;
+        if(cmd.isPack){
+          const haParUnite = (CAT.find(x=>x.nom===pr.nom)||{ha_par_unite:1.5}).ha_par_unite||1.5;
+          qteCEGID  = Math.ceil(e.surf/haParUnite);
+          litresEnt = (pr.d*e.surf).toFixed(2);
+        } else {
+          litresEnt = (pr.d*e.surf).toFixed(2);
+          const t = (CAT.find(x=>x.nom===pr.nom)||{cond_taille:1}).cond_taille||1;
+          qteCEGID  = Math.ceil(parseFloat(litresEnt)/t);
+        }
+        rows.push([
+          S.id, dateExport, c.nom||'', c.secteur||'', c.certif, c.conseiller, surf.toFixed(2),
+          'T'+p, S.dates['t'+p]||'', pr.c,
+          pr.nom, cmd.label, pr.d, pr.u.replace('/ha',''), litresTotal,
+          e.nom||'GLOBAL', e.surf.toFixed(2), qteCEGID, litresEnt
+        ].map(vv=>`"${String(vv).replace(/"/g,'""')}"`).join(';'));
+      });
+    });
+  }
+
+  const csv  = rows.join('\n');
+  const blob = new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href=url; a.download=`CEGID_${(c.nom||'Client').replace(/\s+/g,'_')}_${S.id}.csv`;
+  a.click();
+  showToast(`✅ CSV CEGID exporté — ${rows.length} lignes`);
+}
+
+// ══════════════════════════════════════════════════════
+// GÉNÉRATION DOCUMENT CLIENT (calendrier aperçu)
+// ══════════════════════════════════════════════════════
+function genDocClient(){
+  const c=S.client, surf=surfTotal();
+  const nb=S.client.nbPass||6;
+  const ift=calcIFT();
+  const cu=calcCuivre();
+
+  const bbch =['13-15','25-35','53-57','65-68','75-79','81-85'];
+  const bdesc=['Débourrement<br>3 feuilles','5-9 feuilles<br>Montaison','Boutons floraux<br>Grappes séparées','Floraison<br>Stade critique','Nouaison<br>Petits pois','Véraison<br>Fermeture grappe'];
+  const emo  =['🌿','🌿','🍇','🌸','🍇','🍷'];
+  while(bbch.length<nb){ bbch.push('—'); bdesc.push('Passage '+(bbch.length)); emo.push('🌿'); }
+
+  const pm=Array(nb+1).fill(''), po=Array(nb+1).fill(''), pn=Array(nb+1).fill('');
+  for(let p=1;p<=nb;p++){
+    if(!S.passages[p]) continue;
+    S.passages[p].forEach(pr=>{
+      const chip=pr.cmr==='CMR2'?`<span class='chip cmr2'>CMR2</span>`:pr.cmr==='H362*'?`<span class='chip h362'>H362*</span>`:`<span class='chip ok'>Non CMR</span>`;
+      const qty=surf?(pr.d*surf).toFixed(1)+' '+pr.u.replace('/ha',''):'';
+      let b=`<div class='prod'>${pr.nom}</div><div class='dose'>${pr.d} ${pr.u}</div>`;
+      if(pr.note) b+=`<div class='note'>${pr.note}</div>`;
+      if(qty) b+=`<div class='qty'>${qty}</div>`;
+      b+=chip;
+      if(pr.c==='Mildiou') pm[p]+=b;
+      else if(pr.c==='Oïdium') po[p]+=b;
+      else pn[p]+=b;
+    });
+  }
+
+  const gc=`68px repeat(${nb},1fr)`;
+  let html=`<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'>
+<link href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lexend:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap' rel='stylesheet'>
+<title>Programme ${c.nom} 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;font-size:10px;background:#E0E0E0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.page{width:297mm;min-height:210mm;background:#FEFEFE;margin:8px auto;box-shadow:0 4px 24px rgba(0,0,0,.2);overflow:hidden;}
+.header{background:#14491b;padding:10px 14px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #C8961A;}
+.h-left{display:flex;align-items:center;gap:10px;}
+.logo{width:36px;height:36px;background:#C8961A;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.2;}
+.h-title span{color:#C8961A;}
+.h-sub{font-size:7px;color:rgba(255,255,255,.85);letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
+.badge-yr{font-family:'DM Mono',monospace;background:#C8961A;color:#14491b;font-size:16px;font-weight:700;padding:3px 12px;border-radius:3px;}
+.badge-hve{font-size:7px;color:rgba(255,255,255,.85);margin-top:3px;text-align:right;}
+.cband{background:#2E9E3A;padding:5px 14px;display:flex;gap:0;align-items:center;flex-wrap:wrap;}
+.ci{display:flex;align-items:center;gap:6px;padding-right:14px;margin-right:14px;border-right:1px solid rgba(255,255,255,.2);}
+.ci:last-child{border-right:none;}
+.ci-lbl{font-size:7px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:1px;}
+.ci-val{font-size:11px;font-weight:700;color:#fff;}
+.body{padding:8px 14px 6px;}
+.cal-title{font-family:'Cormorant Garamond',serif;font-size:9px;font-weight:700;color:#14491b;text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+.cal-title::after{content:'';flex:1;height:1px;background:#C8E6C9;}
+.grid{display:grid;grid-template-columns:${gc};border:1.5px solid #2E9E3A;border-radius:5px;overflow:hidden;}
+.ch-sp{background:#14491b;display:flex;align-items:flex-end;justify-content:center;padding:6px 4px 4px;}
+.ch-sp span{font-size:6px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:2px;text-transform:uppercase;}
+.ch{background:#14491b;padding:6px 4px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;border-left:1px solid rgba(255,255,255,.12);}
+.ch.piv{background:#0D47A1;border-left:2px solid #C8961A;border-right:2px solid #C8961A;}
+.ch-num{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:#C8961A;line-height:1;}
+.ch-date{font-family:'DM Mono',monospace;font-size:7px;font-weight:400;color:#fff;}
+.piv-badge{font-size:6px;background:#C8961A;color:#0D47A1;font-weight:700;padding:1px 5px;border-radius:2px;margin-top:2px;}
+.st-sp{background:#2E9E3A;display:flex;align-items:center;justify-content:center;padding:4px;border-top:1px solid rgba(255,255,255,.1);}
+.st-sp span{font-size:6px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:2px;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);}
+.st{background:#2E9E3A;border-left:1px solid rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.1);padding:5px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.st.piv{background:#0D3B6E;border-left:2px solid #C8961A;border-right:2px solid #C8961A;}
+.st-emo{font-size:18px;line-height:1;}
+.st-bbch{font-family:'DM Mono',monospace;font-size:7px;font-weight:500;color:#C8961A;}
+.st-desc{font-size:7px;color:rgba(255,255,255,.95);text-align:center;line-height:1.35;}
+.rl{padding:0 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-top:1px solid #E8E8E8;border-right:1px solid #DDD;}
+.rl-dot{width:9px;height:9px;border-radius:50%;}
+.rl-name{font-size:7px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-align:center;}
+.rl-sci{font-size:6px;font-style:italic;color:#212121;text-align:center;}
+.rm .rl{background:#EBF5FB;}
+.rm .rl-dot{background:#1565C0;}
+.rm .rl-name{color:#0D3B6E;}
+.ro .rl{background:#FEF9E7;}
+.ro .rl-dot{background:#E65100;}
+.ro .rl-name{color:#7F3300;}
+.rn .rl{background:#F5EEF8;}
+.rn .rl-dot{background:#7B1FA2;}
+.rn .rl-name{color:#4A148C;}
+.tc{padding:5px 5px 4px;border-left:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:3px;min-height:72px;}
+.rm .tc{background:#DBEAFE;border-top:1px solid #BFDBFE;}
+.ro .tc{background:#FEF3C7;border-top:1px solid #FDE68A;}
+.rn .tc{background:#F3E8FF;border-top:1px solid #DDD6FE;}
+.rm .tc.piv{background:#1E40AF;border-left:2px solid #C8961A;border-right:2px solid #C8961A;}
+.ro .tc.piv{background:#92400E;border-left:2px solid #C8961A;border-right:2px solid #C8961A;}
+.rn .tc.piv{background:#581C87;border-left:2px solid #C8961A;border-right:2px solid #C8961A;}
+.tc.empty{background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(0,0,0,.03) 6px,rgba(0,0,0,.03) 12px)!important;}
+.prod{font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;word-break:break-word;line-height:1.25;}
+.rm .tc:not(.piv) .prod{background:rgba(29,78,216,.1);color:#1E3A8A;}
+.ro .tc:not(.piv) .prod{background:rgba(194,65,12,.1);color:#7C2D12;}
+.rn .tc:not(.piv) .prod{background:rgba(109,40,217,.1);color:#4C1D95;}
+.tc.piv .prod{background:rgba(255,255,255,.15);color:#C8961A;}
+.dose{font-size:7px;color:#212121;padding:0 5px;font-weight:400;}
+.tc.piv .dose{color:rgba(255,255,255,.9);}
+.qty{font-family:'DM Mono',monospace;font-size:7px;font-weight:500;padding:2px 6px;border-radius:2px;margin-top:auto;align-self:flex-start;}
+.rm .tc:not(.piv) .qty{background:#1565C0;color:#fff;}
+.ro .tc:not(.piv) .qty{background:#E65100;color:#fff;}
+.rn .tc:not(.piv) .qty{background:#7B1FA2;color:#fff;}
+.tc.piv .qty{background:#C8961A;color:#0D47A1;font-weight:700;}
+.note{font-size:6.5px;padding:0 5px;font-style:italic;color:#212121;}
+.chip{font-size:6px;font-weight:700;padding:1px 4px;border-radius:2px;align-self:flex-end;margin-top:1px;text-transform:uppercase;}
+.chip.ok{background:#D1FAE5;color:#065F46;}
+.chip.h362{background:#FEF3C7;color:#92400E;}
+.chip.cmr2{background:#FEE2E2;color:#991B1B;}
+.ift-line{background:#eaf6eb;padding:4px 14px;font-family:'DM Mono',monospace;font-size:7px;color:#14491b;font-weight:500;display:flex;gap:16px;flex-wrap:wrap;}
+.footer{background:#14491b;padding:5px 14px;display:flex;justify-content:space-between;align-items:center;}
+.f-l{font-family:'Lexend',sans-serif;font-size:8px;font-weight:600;color:rgba(255,255,255,.9);}
+.f-r{font-size:7px;color:rgba(255,255,255,.8);font-style:italic;}
+@media print{body{background:#fff;}.page{margin:0;box-shadow:none;width:297mm;}@page{size:A4 landscape;margin:5mm;}}
+</style></head><body><div class='page'>`;
+
+html+=`<div class='header'><div class='h-left'><div class='logo'>🌿</div><div>
+<div class='h-title'>Programme de Protection <span>Phytosanitaire Vigne</span></div>
+<div class='h-sub'>Bergon SAS — Intrants Viticoles — Le Muy, Var (83)</div>
+
+  </div></div><div><span class='badge-yr'>2026</span><div class='badge-hve'>&#10003; ${c.certif}</div></div></div>`;
+
+html+=`<div class='cband'> <div class='ci'><span class='ci-lbl'>Client</span><span class='ci-val'>${c.nom||'—'}</span></div> <div class='ci'><span class='ci-lbl'>Surface</span><span class='ci-val'>${surf>0?surf.toFixed(1)+' ha':'—'}</span></div> ${c.secteur?`<div class='ci'><span class='ci-lbl'>Secteur</span><span class='ci-val'>${c.secteur}</span></div>`:’’}
+<div class='ci'><span class='ci-lbl'>Certification</span><span class='ci-val'>${c.certif}</span></div>
+<div class='ci'><span class='ci-lbl'>Conseiller</span><span class='ci-val'>${c.conseiller}</span></div>
+
+  </div>`;
+
+html+=`<div class='body'><div class='cal-title'>${c.type||'Programme Phytosanitaire 2026'}</div><div class='grid'>`;
+html+=`<div class='ch-sp'><span>Passage</span></div>`;
+for(let p=1;p<=nb;p++){
+html+=`<div class='ch${p===4?' piv':''}'><div class='ch-num'>${p}</div><div class='ch-date'>${S.dates['t'+p]||'—'}</div>${p===4?"<div class='piv-badge'>⭐ Floraison</div>":''}</div>`;
+}
+html+=`<div class='st-sp'><span>BBCH</span></div>`;
+for(let p=1;p<=nb;p++){
+html+=`<div class='st${p===4?' piv':''}'><div class='st-emo'>${emo[p-1]}</div><div class='st-bbch'>BBCH ${bbch[p-1]}</div><div class='st-desc'>${bdesc[p-1]}</div></div>`;
+}
+html+=`<div class='rl rm'><div class='rl-dot'></div><div class='rl-name'>Mildiou</div><div class='rl-sci'>Plasmopara<br>viticola</div></div>`;
+for(let p=1;p<=nb;p++){ html+=`<div class='tc rm${p===4?' piv':''}${!pm[p]?' empty':''}'>${pm[p]}</div>`; }
+html+=`<div class='rl ro'><div class='rl-dot'></div><div class='rl-name'>O&iuml;dium</div><div class='rl-sci'>Erysiphe<br>necator</div></div>`;
+for(let p=1;p<=nb;p++){ html+=`<div class='tc ro${p===4?' piv':''}${!po[p]?' empty':''}'>${po[p]}</div>`; }
+html+=`<div class='rl rn'><div class='rl-dot'></div><div class='rl-name'>Nutrition</div><div class='rl-sci'>Biostimulation</div></div>`;
+for(let p=1;p<=nb;p++){ html+=`<div class='tc rn${p===4?' piv':''}${!pn[p]?' empty':''}'>${pn[p]}</div>`; }
+html+=`</div>`;
+
+html+=`<div class='ift-line'>
+<span>IFT hors biocontrôle : <strong>${ift.horsBC}</strong></span>
+<span>IFT biocontrôle : <strong>${ift.bioBC}</strong></span>
+<span>Cu métal/ha : <strong>${cu.total} kg${cu.alert?’ ⚠️ DÉPASSEMENT SPe1’:’’}</strong></span>
+<span>Réf. ${S.id}</span>
+
+  </div>`;
+
+html+=`</div><div class='footer'>
+<div class='f-l'>Bergon SAS — Le Muy (83) · Conseiller : ${c.conseiller}</div>
+<div class='f-r'>Programme indicatif — Vérifier sur e-phy.anses.fr avant application · Confidentiel client</div>
+
+  </div></div></body></html>`;
+
+showDoc(html, `Programme_${(c.nom||'Client').replace(/\s+/g,'_')}_2026.html`, ‘📄 Document client’);
+}
+
+// ══════════════════════════════════════════════════════
+// FICHE CEGID
+// ══════════════════════════════════════════════════════
+function genFicheCEGID(){
+const c=S.client, surf=surfTotal();
+const prods=allProds();
+const ents=S.entites.filter(e=>e.surf>0);
+if(!prods.length||surf===0){ showToast(‘⚠️ Programme vide ou surface non renseignée’,‘error’); return; }
+
+const ift=calcIFT(), cu=calcCuivre();
+
+const entHeads=ents.map((e,i)=>`<th colspan="2" style="background:${ENT_DARK[i]};color:#fff;text-align:center;padding:8px;">${e.nom||'Entité '+(i+1)}<br><span style="font-size:9px;font-weight:400;">${e.surf} ha</span></th>`).join(’’);
+const entSubs =ents.map(()=>`<th style="background:#F5F5F5;color:#37474F;font-size:10px;text-align:center;">Qté CEGID</th><th style="background:#F5F5F5;color:#37474F;font-size:10px;text-align:center;">Litres/kg</th>`).join(’’);
+
+// FIX : surf passé en argument
+const rows=prods.map(pr=>{
+const stock=S.stocks[pr.nom]||0;
+const besoinNet=Math.max(0,pr.besoin-stock);
+const cmd=cmdOptimale(besoinNet,pr.nom,surf);
+const entCells=ents.map((e,i)=>{
+const litresBrut=surf>0?besoinNet*(e.surf/surf):0;
+const t=(CAT.find(x=>x.nom===pr.nom)||{cond_taille:1}).cond_taille||1;
+const qteCEGID=Math.ceil(litresBrut/t);
+return `<td style="text-align:center;background:${ENT_PALE[i]};font-weight:700;">${litresBrut.toFixed(2)}</td> <td style="text-align:center;background:${ENT_PALE[i]};font-size:10px;color:${ENT_DARK[i]};">${qteCEGID}</td>`;
+}).join(’’);
+return `<tr> <td style="font-weight:700;padding:7px 10px;">${pr.nom}</td> <td style="text-align:center;">${pr.u.replace('/ha','')}</td> <td style="text-align:center;color:#1565C0;font-weight:700;">${pr.besoin.toFixed(1)}</td> <td style="text-align:center;background:#FFF8E1;font-weight:700;">${stock>0?stock.toFixed(1):'—'}</td> <td style="text-align:center;color:#B71C1C;font-weight:800;">${besoinNet.toFixed(1)}</td> <td style="text-align:center;font-weight:800;font-size:13px;">${cmd.unites}</td> <td style="text-align:center;font-size:10px;">${cmd.label}</td> ${entCells} </tr>`;
+}).join(’’);
+
+const html=`<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'>
+
+<link href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lexend:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap' rel='stylesheet'>
+<title>Fiche CEGID — ${c.nom} 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;font-size:11px;background:#F5F5F5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.page{max-width:1100px;margin:10px auto;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);overflow:hidden;}
+.header{background:#14491b;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #C8961A;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;}
+.h-title span{color:#C8961A;}
+.h-sub{font-size:9px;color:rgba(255,255,255,.85);margin-top:2px;}
+.badge{font-family:'DM Mono',monospace;background:#C8961A;color:#14491b;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;}
+.cband{background:#2E9E3A;padding:6px 18px;display:flex;gap:20px;flex-wrap:wrap;}
+.ci{display:flex;align-items:center;gap:6px;}
+.ci-lbl{font-size:8px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;}
+.ci-val{font-size:12px;font-weight:700;color:#fff;}
+.body{padding:14px 18px;}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:700;color:#14491b;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;padding-bottom:4px;border-bottom:2px solid #C8E6C9;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+th{padding:7px 10px;text-align:left;font-weight:700;}
+td{padding:6px 10px;border-bottom:1px solid #ECEFF1;}
+tr:hover td{background:#F9FBE7;}
+.kpi-bar{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;padding:10px 14px;background:#eaf6eb;border-radius:8px;}
+.kpi-item{display:flex;flex-direction:column;}
+.kpi-label{font-size:9px;font-weight:700;color:#37474F;text-transform:uppercase;}
+.kpi-value{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:#14491b;}
+.footer{background:#14491b;padding:6px 18px;display:flex;justify-content:space-between;}
+.f-l{font-size:9px;font-weight:600;color:rgba(255,255,255,.9);}
+.f-r{font-size:8px;color:rgba(255,255,255,.7);font-style:italic;}
+@media print{body{background:#fff;}.page{margin:0;box-shadow:none;}@page{size:A4 landscape;margin:8mm;}}
+</style></head><body><div class='page'>
+<div class='header'>
+  <div><div class='h-title'>Ventilation Commande <span>CEGID</span></div>
+  <div class='h-sub'>Bergon SAS &mdash; Programme ${c.nom} &mdash; Réf. ${S.id}</div></div>
+  <div class='badge'>2026</div>
+</div>
+<div class='cband'>
+  <div class='ci'><span class='ci-lbl'>Client</span><span class='ci-val'>${c.nom||'—'}</span></div>
+  <div class='ci'><span class='ci-lbl'>Surface</span><span class='ci-val'>${surf.toFixed(1)} ha</span></div>
+  <div class='ci'><span class='ci-lbl'>Entités</span><span class='ci-val'>${ents.length}</span></div>
+  <div class='ci'><span class='ci-lbl'>Certification</span><span class='ci-val'>${c.certif}</span></div>
+  <div class='ci'><span class='ci-lbl'>Conseiller</span><span class='ci-val'>${c.conseiller}</span></div>
+</div>
+<div class='body'>
+<div class='kpi-bar'>
+  <div class='kpi-item'><div class='kpi-label'>IFT Total</div><div class='kpi-value'>${ift.total}</div></div>
+  <div class='kpi-item'><div class='kpi-label'>Cu métal/ha/an</div><div class='kpi-value' style="color:${cu.alert?'#B71C1C':'#14491b'};">${cu.total} kg${cu.alert?' ⚠️':''}</div></div>
+  <div class='kpi-item'><div class='kpi-label'>Produits</div><div class='kpi-value'>${prods.length}</div></div>
+</div>
+<div class='stitle'>Tableau de ventilation — Quantités à saisir dans CEGID</div>
+<div style="overflow-x:auto;"><table>
+<thead>
+<tr>
+  <th rowspan="2" style="background:#37474F;color:#fff;">Produit</th>
+  <th rowspan="2" style="background:#37474F;color:#fff;text-align:center;">Unité</th>
+  <th rowspan="2" style="background:#1565C0;color:#fff;text-align:center;">Besoin brut</th>
+  <th rowspan="2" style="background:#C8961A;color:#14491b;text-align:center;">Stock N-1</th>
+  <th rowspan="2" style="background:#B71C1C;color:#fff;text-align:center;">Besoin net</th>
+  <th rowspan="2" style="background:#212121;color:#fff;text-align:center;">À commander</th>
+  <th rowspan="2" style="background:#212121;color:#fff;text-align:center;">Format</th>
+  ${entHeads}
+</tr>
+<tr>${entSubs}</tr>
+</thead>
+<tbody>${rows}</tbody>
+</table></div>
+<div style="margin-top:12px;padding:8px 12px;background:#FFF8E1;border-radius:6px;font-size:10px;color:#37474F;">
+  <strong>Légende :</strong> Besoin net = Besoin brut − Stock N-1 &nbsp;|&nbsp; Colonnes colorées = quantités exactes à saisir dans CEGID
+</div>
+</div>
+<div class='footer'>
+  <div class='f-l'>Bergon SAS &mdash; Le Muy (83) &middot; Réf. ${S.id}</div>
+  <div class='f-r'>Document confidentiel &mdash; Usage interne commercial</div>
+</div>
+</div></body></html>`;
+
+showDoc(html, `CEGID_${(c.nom||'Client').replace(/\s+/g,'_')}_2026.html`, ‘📋 Fiche CEGID’);
+}
+
+// ══════════════════════════════════════════════════════
+// IMPRESSION PDF
+// ══════════════════════════════════════════════════════
+function imprimerCalendrier(){
+// Réutilise genDocClient et déclenche l’impression via l’iframe
+syncAll();
+genDocClient();
+setTimeout(()=>{
+const iframe = document.getElementById(‘doc-iframe’);
+if(iframe && iframe.contentWindow){
+try {
+iframe.contentWindow.focus();
+iframe.contentWindow.print();
+showToast(‘🖨️ Impression lancée — choisir Enregistrer en PDF’);
+} catch(e){
+showToast(‘💾 Téléchargez le fichier puis Ctrl+P’);
+}
+}
+}, 1200);
+}
+
+// ══════════════════════════════════════════════════════
+// DOC OVERLAY
+// ══════════════════════════════════════════════════════
+function showDoc(html, filename, title){
+document.getElementById(‘doc-title’).textContent = title;
+document.getElementById(‘doc-dl’).download = filename;
+const blob = new Blob([html],{type:‘text/html;charset=utf-8’});
+document.getElementById(‘doc-dl’).href = URL.createObjectURL(blob);
+document.getElementById(‘doc-iframe’).srcdoc = html;
+document.getElementById(‘doc-overlay’).classList.add(‘show’);
+showToast(‘✅ Document prêt — Téléchargez ou Ctrl+P’);
+}
+
+// ══════════════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════════════
+function showToast(msg, type){
+const t = document.getElementById(‘toast’);
+t.textContent = msg;
+t.className = ‘toast show’+(type===‘error’?’ error’:’’);
+clearTimeout(t._timer);
+t._timer = setTimeout(()=>t.classList.remove(‘show’), 3500);
+}
+
+function nouveauProg(fermerOverlay){
+if(fermerOverlay) document.getElementById(‘clients-overlay’).classList.remove(‘show’);
+if(!fermerOverlay && !confirm(‘Réinitialiser ? Les saisies non sauvegardées seront perdues.’)) return;
+S = newState();
+document.getElementById(‘c_nom’).value        = ‘’;
+document.getElementById(‘c_secteur’).value    = ‘’;
+document.getElementById(‘c_certif’).value     = ‘HVE V4’;
+document.getElementById(‘c_type’).value       = ‘’;
+document.getElementById(‘c_conseiller’).value = GH.conseiller;
+document.getElementById(‘c_nbpass’).value     = 6;
+document.getElementById(‘d_vendange’).value   = ‘’;
+document.getElementById(‘hdr-id’).textContent = S.id;
+buildEntites();
+buildDatesGrid();
+goStep(1);
+}
+
+function reconfigurerToken(){
+document.getElementById(‘cfg-token’).value      = GH.token;
+document.getElementById(‘cfg-user’).value       = GH.user;
+document.getElementById(‘cfg-repo’).value       = GH.repo;
+document.getElementById(‘cfg-conseiller’).value = GH.conseiller;
+document.getElementById(‘config-overlay’).style.display = ‘flex’;
+}
+
+function retourBergonField(){
+// Lien retour vers Bergon Field — paramètre URL bergonfield_url ou fallback
+const params = new URLSearchParams(window.location.search);
+const retourUrl = params.get(“retour”) || localStorage.getItem(“bergonfield_url”) || null;
+if(retourUrl){
+window.location.href = retourUrl;
+} else {
+showToast(“Paramètre retour= non défini — intégrer depuis Bergon Field”, “error”);
+}
+}
+
+function checkZNTProgramme(){
+// Recense tous les produits ZNT dans le programme
+const nb = S.client.nbPass||6;
+const zntProds = [];
+for(let p=1;p<=nb;p++){
+(S.passages[p]||[]).forEach(pr=>{
+const znt = ZNT_MAP[pr.nom]||0;
+if(znt>0 && !zntProds.find(x=>x.nom===pr.nom)){
+zntProds.push({nom:pr.nom, znt, passages:[]});
+}
+if(znt>0){
+const entry = zntProds.find(x=>x.nom===pr.nom);
+if(entry) entry.passages.push(p);
+}
+});
+}
+return zntProds;
+}
+async function initApp(){
+await loadCatalogue();
+buildEntites();
+buildDatesGrid();
+// Init passages pour 6 passages par défaut
+const nb = S.client.nbPass || 6;
+for(let p=1; p<=nb; p++){ if(!S.passages[p]) S.passages[p]=[]; }
+document.getElementById(‘c_conseiller’).value = GH.conseiller;
+goStep(1);
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+if(!checkConfig()){
+// Attendre saveConfig()
+} else {
+initApp();
+}
+</script>
+
+</body>
+</html>
