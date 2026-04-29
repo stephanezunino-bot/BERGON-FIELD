@@ -1,0 +1,106 @@
+{
+  "id": "BRG-MOJNTTA3-XBYL",
+  "meta": {
+    "createdAt": "2026-04-29T06:14:25.659Z",
+    "updatedAt": "2026-04-29T08:19:16.043Z",
+    "version": "2.1",
+    "savedAt": null
+  },
+  "client": {
+    "nom": "BOUCABELLE",
+    "secteur": "",
+    "certif": "HVE V4",
+    "type": "CONVENTIONNEL",
+    "conseiller": "Stéphane",
+    "nbPass": 6
+  },
+  "entites": [
+    {
+      "nom": "BOUCABELLE",
+      "surf": 58
+    },
+    {
+      "nom": "PALMIERI VERONIQUE",
+      "surf": 6
+    },
+    {
+      "nom": "MOUSKA SERGE",
+      "surf": 5
+    },
+    {
+      "nom": "",
+      "surf": 0
+    },
+    {
+      "nom": "",
+      "surf": 0
+    }
+  ],
+  "dates": {
+    "t1": "29/04",
+    "vendange": "",
+    "cadence": 14,
+    "t2": "13 mai",
+    "t3": "27 mai",
+    "t4": "9 juin",
+    "t5": "23 juin",
+    "t6": "7 juillet"
+  },
+  "stocks": {},
+  "passages": {
+    "1": [
+      {
+        "nom": "CHAMP FLO AMPLI",
+        "n": "CHAMP FLO AMPLI",
+        "c": "Mildiou",
+        "f": "Cuivres",
+        "d": 1,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 21,
+        "note": "SPe1 cuivre — ZNT 20m",
+        "cu_kg_ha": 0.468,
+        "znt": 20
+      },
+      {
+        "nom": "ETONAN",
+        "n": "ETONAN",
+        "c": "Mildiou",
+        "f": "Phosphonates",
+        "d": 2.5,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": true,
+        "dar": 14,
+        "note": "⚠️ Incompat. cuivre — 2 cuves",
+        "cu_kg_ha": 0,
+        "znt": 0
+      },
+      {
+        "nom": "ALGEBRE",
+        "n": "ALGEBRE",
+        "c": "Oïdium",
+        "f": "Benzophénones",
+        "d": 0.2,
+        "u": "L/ha",
+        "cmr": "Non",
+        "mentions_h": [],
+        "uab": false,
+        "dar": 28,
+        "note": "Max 2/an",
+        "cu_kg_ha": 0,
+        "znt": 0
+      }
+    ],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": []
+  },
+  "currentPass": 1,
+  "currentCible": "Nutrition"
+}
